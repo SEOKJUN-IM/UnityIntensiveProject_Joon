@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public string charName;
-    public string charJob;
-    public int charLevel;
-    [Range(0, 100)] public int charCurExp;
-    public string charInfo;
-    public int charGold;
+    [field: SerializeField] public string charName { get; private set; }
+    [field: SerializeField] public string charJob { get; private set; }
+    [field: SerializeField] public int charLevel { get; private set; }
+    [field: SerializeField] public int charCurExp { get; private set; }
+    [field: SerializeField, TextArea] public string charInfo { get; private set; }
+    [field: SerializeField] public int charGold { get; private set; }
 
-    public int charAttackValue;
-    public int charDefenseValue;
-    public int charHealthValue;
-    public int charCriticalValue;
+    [field: SerializeField] public int charAttackValue { get; private set; }
+    [field: SerializeField] public int charDefenseValue { get; private set; }
+    [field: SerializeField] public int charHealthValue { get; private set; }
+    [field: SerializeField] public int charCriticalValue { get; private set; }
 
-    public int charCurInvenQuantity;
+    [field: SerializeField] public int charCurInvenQuantity { get; private set; }
 
     private void Awake()
     {

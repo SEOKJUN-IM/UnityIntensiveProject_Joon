@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIInventory : MonoBehaviour
 {
+    public TextMeshProUGUI curQuantityText;
+
     public Button backBtn;
 
     void Awake()
@@ -19,12 +20,17 @@ public class UIInventory : MonoBehaviour
 
     void Update()
     {
-        
+        SetCharInfo();
     }
 
     public void backToMainMenu()
     {
         this.gameObject.SetActive(false);
         UIManager.Instance.uiMain.OpenMainMenu();
+    }
+
+    public void SetCharInfo()
+    {
+        curQuantityText.text = $"{GameManager.Instance.Player.playerCurInvenQuantity}";
     }
 }
