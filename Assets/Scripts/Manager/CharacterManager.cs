@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
@@ -20,7 +21,7 @@ public class CharacterManager : MonoBehaviour
     {
         get { return _character; }
         set { _character = value; }
-    }
+    }    
 
     private void Awake()
     {

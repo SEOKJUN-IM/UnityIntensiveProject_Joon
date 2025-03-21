@@ -16,8 +16,8 @@ public class Character : MonoBehaviour
 
     [field: SerializeField] public int charCurInvenQuantity { get; private set; }
 
-    private void Awake()
+    private void Update()
     {
-        CharacterManager.Instance.Character = this;
+        if (this.gameObject.activeInHierarchy == true) CharacterManager.Instance.Character = this;
     }
 }

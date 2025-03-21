@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     [field: SerializeField] public UIMainMenu uiMain { get; set; }
     [field: SerializeField] public UIStatus uiStat { get; set; }
     [field: SerializeField] public UIInventory uiInven { get; set; }
+    [field: SerializeField] public UIChangeChar uiChange { get; set; }
 
     private static UIManager _instance;
     public static UIManager Instance
@@ -41,5 +42,6 @@ public class UIManager : MonoBehaviour
     {
         uiStat.gameObject.SetActive(false);
         uiInven.gameObject.SetActive(false);
+        uiChange.gameObject.SetActive(false);
     }
 }

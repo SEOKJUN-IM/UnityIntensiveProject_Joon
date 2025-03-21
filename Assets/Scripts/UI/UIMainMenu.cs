@@ -13,6 +13,10 @@ public class UIMainMenu : MonoBehaviour
 
     public Button statBtn;
     public Button invenBtn;
+    public Button changeBtn;
+    public Button gameStartBtn;
+
+    public Image curExpBar;
 
     void Awake()
     {
@@ -22,7 +26,8 @@ public class UIMainMenu : MonoBehaviour
     void Start()
     {
         statBtn.onClick.AddListener(OpenStatus);
-        invenBtn.onClick.AddListener(OpenInventory);        
+        invenBtn.onClick.AddListener(OpenInventory);
+        changeBtn.onClick.AddListener(OpenChange);
     }
 
     void Update()
@@ -50,6 +55,13 @@ public class UIMainMenu : MonoBehaviour
         UIManager.Instance.uiInven.gameObject.SetActive(true);
     }
 
+    public void OpenChange()
+    {
+        statBtn.gameObject.SetActive(false);
+        invenBtn.gameObject.SetActive(false);
+        UIManager.Instance.uiChange.gameObject.SetActive(true);
+    }
+
     public void SetCharInfo()
     {
         charNameText.text = GameManager.Instance.Player.playerName;
@@ -58,5 +70,7 @@ public class UIMainMenu : MonoBehaviour
         charCurExpText.text = $"{GameManager.Instance.Player.playerCurExp}";
         charInfoText.text = GameManager.Instance.Player.playerInfo;
         charGoldText.text = $"{GameManager.Instance.Player.playerGold:N0}";
+
+        curExpBar.fillAmount = GameManager.Instance.Player.playerCurExp / 100f;
     }
 }

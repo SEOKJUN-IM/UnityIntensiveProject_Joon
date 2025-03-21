@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
         GameManager.Instance.Player = this;        
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         GameManager.Instance.SetData();
     }
