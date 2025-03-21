@@ -2938,8 +2938,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 179, y: -125}
-  m_SizeDelta: {x: 80, y: 30}
+  m_AnchoredPosition: {x: 160.1, y: -125}
+  m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &250325055
 MonoBehaviour:
@@ -2961,7 +2961,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCE58\uBA85\uD0C0"
+  m_text: Critical
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ea08306795f8a7541b49a7d3939e4a71, type: 2}
   m_sharedMaterial: {fileID: -629717795362991445, guid: ea08306795f8a7541b49a7d3939e4a71, type: 2}
@@ -13830,9 +13830,9 @@ MonoBehaviour:
   selectedItemInfo: {fileID: 1030646330}
   selectedStatName: {fileID: 250325055}
   selectedStatValue: {fileID: 1308382800}
-  useBtn: {fileID: 259222781}
-  equipBtn: {fileID: 655115606}
-  unequipBtn: {fileID: 187511878}
+  useBtn: {fileID: 259222783}
+  equipBtn: {fileID: 655115608}
+  unequipBtn: {fileID: 187511880}
   items:
   - {fileID: 3867341237701263009, guid: ddd42851f9e814d4b9365f2e20fa8bd9, type: 3}
   - {fileID: 8035578078402812510, guid: fb03a7d7e33abb440af36f582d53fa8c, type: 3}

@@ -11,20 +11,15 @@ public class Character : MonoBehaviour
     [field: SerializeField, TextArea] public string charInfo { get; private set; }
     [field: SerializeField] public int charGold { get; private set; }
 
-    [field: SerializeField] public int charAttackValue { get; private set; }
-    [field: SerializeField] public int charDefenseValue { get; private set; }
-    [field: SerializeField] public int charHealthValue { get; private set; }
-    [field: SerializeField] public int charCriticalValue { get; private set; }
+    [field: SerializeField] public int charAttackValue { get; set; }
+    [field: SerializeField] public int charDefenseValue { get; set; }
+    [field: SerializeField] public int charHealthValue { get; set; }
+    [field: SerializeField] public int charCriticalValue { get; set; }
 
-    [field: SerializeField] public int charCurInvenQuantity { get; private set; }
+    [field: SerializeField] public int charCurInvenQuantity { get; set; }
 
     public UIInventory charInventory;
-    public List<ItemData> charItemDatas;
-
-    private void Start()
-    {
-        
-    }
+    public List<ItemData> charItemDatas;    
 
     private void Update()
     {
@@ -65,6 +60,11 @@ public class Character : MonoBehaviour
         }                        
     }
 
+    public void SelectItem()
+    {
+
+    }
+
     public void Equip()
     {
 
@@ -75,7 +75,7 @@ public class Character : MonoBehaviour
 
     }
 
-    void UpdateUI()
+    public void UpdateUI()
     {
         for (int i = 0; i < charInventory.uiSlots.Count; i++)
         {

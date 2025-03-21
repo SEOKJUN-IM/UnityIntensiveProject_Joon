@@ -7,8 +7,8 @@ public class UISlot : MonoBehaviour
     public ItemData itemdata;
     public UIInventory uiInventory;
     public int index;
-    public bool selected;
-    public bool equipped;
+    public bool selected = false;
+    public bool equipped = false;
     public int quantity;
 
     public Button button;
@@ -20,6 +20,38 @@ public class UISlot : MonoBehaviour
     private void Awake()
     {
         outline = GetComponent<Outline>();
+    }
+
+    private void Start()
+    {
+        button.onClick.AddListener(SelectAndCancle);
+    }
+
+    private void Update()
+    {
+        OnOutline();
+        OnEquipIcon();
+    }
+
+    public void SelectAndCancle()
+    {
+        if (itemdata != null)
+        {
+            if (!selected)
+            {                
+                foreach (UISlot slot in uiInventory.uiSlots)
+                {
+                    slot.selected = false;
+                }
+                uiInventory.SelectItem(index);
+                selected = true;            
+            }
+            else
+            {
+                uiInventory.CancleItem();
+                selected = false;
+            }
+        }       
     }
 
     private void OnOutline()

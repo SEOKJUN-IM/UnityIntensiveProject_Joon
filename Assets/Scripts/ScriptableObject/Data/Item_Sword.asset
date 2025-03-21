@@ -16,4 +16,9 @@ MonoBehaviour:
   itemDataInfo: "\uAC15\uB825\uD55C \uAC80\uC785\uB2C8\uB2E4."
   itemDataType: 0
   itemDataIcon: {fileID: 21300000, guid: 0fb8b3a7faa9363429dd5ec1ff5d62b2, type: 3}
+  canStack: 0
+  maxStackAmount: 0
+  equipables:
+  - equipableType: 0
+    itemValue: 15
   consumables: []

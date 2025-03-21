@@ -9,6 +9,12 @@ public enum ItemType
     Consumable
 }
 
+public enum EquipableType
+{
+    Attack,
+    Defense
+}
+
 public enum ConsumableType
 {
     Health,
@@ -16,10 +22,17 @@ public enum ConsumableType
 }
 
 [Serializable]
+public class ItemDataEquipable
+{
+    public EquipableType equipableType;
+    public int itemValue;
+}
+
+[Serializable]
 public class ItemDataConsumable
 {
     public ConsumableType consumableType;
-    public float itemValue;
+    public int itemValue;
 } 
 
 [CreateAssetMenu(fileName = "Item", menuName = "New Item")]
@@ -34,6 +47,9 @@ public class ItemData : ScriptableObject
     [Header("Stacking")]
     public bool canStack;
     public int maxStackAmount;
+
+    [Header("Equipable")]
+    public ItemDataEquipable[] equipables;
 
     [Header("Consumable")]
     public ItemDataConsumable[] consumables;
