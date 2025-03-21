@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c321b31fa67348945a3ce271a4ec2953, type: 3}
+  m_Name: Item_BigHpPotion
+  m_EditorClassIdentifier: 
+  itemDataName: "\uB300\uC6A9\uB7C9 \uD3EC\uC158"
+  itemDataInfo: "\uCCB4\uB825\uC744 \uB9CE\uC774 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+  itemDataType: 1
+  itemDataIcon: {fileID: 21300000, guid: acf58257f5519d14b8a9e2360e0d3764, type: 3}
+  canStack: 1
+  maxStackAmount: 20
+  consumables:
+  - consumableType: 0
+    itemValue: 30
