@@ -91,16 +91,22 @@ public class UIInventory : MonoBehaviour
         selectedStatName.text = string.Empty;
         selectedStatValue.text = string.Empty;
 
-        for (int i = 0; i < selectedItem.consumables.Length; i++)
+        if (selectedItem.itemDataType == ItemType.Consumable)
         {
-            selectedStatName.text += selectedItem.consumables[i].consumableType.ToString();
-            selectedStatValue.text += "+" + selectedItem.consumables[i].itemValue.ToString();
+            for (int i = 0; i < selectedItem.consumables.Length; i++)
+            {
+                selectedStatName.text += selectedItem.consumables[i].consumableType.ToString();
+                selectedStatValue.text += "+" + selectedItem.consumables[i].itemValue.ToString();
+            }
         }
 
-        for (int i = 0; i < selectedItem.equipables.Length; i++)
+        if (selectedItem.itemDataType == ItemType.Equipable)
         {
-            selectedStatName.text += selectedItem.equipables[i].equipableType.ToString();
-            selectedStatValue.text += "+" + selectedItem.equipables[i].itemValue.ToString();
+            for (int i = 0; i < selectedItem.equipables.Length; i++)
+            {
+                selectedStatName.text += selectedItem.equipables[i].equipableType.ToString();
+                selectedStatValue.text += "+" + selectedItem.equipables[i].itemValue.ToString();
+            }
         }
 
         useBtn.gameObject.SetActive(selectedItem.itemDataType == ItemType.Consumable);
@@ -140,8 +146,11 @@ public class UIInventory : MonoBehaviour
         uiSlots[selectedItemIndex].quantity--;
         if (uiSlots[selectedItemIndex].quantity <= 0)
         {
-            CancleItem();
+            selectedItem = null;
             uiSlots[selectedItemIndex].itemdata = null;
+            uiSlots[selectedItemIndex].selected = false;
+            selectedItemIndex = -1;
+            ClearSelectedItemWindow();            
         }
         CharacterManager.Instance.Character.UpdateUI();
     }    
