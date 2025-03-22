@@ -16,7 +16,7 @@ public class Character : MonoBehaviour
     [field: SerializeField] public int charHealthValue { get; set; }
     [field: SerializeField] public int charCriticalValue { get; set; }
 
-    [field: SerializeField] public int charCurInvenQuantity { get; set; }
+    public int charCurInvenQuantity = 0;
 
     public UIInventory charInventory;
     public List<ItemData> charItemDatas;    
@@ -24,6 +24,7 @@ public class Character : MonoBehaviour
     private void Update()
     {
         if (this.gameObject.activeInHierarchy == true) CharacterManager.Instance.Character = this;
+        CalCurInvenQuantity();
     }
 
     public void AddItem()
@@ -55,7 +56,7 @@ public class Character : MonoBehaviour
             for (int j = 0; j < dupItemDataName.Count; j++)
             {
                 if (charInventory.uiSlots[i].itemdata == dupItemDataName[j].Element) charInventory.uiSlots[i].quantity = dupItemDataCount[j].Count;
-            }            
+            }
             UpdateUI();
         }                        
     }
@@ -82,6 +83,7 @@ public class Character : MonoBehaviour
             if (charInventory.uiSlots[i].itemdata != null) charInventory.uiSlots[i].SetItem();
             else charInventory.uiSlots[i].RefreshUI();
         }
+        
     }
 
     UISlot GetItemStack(ItemData itemData)
@@ -106,5 +108,17 @@ public class Character : MonoBehaviour
             }
         }
         return null;
+    }
+
+    void CalCurInvenQuantity()
+    {
+        charCurInvenQuantity = CharacterManager.Instance.Character.charItemDatas.Count;
+        for (int i = 0; i < CharacterManager.Instance.Character.charItemDatas.Count; i++)
+        {
+            if (CharacterManager.Instance.Character.charItemDatas[i] == null)
+            {
+                charCurInvenQuantity--;
+            }
+        }        
     }
 }

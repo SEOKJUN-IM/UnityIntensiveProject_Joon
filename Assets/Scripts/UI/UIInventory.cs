@@ -149,8 +149,9 @@ public class UIInventory : MonoBehaviour
             selectedItem = null;
             uiSlots[selectedItemIndex].itemdata = null;
             uiSlots[selectedItemIndex].selected = false;
+            CharacterManager.Instance.Character.charItemDatas[selectedItemIndex] = null;
             selectedItemIndex = -1;
-            ClearSelectedItemWindow();            
+            ClearSelectedItemWindow();                        
         }
         CharacterManager.Instance.Character.UpdateUI();
     }    
