@@ -6,7 +6,8 @@ public class UIManager : MonoBehaviour
 {
     [field: SerializeField] public UIMainMenu uiMain { get; set; }
     [field: SerializeField] public UIStatus uiStat { get; set; }
-    [field: SerializeField] public UIInventory uiInven { get; set; }
+    public UIInventory uiInven01;
+    public UIInventory uiInven02;
     [field: SerializeField] public UIChangeChar uiChange { get; set; }
 
     private static UIManager _instance;
@@ -36,12 +37,16 @@ public class UIManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        uiInven01 = GameObject.Find("UIInventory01").GetComponent<UIInventory>();
+        uiInven02 = GameObject.Find("UIInventory02").GetComponent<UIInventory>();
     }
 
     private void Start()
     {
         uiStat.gameObject.SetActive(false);
-        uiInven.gameObject.SetActive(false);
+        uiInven01.gameObject.SetActive(false);
+        uiInven02.gameObject.SetActive(false);
         uiChange.gameObject.SetActive(false);
     }
 }

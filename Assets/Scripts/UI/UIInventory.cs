@@ -27,14 +27,10 @@ public class UIInventory : MonoBehaviour
     ItemData selectedItem;
     int selectedItemIndex;
 
-    void Awake()
-    {
-        UIManager.Instance.uiInven = this;
-    }
-
     void Start()
     {
-        GameManager.Instance.SetItems();
+        if (this.gameObject.name == "UIInventory01") GameManager.Instance.SetItems01();
+        else if (this.gameObject.name == "UIInventory02") GameManager.Instance.SetItems02();
 
         backBtn.onClick.AddListener(backToMainMenu);
         useBtn.onClick.AddListener(OnUseBtn);
@@ -42,7 +38,7 @@ public class UIInventory : MonoBehaviour
         unequipBtn.onClick.AddListener(OnUnequipBtn);
 
         InitInventoryUI();
-        CharacterManager.Instance.Character.AddItem();
+        if (CharacterManager.Instance.Character != null) CharacterManager.Instance.Character.AddItem();
     }
 
     void Update()

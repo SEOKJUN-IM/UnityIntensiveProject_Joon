@@ -52,7 +52,8 @@ public class UIMainMenu : MonoBehaviour
     {
         statBtn.gameObject.SetActive(false);
         invenBtn.gameObject.SetActive(false);
-        UIManager.Instance.uiInven.gameObject.SetActive(true);
+        if (GameManager.Instance.Player.gameObject.transform.GetChild(0).gameObject.activeInHierarchy) UIManager.Instance.uiInven01.gameObject.SetActive(true);
+        else if (GameManager.Instance.Player.gameObject.transform.GetChild(1).gameObject.activeInHierarchy) UIManager.Instance.uiInven02.gameObject.SetActive(true);
     }
 
     public void OpenChange()

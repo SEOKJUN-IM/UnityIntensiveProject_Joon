@@ -23,15 +23,27 @@ public class GameManager : MonoBehaviour
         set { _player = value; }
     }
 
-    public Item sword;
-    public Item shield;
-    public Item potion;
-    public Item bigPotion;
-    public Item scroll;
+    [Header("Char01 Inven")]
+    public Item sword01;
+    public Item shield01;
+    public Item potion01;
+    public Item bigPotion01;
+    public Item scroll01;
 
-    public int potionQuantity;
-    public int bigPotionQuantity;
-    public int scrollQuantity;
+    public int potionQuantity01;
+    public int bigPotionQuantity01;
+    public int scrollQuantity01;
+
+    [Header("Char02 Inven")]
+    public Item sword02;
+    public Item shield02;
+    public Item potion02;
+    public Item bigPotion02;
+    public Item scroll02;
+
+    public int potionQuantity02;
+    public int bigPotionQuantity02;
+    public int scrollQuantity02;
 
     private void Awake()
     {
@@ -68,25 +80,47 @@ public class GameManager : MonoBehaviour
         _player.playerCurInvenQuantity = _player.character.charCurInvenQuantity;        
     }
 
-    public void SetItems()
+    public void SetItems01()
     {
-        List<Item> firstItems = _player.character.charInventory.items;
-        firstItems.Add(sword);
-        firstItems.Add(shield);
+        List<Item> firstItems01 = _player.character.charInventory.items;
+        firstItems01.Add(sword01);
+        firstItems01.Add(shield01);
         
-        for (int i = 0; i < potionQuantity; i++)
+        for (int i = 0; i < potionQuantity01; i++)
         {
-            firstItems.Add(potion);
+            firstItems01.Add(potion01);
         }
 
-        for (int j = 0; j < bigPotionQuantity; j++)
+        for (int j = 0; j < bigPotionQuantity01; j++)
         {
-            firstItems.Add(bigPotion);
+            firstItems01.Add(bigPotion01);
         }
 
-        for (int k = 0; k < scrollQuantity; k++)
+        for (int k = 0; k < scrollQuantity01; k++)
         {
-            firstItems.Add(scroll);
+            firstItems01.Add(scroll01);
         }        
+    }
+
+    public void SetItems02()
+    {
+        List<Item> firstItems02 = _player.character.charInventory.items;
+        firstItems02.Add(sword02);
+        firstItems02.Add(shield02);
+
+        for (int i = 0; i < potionQuantity02; i++)
+        {
+            firstItems02.Add(potion02);
+        }
+
+        for (int j = 0; j < bigPotionQuantity02; j++)
+        {
+            firstItems02.Add(bigPotion02);
+        }
+
+        for (int k = 0; k < scrollQuantity02; k++)
+        {
+            firstItems02.Add(scroll02);
+        }
     }
 }
