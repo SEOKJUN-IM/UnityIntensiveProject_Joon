@@ -34,6 +34,8 @@ public class UIInventory : MonoBehaviour
 
     void Start()
     {
+        GameManager.Instance.SetItems();
+
         backBtn.onClick.AddListener(backToMainMenu);
         useBtn.onClick.AddListener(OnUseBtn);
         InitInventoryUI();

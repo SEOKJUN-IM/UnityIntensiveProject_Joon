@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -22,6 +23,16 @@ public class GameManager : MonoBehaviour
         set { _player = value; }
     }
 
+    public Item sword;
+    public Item shield;
+    public Item potion;
+    public Item bigPotion;
+    public Item scroll;
+
+    public int potionQuantity;
+    public int bigPotionQuantity;
+    public int scrollQuantity;
+
     private void Awake()
     {
         if (_instance == null)
@@ -36,7 +47,7 @@ public class GameManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-    }
+    } 
 
     public void SetData()
     {
@@ -54,6 +65,28 @@ public class GameManager : MonoBehaviour
         _player.playerHealthValue = _player.character.charHealthValue;
         _player.playerCriticalValue = _player.character.charCriticalValue;
 
-        _player.playerCurInvenQuantity = _player.character.charCurInvenQuantity;
+        _player.playerCurInvenQuantity = _player.character.charCurInvenQuantity;        
+    }
+
+    public void SetItems()
+    {
+        List<Item> firstItems = _player.character.charInventory.items;
+        firstItems.Add(sword);
+        firstItems.Add(shield);
+        
+        for (int i = 0; i < potionQuantity; i++)
+        {
+            firstItems.Add(potion);
+        }
+
+        for (int j = 0; j < bigPotionQuantity; j++)
+        {
+            firstItems.Add(bigPotion);
+        }
+
+        for (int k = 0; k < scrollQuantity; k++)
+        {
+            firstItems.Add(scroll);
+        }        
     }
 }
