@@ -38,6 +38,9 @@ public class UIInventory : MonoBehaviour
 
         backBtn.onClick.AddListener(backToMainMenu);
         useBtn.onClick.AddListener(OnUseBtn);
+        equipBtn.onClick.AddListener(OnEquipBtn);
+        unequipBtn.onClick.AddListener(OnUnequipBtn);
+
         InitInventoryUI();
         CharacterManager.Instance.Character.AddItem();
     }
@@ -140,6 +143,52 @@ public class UIInventory : MonoBehaviour
                 }
             }
             RemoveSelectedItem();
+        }
+    }
+
+    public void OnEquipBtn()
+    {
+        if (selectedItem.itemDataType == ItemType.Equipable)
+        {
+            for (int i = 0; i < selectedItem.equipables.Length; i++)
+            {
+                switch (selectedItem.equipables[i].equipableType)
+                {
+                    case EquipableType.Attack:
+                        CharacterManager.Instance.Character.charAttackValue += selectedItem.equipables[i].itemValue;
+                        break;
+                    case EquipableType.Defense:
+                        CharacterManager.Instance.Character.charDefenseValue += selectedItem.equipables[i].itemValue;
+                        break;
+                }
+            }
+            uiSlots[selectedItemIndex].equipped = true;
+            uiSlots[selectedItemIndex].equipIcon.SetActive(true);
+            equipBtn.gameObject.SetActive(false);
+            unequipBtn.gameObject.SetActive(true);
+        }
+    }
+
+    public void OnUnequipBtn()
+    {
+        if (selectedItem.itemDataType == ItemType.Equipable)
+        {
+            for (int i = 0; i < selectedItem.equipables.Length; i++)
+            {
+                switch (selectedItem.equipables[i].equipableType)
+                {
+                    case EquipableType.Attack:
+                        CharacterManager.Instance.Character.charAttackValue -= selectedItem.equipables[i].itemValue;
+                        break;
+                    case EquipableType.Defense:
+                        CharacterManager.Instance.Character.charDefenseValue -= selectedItem.equipables[i].itemValue;
+                        break;
+                }
+            }
+            uiSlots[selectedItemIndex].equipped = false;
+            uiSlots[selectedItemIndex].equipIcon.SetActive(false);
+            equipBtn.gameObject.SetActive(true);
+            unequipBtn.gameObject.SetActive(false);
         }
     }
 

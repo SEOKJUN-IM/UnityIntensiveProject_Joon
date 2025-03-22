@@ -19,12 +19,15 @@ public class Character : MonoBehaviour
     public int charCurInvenQuantity = 0;
 
     public UIInventory charInventory;
-    public List<ItemData> charItemDatas;    
+    public List<ItemData> charItemDatas;
+    public List<GameObject> charEquipments; 
 
     private void Update()
     {
         if (this.gameObject.activeInHierarchy == true) CharacterManager.Instance.Character = this;
         CalCurInvenQuantity();
+        Equip();
+        Unequip();
     }
 
     public void AddItem()
@@ -61,19 +64,34 @@ public class Character : MonoBehaviour
         }                        
     }
 
-    public void SelectItem()
-    {
-
-    }
-
     public void Equip()
     {
-
+        //  uiSlot.equipped true고 uiSlots와 charEquipments의 itemdata 비교하여 일치하면 그 게임오브젝트 켠다      
+        for (int i = 0; i < charInventory.uiSlots.Count; i++)
+        {
+            for (int j = 0; j < charEquipments.Count; j++)
+            {
+                if (charInventory.uiSlots[i].equipped && charInventory.uiSlots[i].itemdata == charEquipments[j].GetComponent<Item>().itemData)
+                {
+                    charEquipments[j].gameObject.SetActive(true);
+                }
+            }            
+        }        
     }
 
     public void Unequip()
     {
-
+        //  uiSlot.equipped false고 uiSlots와 charEquipments의 itemdata 비교하여 일치하면 그 게임오브젝트 끈다     
+        for (int i = 0; i < charInventory.uiSlots.Count; i++)
+        {
+            for (int j = 0; j < charEquipments.Count; j++)
+            {
+                if (!charInventory.uiSlots[i].equipped && charInventory.uiSlots[i].itemdata == charEquipments[j].GetComponent<Item>().itemData)
+                {
+                    charEquipments[j].gameObject.SetActive(false);
+                }
+            }
+        }
     }
 
     public void UpdateUI()
