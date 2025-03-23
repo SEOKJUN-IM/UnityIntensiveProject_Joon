@@ -7542,15 +7542,15 @@ MonoBehaviour:
   bigPotion01: {fileID: 1588730267711744190, guid: 4be71ca043612484d9cf7be451d0cade, type: 3}
   scroll01: {fileID: 5947428874906443623, guid: 1328743843bbc954984482d392b663f7, type: 3}
   potionQuantity01: 5
-  bigPotionQuantity01: 5
-  scrollQuantity01: 5
+  bigPotionQuantity01: 3
+  scrollQuantity01: 2
   sword02: {fileID: 3867341237701263009, guid: ddd42851f9e814d4b9365f2e20fa8bd9, type: 3}
   shield02: {fileID: 8035578078402812510, guid: fb03a7d7e33abb440af36f582d53fa8c, type: 3}
   potion02: {fileID: 6990042638845820562, guid: 088f56c5ad6b88742870584a724c870e, type: 3}
   bigPotion02: {fileID: 1588730267711744190, guid: 4be71ca043612484d9cf7be451d0cade, type: 3}
   scroll02: {fileID: 5947428874906443623, guid: 1328743843bbc954984482d392b663f7, type: 3}
-  potionQuantity02: 10
-  bigPotionQuantity02: 10
+  potionQuantity02: 20
+  bigPotionQuantity02: 15
   scrollQuantity02: 10
 --- !u!4 &592730486
 Transform:
@@ -21733,8 +21733,8 @@ MonoBehaviour:
   <charGold>k__BackingField: 99999
   <charAttackValue>k__BackingField: 90
   <charDefenseValue>k__BackingField: 80
-  <charHealthValue>k__BackingField: 500
-  <charCriticalValue>k__BackingField: 60
+  <charHealthValue>k__BackingField: 90
+  <charCriticalValue>k__BackingField: 35
   charCurInvenQuantity: 0
   charInventory: {fileID: 1374263939}
   charItemDatas: []
@@ -27234,8 +27234,8 @@ MonoBehaviour:
   <charGold>k__BackingField: 20000
   <charAttackValue>k__BackingField: 35
   <charDefenseValue>k__BackingField: 40
-  <charHealthValue>k__BackingField: 100
-  <charCriticalValue>k__BackingField: 25
+  <charHealthValue>k__BackingField: 40
+  <charCriticalValue>k__BackingField: 10
   charCurInvenQuantity: 0
   charInventory: {fileID: 1277171524}
   charItemDatas: []

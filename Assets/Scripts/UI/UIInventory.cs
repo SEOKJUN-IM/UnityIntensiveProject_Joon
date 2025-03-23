@@ -122,6 +122,32 @@ public class UIInventory : MonoBehaviour
         ClearSelectedItemWindow();
     }
 
+    public void AddHealthItemValue(ItemDataConsumable selectedItemDataConsumable)
+    {
+        if (CharacterManager.Instance.Character.charHealthValue == 100)
+        {
+            Debug.Log("체력이 이미 다 찼습니다. 아이템 사용 불가!");
+        }
+        else
+        {
+            CharacterManager.Instance.Character.charHealthValue = Mathf.Min(CharacterManager.Instance.Character.charHealthValue + selectedItemDataConsumable.itemValue, 100);
+            RemoveSelectedItem();
+        }        
+    }
+
+    public void AddCriticalItemValue(ItemDataConsumable selectedItemDataConsumable)
+    {
+        if (CharacterManager.Instance.Character.charCriticalValue == 100)
+        {
+            Debug.Log("치명타 확률이 이미 100%입니다. 아이템 사용 불가!");
+        }
+        else
+        {
+            CharacterManager.Instance.Character.charCriticalValue = Mathf.Min(CharacterManager.Instance.Character.charCriticalValue + selectedItemDataConsumable.itemValue, 100);
+            RemoveSelectedItem();
+        }        
+    }
+
     public void OnUseBtn()
     {
         if (selectedItem.itemDataType == ItemType.Consumable)
@@ -129,16 +155,15 @@ public class UIInventory : MonoBehaviour
             for (int i = 0; i < selectedItem.consumables.Length; i++)
             {
                 switch (selectedItem.consumables[i].consumableType)
-                {                    
+                {
                     case ConsumableType.Health:
-                        CharacterManager.Instance.Character.charHealthValue += selectedItem.consumables[i].itemValue;
+                        AddHealthItemValue(selectedItem.consumables[i]);
                         break;
                     case ConsumableType.Critical:
-                        CharacterManager.Instance.Character.charCriticalValue += selectedItem.consumables[i].itemValue;
+                        AddCriticalItemValue(selectedItem.consumables[i]);
                         break;
                 }
-            }
-            RemoveSelectedItem();
+            }            
         }
     }
 

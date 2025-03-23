@@ -13,8 +13,8 @@ public class Character : MonoBehaviour
 
     [field: SerializeField] public int charAttackValue { get; set; }
     [field: SerializeField] public int charDefenseValue { get; set; }
-    [field: SerializeField] public int charHealthValue { get; set; }
-    [field: SerializeField] public int charCriticalValue { get; set; }
+    [field: SerializeField, Range(0, 100)] public int charHealthValue { get; set; }
+    [field: SerializeField, Range(0, 100)] public int charCriticalValue { get; set; }
 
     public int charCurInvenQuantity = 0;
 
