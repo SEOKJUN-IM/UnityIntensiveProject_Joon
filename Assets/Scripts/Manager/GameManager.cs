@@ -28,6 +28,11 @@ public class GameManager : MonoBehaviour
     public Camera gameCamera;
     public GameObject cameraContainer;
 
+    private Vector3 playerFirstPos;
+    private Vector3 playerFirstRot;
+    private Vector3 cameraFirstPos;
+    private Vector3 cameraFisrtRot;
+
     [Header("Char01 Inven")]
     public Item sword01;
     public Item shield01;
@@ -65,8 +70,16 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        gameCamera = Camera.main;
-    } 
+        gameCamera = Camera.main;        
+    }
+
+    private void Start()
+    {
+        playerFirstPos = Player.gameObject.transform.position;
+        playerFirstRot = Player.gameObject.transform.eulerAngles;
+        cameraFirstPos = Instance.gameCamera.transform.position;
+        cameraFisrtRot = Instance.gameCamera.transform.eulerAngles;
+    }
 
     public void SetData()
     {
@@ -137,6 +150,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(Player.gameObject);        
         DontDestroyOnLoad(uiObject.gameObject);
         UIManager.Instance.uiMain.ResetGameScene();
+        UIManager.Instance.uiMain.backToMainBtn.transform.parent.gameObject.SetActive(true);
 
         PlayerPositionReset();        
         CameraPositionReset();
@@ -148,10 +162,34 @@ public class GameManager : MonoBehaviour
     }
 
     public void CameraPositionReset()
-    {
-        gameCamera.gameObject.transform.SetParent(cameraContainer.transform);
+    {        
         gameCamera.gameObject.transform.localPosition = new Vector3(-3.5f, 5f, -6f);
         gameCamera.gameObject.transform.localEulerAngles = new Vector3(35f, 30f, 0f);
         gameCamera.fieldOfView = 50f;
+    }
+
+    public void BackToMainScene()
+    {
+        SceneManager.LoadScene("MainScene");
+        DontDestroyOnLoad(Player.gameObject);
+        DontDestroyOnLoad(uiObject.gameObject);
+        UIManager.Instance.uiMain.ResetMainScene();
+        UIManager.Instance.uiMain.backToMainBtn.transform.parent.gameObject.SetActive(false);
+
+        PlayerPositionResetInMain();
+        CameraPositionResetInMain();
+    }
+
+    public void PlayerPositionResetInMain()
+    {
+        Player.gameObject.transform.position = playerFirstPos;
+        Player.gameObject.transform.eulerAngles = playerFirstRot;
+    }
+
+    public void CameraPositionResetInMain()
+    {
+        Instance.gameCamera.transform.position = cameraFirstPos;
+        Instance.gameCamera.transform.eulerAngles = cameraFisrtRot;
+        gameCamera.fieldOfView = 75f;
     }
 }

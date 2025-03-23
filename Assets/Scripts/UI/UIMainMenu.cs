@@ -18,10 +18,12 @@ public class UIMainMenu : MonoBehaviour
     public Button changeBtn;
     public Button stageBtn;
     public Button gameStartBtn;
+    public Button backToMainBtn;
 
     public GameObject stageBtnText;
     public TextMeshProUGUI curStageText;
-    public GameObject backToMainText;
+    public GameObject backToMainIcon;
+    public GameObject backToMainText;    
 
     public Image curExpBar;
 
@@ -37,6 +39,7 @@ public class UIMainMenu : MonoBehaviour
         changeBtn.onClick.AddListener(OpenChange);
         stageBtn.onClick.AddListener(OpenStage);
         gameStartBtn.onClick.AddListener(GameManager.Instance.GameStart);
+        backToMainBtn.onClick.AddListener(GameManager.Instance.BackToMainScene);
     }
 
     void Update()
@@ -106,6 +109,8 @@ public class UIMainMenu : MonoBehaviour
         if (!UIManager.Instance.uiStage.gameObject.activeInHierarchy)
         {        
             charInfoWindow.gameObject.SetActive(false);
+            gameStartBtn.gameObject.SetActive(false);
+            stageBtn.gameObject.transform.localPosition = new Vector3(0f, -460f, 0f);
 
             statBtn.gameObject.transform.localScale = Vector3.one * 0.7f;
             invenBtn.gameObject.transform.localScale = Vector3.one * 0.7f;
@@ -117,16 +122,21 @@ public class UIMainMenu : MonoBehaviour
 
             stageBtnText.SetActive(false);
             curStageText.gameObject.SetActive(false);
+            backToMainIcon.SetActive(true);
             backToMainText.SetActive(true);
 
             GameManager.Instance.gameCamera.transform.position += Vector3.right * 4;
-            GameManager.Instance.Player.transform.localEulerAngles = new Vector3(0f, -30f, 0f);
+            GameManager.Instance.gameCamera.fieldOfView = 80f;
+            GameManager.Instance.Player.transform.GetChild(0).eulerAngles = new Vector3(0f, 150f, 0f);
+            GameManager.Instance.Player.transform.GetChild(1).eulerAngles = new Vector3(0f, 150f, 0f);
 
             UIManager.Instance.uiStage.gameObject.SetActive(true);
         }
         else
         {
             charInfoWindow.gameObject.SetActive(true);
+            gameStartBtn.gameObject.SetActive(true);
+            stageBtn.gameObject.transform.localPosition = new Vector3(-150f, -460f, 0f);
 
             statBtn.gameObject.transform.localScale = Vector3.one;
             invenBtn.gameObject.transform.localScale = Vector3.one;
@@ -138,10 +148,13 @@ public class UIMainMenu : MonoBehaviour
 
             stageBtnText.SetActive(true);
             curStageText.gameObject.SetActive(true);
+            backToMainIcon.SetActive(false);
             backToMainText.SetActive(false);
 
             GameManager.Instance.gameCamera.transform.position -= Vector3.right * 4;
-            GameManager.Instance.Player.transform.localEulerAngles = Vector3.zero;
+            GameManager.Instance.gameCamera.fieldOfView = 75f;
+            GameManager.Instance.Player.transform.GetChild(0).eulerAngles = new Vector3(0f, 180f, 0f);
+            GameManager.Instance.Player.transform.GetChild(1).eulerAngles = new Vector3(0f, 180f, 0f);
 
             UIManager.Instance.uiStage.gameObject.SetActive(false);
         }       
@@ -162,5 +175,20 @@ public class UIMainMenu : MonoBehaviour
         statBtn.gameObject.transform.localPosition = new Vector3(840f, -310f, 0f);
         invenBtn.gameObject.transform.localPosition = new Vector3(840f, -395f, 0f);
         changeBtn.gameObject.transform.localPosition = new Vector3(840f, -480f, 0f);
+    }
+
+    public void ResetMainScene()
+    {
+        stageBtn.gameObject.SetActive(true);
+        gameStartBtn.gameObject.SetActive(true);
+        charInfoWindow.gameObject.SetActive(true);
+
+        statBtn.gameObject.transform.localScale = Vector3.one;
+        invenBtn.gameObject.transform.localScale = Vector3.one;
+        changeBtn.gameObject.transform.localScale = Vector3.one;
+
+        statBtn.gameObject.transform.localPosition = new Vector3(675f, 120f, 0f);
+        invenBtn.gameObject.transform.localPosition = new Vector3(675f, 0f, 0f);
+        changeBtn.gameObject.transform.localPosition = new Vector3(675f, -120f, 0f);
     }
 }
