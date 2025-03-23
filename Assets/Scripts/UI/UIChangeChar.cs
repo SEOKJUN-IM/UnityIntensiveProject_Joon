@@ -29,6 +29,7 @@ public class UIChangeChar : MonoBehaviour
 
     void Start()
     {
+        CharConnect();
         char01SelectBtn.onClick.AddListener(SelectCharacter01);
         char02SelectBtn.onClick.AddListener(SelectCharacter02);
         backBtn.onClick.AddListener(backToMainMenu);        
@@ -86,5 +87,11 @@ public class UIChangeChar : MonoBehaviour
             GameManager.Instance.Player.transform.GetChild(1).gameObject.SetActive(true);
             backToMainMenu();
         }
+    }
+
+    public void CharConnect()
+    {
+        characters.Add(GameManager.Instance.Player.transform.GetChild(0).GetComponent<Character>());
+        characters.Add(GameManager.Instance.Player.transform.GetChild(1).GetComponent<Character>());
     }
 }

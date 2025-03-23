@@ -27,6 +27,11 @@ public class UIInventory : MonoBehaviour
     ItemData selectedItem;
     int selectedItemIndex;
 
+    void Awake()
+    {
+        InitInventoryUI();
+    }
+
     void Start()
     {
         if (this.gameObject.name == "UIInventory01") GameManager.Instance.SetItems01();
@@ -36,8 +41,7 @@ public class UIInventory : MonoBehaviour
         useBtn.onClick.AddListener(OnUseBtn);
         equipBtn.onClick.AddListener(OnEquipBtn);
         unequipBtn.onClick.AddListener(OnUnequipBtn);
-
-        InitInventoryUI();
+        
         if (CharacterManager.Instance.Character != null) CharacterManager.Instance.Character.AddItem();
     }
 

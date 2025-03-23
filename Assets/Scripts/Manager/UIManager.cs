@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -9,6 +7,7 @@ public class UIManager : MonoBehaviour
     public UIInventory uiInven01;
     public UIInventory uiInven02;
     [field: SerializeField] public UIChangeChar uiChange { get; set; }
+    [field: SerializeField] public UIStage uiStage { get; set; }
 
     private static UIManager _instance;
     public static UIManager Instance
@@ -48,5 +47,6 @@ public class UIManager : MonoBehaviour
         uiInven01.gameObject.SetActive(false);
         uiInven02.gameObject.SetActive(false);
         uiChange.gameObject.SetActive(false);
+        uiStage.gameObject.SetActive(false);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class GameManager : MonoBehaviour
         get { return _player; }
         set { _player = value; }
     }
+    
+    public GameObject uiObject;    
+    public Camera gameCamera;
+    public GameObject cameraContainer;
 
     [Header("Char01 Inven")]
     public Item sword01;
@@ -59,6 +64,8 @@ public class GameManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        gameCamera = Camera.main;
     } 
 
     public void SetData()
@@ -122,5 +129,29 @@ public class GameManager : MonoBehaviour
         {
             firstItems02.Add(scroll02);
         }
+    }    
+
+    public void GameStart()
+    {
+        SceneManager.LoadScene("GameScene");
+        DontDestroyOnLoad(Player.gameObject);        
+        DontDestroyOnLoad(uiObject.gameObject);
+        UIManager.Instance.uiMain.ResetGameScene();
+
+        PlayerPositionReset();        
+        CameraPositionReset();
+    }
+
+    public void PlayerPositionReset()
+    {
+        Player.gameObject.transform.position = new Vector3(0f, 0f, 72f);        
+    }
+
+    public void CameraPositionReset()
+    {
+        gameCamera.gameObject.transform.SetParent(cameraContainer.transform);
+        gameCamera.gameObject.transform.localPosition = new Vector3(-3.5f, 5f, -6f);
+        gameCamera.gameObject.transform.localEulerAngles = new Vector3(35f, 30f, 0f);
+        gameCamera.fieldOfView = 50f;
     }
 }

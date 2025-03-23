@@ -20,7 +20,13 @@ public class Character : MonoBehaviour
 
     public UIInventory charInventory;
     public List<ItemData> charItemDatas;
-    public List<GameObject> charEquipments; 
+    public List<GameObject> charEquipments;
+
+    private void Start()
+    {
+        if (this.gameObject.name == "Character01") charInventory = UIManager.Instance.uiInven01.GetComponent<UIInventory>();
+        else if (this.gameObject.name == "Character02") charInventory = UIManager.Instance.uiInven02.GetComponent<UIInventory>();
+    }
 
     private void Update()
     {
