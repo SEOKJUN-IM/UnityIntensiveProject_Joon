@@ -8546,6 +8546,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charInfoWindow: {fileID: 864306563}
   gameInfoWindow: {fileID: 58881608}
+  backInfoWindow: {fileID: 384751176}
+  AcceptGoMainBtn: {fileID: 1821139611}
+  CancleGoMainBtn: {fileID: 1477387258}
   char01Icon: {fileID: 335075318}
   char02Icon: {fileID: 2118514501}
   charNameText: {fileID: 1622025732}

@@ -6,6 +6,9 @@ public class UIMainMenu : MonoBehaviour
 {
     public GameObject charInfoWindow;
     public GameObject gameInfoWindow;
+    public GameObject backInfoWindow;
+    public Button AcceptGoMainBtn;
+    public Button CancleGoMainBtn;
 
     public Image char01Icon;
     public Image char02Icon;
@@ -43,7 +46,10 @@ public class UIMainMenu : MonoBehaviour
         changeBtn.onClick.AddListener(OpenChange);
         stageBtn.onClick.AddListener(OpenStage);
         gameStartBtn.onClick.AddListener(GameManager.Instance.GameStart);
-        backToMainBtn.onClick.AddListener(GameManager.Instance.BackToMainScene);
+        backToMainBtn.onClick.AddListener(OpenTryBackMain);
+        AcceptGoMainBtn.onClick.AddListener(GameManager.Instance.BackToMainScene);
+        CancleGoMainBtn.onClick.AddListener(CancleGoMain);
+
     }
 
     void Update()
@@ -200,6 +206,7 @@ public class UIMainMenu : MonoBehaviour
         changeBtn.gameObject.SetActive(true);
         charInfoWindow.SetActive(true);
         gameInfoWindow.SetActive(false);
+        backInfoWindow.SetActive(false);
 
         statBtn.gameObject.transform.localScale = Vector3.one;
         invenBtn.gameObject.transform.localScale = Vector3.one;        
@@ -209,5 +216,16 @@ public class UIMainMenu : MonoBehaviour
         invenBtn.gameObject.transform.localPosition = new Vector3(675f, 0f, 0f);        
         stageBtn.gameObject.transform.localPosition = new Vector3(-150f, -460f, 0f);
         stageBtn.enabled = true;
+    }
+
+    public void OpenTryBackMain()
+    {
+        if (!backInfoWindow.activeInHierarchy) backInfoWindow.SetActive(true);
+        else backInfoWindow.SetActive(false);
+    }
+
+    public void CancleGoMain()
+    {
+        backInfoWindow.SetActive(false);
     }
 }
