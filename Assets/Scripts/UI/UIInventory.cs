@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UIInventory : MonoBehaviour
 {
     public TextMeshProUGUI curQuantityText;
+    public TextMeshProUGUI useWarningText;
 
     public Button backBtn;
 
@@ -26,6 +27,8 @@ public class UIInventory : MonoBehaviour
 
     ItemData selectedItem;
     int selectedItemIndex;
+    
+    public bool alreadyUsedAttackConsumable = false;
 
     void Awake()
     {
@@ -128,11 +131,19 @@ public class UIInventory : MonoBehaviour
         ClearSelectedItemWindow();
     }
 
+    void OffUseWarningText()
+    {
+        useWarningText.text = string.Empty;
+        useWarningText.gameObject.SetActive(false);
+    }
+
     public void AddHealthItemValue(ItemDataConsumable selectedItemDataConsumable)
     {
         if (CharacterManager.Instance.Character.charHealthValue == 100)
         {
-            Debug.Log("체력이 이미 다 찼습니다. 아이템 사용 불가!");
+            useWarningText.gameObject.SetActive(true);
+            useWarningText.text = "체력이 이미 최대치입니다.\n[ 아이템 사용 불가 ]";
+            Invoke("OffUseWarningText", 2f);
         }
         else
         {
@@ -145,7 +156,9 @@ public class UIInventory : MonoBehaviour
     {
         if (CharacterManager.Instance.Character.charManaValue == 100)
         {
-            Debug.Log("마나가 이미 다 찼습니다. 아이템 사용 불가!");
+            useWarningText.gameObject.SetActive(true);
+            useWarningText.text = "마나가 이미 최대치입니다.\n[ 아이템 사용 불가 ]";
+            Invoke("OffUseWarningText", 2f);
         }
         else
         {
@@ -156,21 +169,35 @@ public class UIInventory : MonoBehaviour
 
     public void AddAttackItemValue(ItemDataConsumable selectedItemDataConsumable)
     {
-        CharacterManager.Instance.Character.charAttackValue += (int)(CharacterManager.Instance.Character.charAttackValue * 0.1f);
-        RemoveSelectedItem();
-        Invoke("ResetAttackValue", selectedItemDataConsumable.itemDuration);
+        if (alreadyUsedAttackConsumable)
+        {
+            useWarningText.gameObject.SetActive(true);
+            useWarningText.text = "동일 아이템의 효과가\n아직 끝나지 않았습니다.\n[ 아이템 사용 불가 ]";
+            Invoke("OffUseWarningText", 2f);
+        }
+        else
+        {        
+            alreadyUsedAttackConsumable = true;
+
+            CharacterManager.Instance.Character.charAttackValue += (int)(CharacterManager.Instance.Character.charAttackValue * 0.1f);
+            RemoveSelectedItem();
+            Invoke("ResetAttackValue", selectedItemDataConsumable.itemDuration);
+        }
     }
 
     public void ResetAttackValue()
     {
         CharacterManager.Instance.Character.charAttackValue -= (int)(CharacterManager.Instance.Character.charAttackValue * 0.1f);
+        alreadyUsedAttackConsumable = false;
     }
 
     public void AddCriticalItemValue(ItemDataConsumable selectedItemDataConsumable)
     {
         if (CharacterManager.Instance.Character.charCriticalValue == 100)
         {
-            Debug.Log("치명타 확률이 이미 100%입니다. 아이템 사용 불가!");
+            useWarningText.gameObject.SetActive(true);
+            useWarningText.text = "치명타 확률이 이미 최대치입니다.\n[ 아이템 사용 불가 ]";
+            Invoke("OffUseWarningText", 2f);
         }
         else
         {
