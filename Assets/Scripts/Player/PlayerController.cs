@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator01;
     public Animator animator02;
     public bool isWalking = false;
+    public bool isAttacking = false;
     public bool OnChar01;
     public bool OnChar02;
 
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Move();
-        MoveAnimation();
+        DirectlyMoveAnimation();
     }
 
     void DistinChar()
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void MoveAnimation()
+    void DirectlyMoveAnimation()
     {
         if (OnChar01 && isWalking) animator01.SetBool("Walk", true);
         else if (OnChar01 && !isWalking) animator01.SetBool("Walk", false);
@@ -105,5 +106,23 @@ public class PlayerController : MonoBehaviour
                 animator02.SetTrigger("Attack");
             }
         }
+    }
+
+    public void OnMoveAnimation()
+    {
+        if (OnChar01) animator01.SetBool("Walk", true);
+        else if (OnChar02) animator02.SetBool("Walk", true);
+    }
+
+    public void OffMoveAnimation()
+    {
+        if (OnChar01) animator01.SetBool("Walk", false);
+        else if (OnChar02) animator02.SetBool("Walk", false);
+    }
+
+    public void OnAttackAnimation()
+    {
+        if (OnChar01 && isAttacking) animator01.SetTrigger("Attack");
+        else if (OnChar02 && isAttacking) animator02.SetTrigger("Attack");
     }
 }

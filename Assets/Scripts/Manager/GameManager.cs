@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
         get { return _player; }
         set { _player = value; }
     }
+
+    public bool inMainMenuScene = true;
+    public bool inGameScene = false;
     
     public GameObject uiObject;    
     public Camera gameCamera;
@@ -174,6 +177,8 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         SceneManager.LoadScene("GameScene");
+        inGameScene = true;
+        inMainMenuScene = false;
         DontDestroyOnLoad(Player.gameObject);        
         DontDestroyOnLoad(uiObject.gameObject);
         UIManager.Instance.uiMain.ResetGameScene();
@@ -200,6 +205,8 @@ public class GameManager : MonoBehaviour
     public void BackToMainScene()
     {
         SceneManager.LoadScene("MainScene");
+        inMainMenuScene = true;
+        inGameScene = false;
         DontDestroyOnLoad(Player.gameObject);
         DontDestroyOnLoad(uiObject.gameObject);
         UIManager.Instance.uiMain.ResetMainScene();

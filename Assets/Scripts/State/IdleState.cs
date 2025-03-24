@@ -13,17 +13,17 @@ public class IdleState : IState
 
     public void Enter()
     {
-        Debug.Log("Idle 상태 진입");
+        
     }    
 
     public void Stay()
-    {
+    {        
         if (owner.target == null || owner.target.isDead) FindTarget();
     }
 
     public void Exit()
     {
-
+        
     }
 
     public void FindTarget()
@@ -37,7 +37,7 @@ public class IdleState : IState
 
         for (int i = 0; i < colliders.Length; i++)
         {
-            Unit temp = colliders[i].GetComponentInParent<Unit>();
+            Unit temp = colliders[i].GetComponent<Unit>();
             
             if (!temp.isDead && owner.isCreep != temp.isCreep) // 죽지 않은 상대편 유닛이라면
             {

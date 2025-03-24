@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackState : IState
@@ -13,26 +11,20 @@ public class AttackState : IState
 
     public void Enter()
     {
-        Debug.Log("Attack 상태 진입");
+        
     }
 
     public void Stay()
-    {
+    {        
+        GameManager.Instance.Player.Controller.isAttacking = true;
+        GameManager.Instance.Player.Controller.OnAttackAnimation();
 
+        Unit target = owner.target;
+        owner.transform.LookAt(target.transform);
     }
 
     public void Exit()
     {
-
-    }
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
+        GameManager.Instance.Player.Controller.isAttacking = false;
     }
 }

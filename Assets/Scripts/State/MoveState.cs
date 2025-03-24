@@ -11,7 +11,7 @@ public class MoveState : IState
 
     public void Enter()
     {
-        Debug.Log("Move 상태 진입");
+        
     }
 
     public void Stay()
@@ -27,6 +27,7 @@ public class MoveState : IState
             return;
         }
 
+        GameManager.Instance.Player.Controller.OnMoveAnimation();
         owner.transform.LookAt(target.transform); // target 위치로 바라보게
         owner.transform.position = Vector3.MoveTowards(owner.transform.position, target.transform.position, Time.deltaTime * owner.data.moveSpeed); // owner 점점 다가감
 
@@ -35,6 +36,6 @@ public class MoveState : IState
 
     public void Exit()
     {
-
+        GameManager.Instance.Player.Controller.OffMoveAnimation();
     }    
 }

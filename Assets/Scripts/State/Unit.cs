@@ -30,7 +30,7 @@ public class Unit : MonoBehaviour
     public Unit target;
     public float findTargetRange;
     public bool isCreep = false;
-    public bool isDead = false;    
+    public bool isDead = false;   
 
     private void Awake()
     {
@@ -46,8 +46,11 @@ public class Unit : MonoBehaviour
         // Stay Update에서 매 프레임 호출
         IStates[(int)_state].Stay();
 
-        // 시간 갈수록 검색 범위 증가
-        findTargetRange += Time.deltaTime;
-        findTargetRange = Mathf.Clamp(findTargetRange, 10f, 500f);
+        // Idle 상태에선 시간 갈수록 검색 범위 증가
+        if (GameManager.Instance.inGameScene && this._state == State.Idle)
+        {
+            findTargetRange += Time.deltaTime;
+            findTargetRange = Mathf.Clamp(findTargetRange, 30f, 500f);
+        }        
     }
 }
