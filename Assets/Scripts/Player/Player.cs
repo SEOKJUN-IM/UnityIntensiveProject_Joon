@@ -18,11 +18,13 @@ public class Player : Unit
     public int playerManaValue;
     public int playerCriticalValue;
 
-    public int playerCurInvenQuantity;    
+    public int playerCurInvenQuantity;
+    public PlayerController Controller;   
 
     private void Awake()
     {
-        GameManager.Instance.Player = this;        
+        GameManager.Instance.Player = this;
+        Controller = GetComponent<PlayerController>();        
     }
 
     private void LateUpdate()

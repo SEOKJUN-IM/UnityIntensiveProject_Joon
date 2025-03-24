@@ -36,11 +36,7 @@ public class Stage : MonoBehaviour
         {
             UIManager.Instance.uiStage.SelectOnlyOneStage();
             isSelected = true;            
-        }
-        else
-        {
-            isSelected = false;            
-        }        
+        }                
     }
 
     public void SetSelected()

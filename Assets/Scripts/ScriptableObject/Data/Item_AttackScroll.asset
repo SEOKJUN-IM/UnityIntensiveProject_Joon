@@ -22,4 +22,4 @@ MonoBehaviour:
   consumables:
   - consumableType: 2
     itemValue: 10
-    itemDuration: 5
+    itemDuration: 30

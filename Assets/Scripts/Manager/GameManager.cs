@@ -181,6 +181,8 @@ public class GameManager : MonoBehaviour
 
         PlayerPositionReset();        
         CameraPositionReset();
+
+        Player.Controller.moveSpeed = 5f;
     }
 
     public void PlayerPositionReset()
@@ -205,6 +207,8 @@ public class GameManager : MonoBehaviour
 
         PlayerPositionResetInMain();
         CameraPositionResetInMain();
+
+        Player.Controller.moveSpeed = 0f;
     }
 
     public void PlayerPositionResetInMain()
