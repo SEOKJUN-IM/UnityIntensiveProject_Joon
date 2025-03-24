@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
-{
+{    
     [field: SerializeField] public string charName { get; private set; }
     [field: SerializeField] public string charJob { get; private set; }
     [field: SerializeField] public int charLevel { get; private set; }

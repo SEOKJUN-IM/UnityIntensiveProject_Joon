@@ -5,13 +5,17 @@ using UnityEngine.UI;
 public class UIMainMenu : MonoBehaviour
 {
     public GameObject charInfoWindow;
+    public GameObject gameInfoWindow;
+
+    public Image char01Icon;
+    public Image char02Icon;
 
     public TextMeshProUGUI charNameText;
     public TextMeshProUGUI charJobText;
     public TextMeshProUGUI charLevelText;
     public TextMeshProUGUI charCurExpText;
     public TextMeshProUGUI charInfoText;
-    public TextMeshProUGUI charGoldText;
+    public TextMeshProUGUI charGoldText;    
 
     public Button statBtn;
     public Button invenBtn;
@@ -94,6 +98,16 @@ public class UIMainMenu : MonoBehaviour
 
     public void SetCharInfo()
     {
+        if (GameManager.Instance.Player.gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+        {
+            char01Icon.enabled = true;
+            char02Icon.enabled = false;
+        }
+        else if (GameManager.Instance.Player.gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
+        {
+            char01Icon.enabled = false;
+            char02Icon.enabled = true;
+        }
         charNameText.text = GameManager.Instance.Player.playerName;
         charJobText.text = GameManager.Instance.Player.playerJob;
         charLevelText.text = GameManager.Instance.Player.playerLevel < 10 ? $"0{GameManager.Instance.Player.playerLevel}" : $"{GameManager.Instance.Player.playerLevel}";
@@ -163,32 +177,37 @@ public class UIMainMenu : MonoBehaviour
     public void ResetGameScene()
     {
         if(UIManager.Instance.uiStage.gameObject.activeInHierarchy) UIManager.Instance.uiStage.gameObject.SetActive(false);
-
-        stageBtn.gameObject.SetActive(false);
+        
         gameStartBtn.gameObject.SetActive(false);
-        charInfoWindow.gameObject.SetActive(false);
+        changeBtn.gameObject.SetActive(false);
+        charInfoWindow.SetActive(false);
+        gameInfoWindow.SetActive(true);
 
         statBtn.gameObject.transform.localScale = Vector3.one * 0.7f;
-        invenBtn.gameObject.transform.localScale = Vector3.one * 0.7f;
-        changeBtn.gameObject.transform.localScale = Vector3.one * 0.7f;
+        invenBtn.gameObject.transform.localScale = Vector3.one * 0.7f;        
+        stageBtn.gameObject.transform.localScale = Vector3.one * 0.7f;
 
-        statBtn.gameObject.transform.localPosition = new Vector3(840f, -310f, 0f);
-        invenBtn.gameObject.transform.localPosition = new Vector3(840f, -395f, 0f);
-        changeBtn.gameObject.transform.localPosition = new Vector3(840f, -480f, 0f);
+        statBtn.gameObject.transform.localPosition = new Vector3(840f, -395f, 0f);
+        invenBtn.gameObject.transform.localPosition = new Vector3(840f, -480f, 0f);        
+        stageBtn.gameObject.transform.localPosition = new Vector3(410f, 440f, 0f);
+        stageBtn.enabled = false;
     }
 
     public void ResetMainScene()
     {
         stageBtn.gameObject.SetActive(true);
         gameStartBtn.gameObject.SetActive(true);
-        charInfoWindow.gameObject.SetActive(true);
+        changeBtn.gameObject.SetActive(true);
+        charInfoWindow.SetActive(true);
+        gameInfoWindow.SetActive(false);
 
         statBtn.gameObject.transform.localScale = Vector3.one;
-        invenBtn.gameObject.transform.localScale = Vector3.one;
-        changeBtn.gameObject.transform.localScale = Vector3.one;
+        invenBtn.gameObject.transform.localScale = Vector3.one;        
+        stageBtn.gameObject.transform.localScale = Vector3.one;
 
         statBtn.gameObject.transform.localPosition = new Vector3(675f, 120f, 0f);
-        invenBtn.gameObject.transform.localPosition = new Vector3(675f, 0f, 0f);
-        changeBtn.gameObject.transform.localPosition = new Vector3(675f, -120f, 0f);
+        invenBtn.gameObject.transform.localPosition = new Vector3(675f, 0f, 0f);        
+        stageBtn.gameObject.transform.localPosition = new Vector3(-150f, -460f, 0f);
+        stageBtn.enabled = true;
     }
 }

@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
     public void SetData()
     {
         _player.character = CharacterManager.Instance.Character;
-
+        
         _player.playerName = _player.character.charName;
         _player.playerJob = _player.character.charJob;
         _player.playerLevel = _player.character.charLevel;

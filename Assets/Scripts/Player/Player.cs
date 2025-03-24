@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     public Character character;
-
+    
     public string playerName;
     public string playerJob;
     public int playerLevel;
