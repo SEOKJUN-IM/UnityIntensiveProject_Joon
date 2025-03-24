@@ -24661,6 +24661,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  animator01: {fileID: 168537126060794752}
+  animator02: {fileID: 1788448049}
+  isWalking: 0
+  OnChar01: 1
+  OnChar02: 0
 --- !u!114 &1344024900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24703,7 +24708,19 @@ MonoBehaviour:
     m_ActionId: bf611aa0-a300-4709-88f2-3dc52beeb201
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1344024899}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 0d568a6d-95e6-4b53-9282-33e090a8f95d
     m_ActionName: Player/Attack[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
@@ -32719,7 +32736,7 @@ Animator:
   m_GameObject: {fileID: 1788448047}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a58d63122b09e9144938cd6a1ece4824, type: 3}
-  m_Controller: {fileID: 9100000, guid: d4756d19414c56a4399947445aeebf0c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 67a082ec60a98bf4c8ee076934b73b31, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

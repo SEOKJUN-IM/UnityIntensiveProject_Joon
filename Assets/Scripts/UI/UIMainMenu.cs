@@ -211,7 +211,7 @@ public class UIMainMenu : MonoBehaviour
             char01ChangeIcon.enabled = false;
         }
         changeText.text = "Game Starting...";
-        Invoke("OffChangeWindow", 1f);
+        Invoke("OffChangeWindow", 0.75f);
 
         statBtn.gameObject.transform.localScale = Vector3.one * 0.7f;
         invenBtn.gameObject.transform.localScale = Vector3.one * 0.7f;        
@@ -244,7 +244,7 @@ public class UIMainMenu : MonoBehaviour
             char01ChangeIcon.enabled = false;
         }
         changeText.text = "Going To Main...";
-        Invoke("OffChangeWindow", 1f);
+        Invoke("OffChangeWindow", 0.75f);
 
         statBtn.gameObject.transform.localScale = Vector3.one;
         invenBtn.gameObject.transform.localScale = Vector3.one;        
