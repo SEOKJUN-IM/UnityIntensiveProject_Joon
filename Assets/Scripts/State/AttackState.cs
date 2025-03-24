@@ -2,17 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackState : MonoBehaviour
+public class AttackState : IState
 {
-    // Start is called before the first frame update
-    void Start()
+    private Unit owner;
+
+    public AttackState(Unit unit)
     {
-        
+        owner = unit;
     }
 
-    // Update is called once per frame
+    public void Enter()
+    {
+        Debug.Log("Attack 상태 진입");
+    }
+
+    public void Stay()
+    {
+
+    }
+
+    public void Exit()
+    {
+
+    }
+
+    void Start()
+    {
+
+    }
+
     void Update()
     {
-        
+
     }
 }

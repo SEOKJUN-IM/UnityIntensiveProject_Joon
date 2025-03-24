@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Player : Unit
+public class Player : MonoBehaviour
 {
     public Character character;
     

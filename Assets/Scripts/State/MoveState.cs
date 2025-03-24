@@ -1,18 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveState : MonoBehaviour
+public class MoveState : IState
 {
-    // Start is called before the first frame update
-    void Start()
+    private Unit owner;
+
+    public MoveState(Unit unit)
     {
-        
+        owner = unit;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Enter()
     {
-        
+        Debug.Log("Move 상태 진입");
     }
+
+    public void Stay()
+    {
+        // Unit이 Walk 상태로 타겟으로 이동
+        // 타겟이 공격 범위 안이면 이동 멈추고 공격, Attack 상태로 변화
+        // 이동 중, 공격 중 타겟 죽으면 Idle 상태로 변화, 다시 가장 가까운 적 검색
+        Unit target = owner.target;
+
+        if (target == null || target.isDead) // target 없거나 죽었으면 Idle 상태로 변화
+        {
+            owner.state = Unit.State.Idle;
+            return;
+        }
+
+        owner.transform.LookAt(target.transform); // target 위치로 바라보게
+        owner.transform.position = Vector3.MoveTowards(owner.transform.position, target.transform.position, Time.deltaTime * owner.data.moveSpeed); // owner 점점 다가감
+
+        if (Vector3.Distance(owner.transform.position, target.transform.position) <= owner.data.attackRange) owner.state = Unit.State.Attack;
+    }
+
+    public void Exit()
+    {
+
+    }    
 }
