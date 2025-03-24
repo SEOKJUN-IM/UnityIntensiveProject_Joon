@@ -102,7 +102,9 @@ public class UIInventory : MonoBehaviour
             {
                 selectedStatName.text += selectedItem.consumables[i].consumableType.ToString();
                 selectedStatValue.text += "+" + selectedItem.consumables[i].itemValue.ToString();
-            }
+                
+                if (selectedItem.consumables[i].consumableType == ConsumableType.Attack) selectedStatValue.text += "%";                
+            }            
         }
 
         if (selectedItem.itemDataType == ItemType.Equipable)
@@ -139,6 +141,31 @@ public class UIInventory : MonoBehaviour
         }        
     }
 
+    public void AddManaItemValue(ItemDataConsumable selectedItemDataConsumable)
+    {
+        if (CharacterManager.Instance.Character.charManaValue == 100)
+        {
+            Debug.Log("마나가 이미 다 찼습니다. 아이템 사용 불가!");
+        }
+        else
+        {
+            CharacterManager.Instance.Character.charManaValue = Mathf.Min(CharacterManager.Instance.Character.charManaValue + selectedItemDataConsumable.itemValue, 100);
+            RemoveSelectedItem();
+        }
+    }
+
+    public void AddAttackItemValue(ItemDataConsumable selectedItemDataConsumable)
+    {
+        CharacterManager.Instance.Character.charAttackValue += (int)(CharacterManager.Instance.Character.charAttackValue * 0.1f);
+        RemoveSelectedItem();
+        Invoke("ResetAttackValue", selectedItemDataConsumable.itemDuration);
+    }
+
+    public void ResetAttackValue()
+    {
+        CharacterManager.Instance.Character.charAttackValue -= (int)(CharacterManager.Instance.Character.charAttackValue * 0.1f);
+    }
+
     public void AddCriticalItemValue(ItemDataConsumable selectedItemDataConsumable)
     {
         if (CharacterManager.Instance.Character.charCriticalValue == 100)
@@ -162,6 +189,12 @@ public class UIInventory : MonoBehaviour
                 {
                     case ConsumableType.Health:
                         AddHealthItemValue(selectedItem.consumables[i]);
+                        break;
+                    case ConsumableType.Mana:
+                        AddManaItemValue(selectedItem.consumables[i]);
+                        break;
+                    case ConsumableType.Attack:
+                        AddAttackItemValue(selectedItem.consumables[i]);
                         break;
                     case ConsumableType.Critical:
                         AddCriticalItemValue(selectedItem.consumables[i]);

@@ -18,6 +18,8 @@ public enum EquipableType
 public enum ConsumableType
 {
     Health,
+    Mana,
+    Attack,
     Critical
 }
 
@@ -33,6 +35,7 @@ public class ItemDataConsumable
 {
     public ConsumableType consumableType;
     public int itemValue;
+    public int itemDuration;
 } 
 
 [CreateAssetMenu(fileName = "Item", menuName = "New Item")]

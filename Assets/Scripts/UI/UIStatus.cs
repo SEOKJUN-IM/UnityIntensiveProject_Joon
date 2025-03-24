@@ -7,6 +7,7 @@ public class UIStatus : MonoBehaviour
     public TextMeshProUGUI charAttackValueText;
     public TextMeshProUGUI charDefenseValueText;
     public TextMeshProUGUI charHealthValueText;
+    public TextMeshProUGUI charManaValueText;
     public TextMeshProUGUI charCriticalValueText;
 
     public Button backBtn;
@@ -37,6 +38,7 @@ public class UIStatus : MonoBehaviour
         charAttackValueText.text = $"{GameManager.Instance.Player.playerAttackValue}";
         charDefenseValueText.text = $"{GameManager.Instance.Player.playerDefenseValue}";
         charHealthValueText.text = $"{GameManager.Instance.Player.playerHealthValue}";
+        charManaValueText.text = $"{GameManager.Instance.Player.playerManaValue}";
         charCriticalValueText.text = $"{GameManager.Instance.Player.playerCriticalValue}";
     }
 }

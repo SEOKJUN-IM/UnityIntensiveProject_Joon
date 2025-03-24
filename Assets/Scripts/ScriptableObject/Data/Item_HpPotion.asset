@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c321b31fa67348945a3ce271a4ec2953, type: 3}
   m_Name: Item_HpPotion
   m_EditorClassIdentifier: 
-  itemDataName: "\uD3EC\uC158"
+  itemDataName: "HP\uD3EC\uC158"
   itemDataInfo: "\uCCB4\uB825\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4."
   itemDataType: 1
   itemDataIcon: {fileID: 21300000, guid: 505d0a3a119058141a5ae7688b7cf125, type: 3}
   canStack: 1
   maxStackAmount: 50
+  equipables: []
   consumables:
   - consumableType: 0
     itemValue: 10

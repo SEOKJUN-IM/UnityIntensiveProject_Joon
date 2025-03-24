@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public int playerAttackValue;
     public int playerDefenseValue;
     public int playerHealthValue;
+    public int playerManaValue;
     public int playerCriticalValue;
 
     public int playerCurInvenQuantity;    

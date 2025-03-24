@@ -36,24 +36,30 @@ public class GameManager : MonoBehaviour
     [Header("Char01 Inven")]
     public Item sword01;
     public Item shield01;
-    public Item potion01;
-    public Item bigPotion01;
-    public Item scroll01;
-
-    public int potionQuantity01;
-    public int bigPotionQuantity01;
-    public int scrollQuantity01;
+    public Item hpPotion01;
+    public int hpPotionQuantity01;
+    public Item manaPosion01;
+    public int manaPotionQuantity01;
+    public Item bigHpPotion01;
+    public int bigHpPotionQuantity01;
+    public Item attackScroll01;
+    public int attackScrollQuantity01;
+    public Item criticalScroll01;
+    public int criticalScrollQuantity01;
 
     [Header("Char02 Inven")]
     public Item sword02;
     public Item shield02;
-    public Item potion02;
-    public Item bigPotion02;
-    public Item scroll02;
-
-    public int potionQuantity02;
-    public int bigPotionQuantity02;
-    public int scrollQuantity02;
+    public Item hpPotion02;
+    public int hpPotionQuantity02;
+    public Item manaPosion02;
+    public int manaPotionQuantity02;
+    public Item bigHpPotion02;
+    public int bigHpPotionQuantity02;
+    public Item attackScroll02;
+    public int attackScrollQuantity02;
+    public Item criticalScroll02;
+    public int criticalScrollQuantity02;
 
     private void Awake()
     {
@@ -95,6 +101,7 @@ public class GameManager : MonoBehaviour
         _player.playerAttackValue = _player.character.charAttackValue;
         _player.playerDefenseValue = _player.character.charDefenseValue;
         _player.playerHealthValue = _player.character.charHealthValue;
+        _player.playerManaValue = _player.character.charManaValue;
         _player.playerCriticalValue = _player.character.charCriticalValue;
 
         _player.playerCurInvenQuantity = _player.character.charCurInvenQuantity;        
@@ -106,20 +113,30 @@ public class GameManager : MonoBehaviour
         firstItems01.Add(sword01);
         firstItems01.Add(shield01);
         
-        for (int i = 0; i < potionQuantity01; i++)
+        for (int i = 0; i < hpPotionQuantity01; i++)
         {
-            firstItems01.Add(potion01);
+            firstItems01.Add(hpPotion01);
         }
 
-        for (int j = 0; j < bigPotionQuantity01; j++)
+        for (int j = 0; j < manaPotionQuantity01; j++)
         {
-            firstItems01.Add(bigPotion01);
+            firstItems01.Add(manaPosion01);
         }
 
-        for (int k = 0; k < scrollQuantity01; k++)
+        for (int k = 0; k < bigHpPotionQuantity01; k++)
         {
-            firstItems01.Add(scroll01);
-        }        
+            firstItems01.Add(bigHpPotion01);
+        }
+
+        for (int l = 0; l < attackScrollQuantity01; l++)
+        {
+            firstItems01.Add(attackScroll01);
+        }
+
+        for (int m = 0; m < criticalScrollQuantity01; m++)
+        {
+            firstItems01.Add(criticalScroll01);
+        }
     }
 
     public void SetItems02()
@@ -128,19 +145,29 @@ public class GameManager : MonoBehaviour
         firstItems02.Add(sword02);
         firstItems02.Add(shield02);
 
-        for (int i = 0; i < potionQuantity02; i++)
+        for (int i = 0; i < hpPotionQuantity02; i++)
         {
-            firstItems02.Add(potion02);
+            firstItems02.Add(hpPotion02);
         }
 
-        for (int j = 0; j < bigPotionQuantity02; j++)
+        for (int j = 0; j < manaPotionQuantity02; j++)
         {
-            firstItems02.Add(bigPotion02);
+            firstItems02.Add(manaPosion02);
         }
 
-        for (int k = 0; k < scrollQuantity02; k++)
+        for (int k = 0; k < bigHpPotionQuantity02; k++)
         {
-            firstItems02.Add(scroll02);
+            firstItems02.Add(bigHpPotion02);
+        }
+
+        for (int l = 0; l < attackScrollQuantity02; l++)
+        {
+            firstItems02.Add(attackScroll02);
+        }
+
+        for (int m = 0; m < criticalScrollQuantity02; m++)
+        {
+            firstItems02.Add(criticalScroll02);
         }
     }    
 
