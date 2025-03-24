@@ -11031,6 +11031,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83befe37aad748b44a9b744db0077d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inMainMenuScene: 1
+  inGameScene: 0
   uiObject: {fileID: 1812746334}
   gameCamera: {fileID: 0}
   cameraContainer: {fileID: 1630528058}
@@ -22068,7 +22070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.9397467, b: 0.7377358, a: 1}
+  m_Color: {r: 0.9725491, g: 0.82745105, b: 0.54509807, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

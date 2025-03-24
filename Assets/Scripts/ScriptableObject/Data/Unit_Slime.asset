@@ -18,3 +18,4 @@ MonoBehaviour:
   unitHealth: 30
   attackRange: 3
   unitAttackPower: 3
+  unitExp: 15

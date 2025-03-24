@@ -15,11 +15,18 @@ public class AttackState : IState
     }
 
     public void Stay()
-    {        
+    {
+        Unit target = owner.target;
+
+        if (target == null || target.isDead) // target 없거나 죽었으면 Idle 상태로 변화
+        {
+            owner.state = Unit.State.Idle;
+            return;
+        }
+
         GameManager.Instance.Player.Controller.isAttacking = true;
         GameManager.Instance.Player.Controller.OnAttackAnimation();
-
-        Unit target = owner.target;
+                
         owner.transform.LookAt(target.transform);
     }
 
