@@ -145,10 +145,10 @@ public class UIMainMenu : MonoBehaviour
             backToMainIcon.SetActive(true);
             backToMainText.SetActive(true);
 
-            GameManager.Instance.gameCamera.transform.position += Vector3.right * 4;
+            GameManager.Instance.gameCamera.transform.position -= Vector3.right * 4;
             GameManager.Instance.gameCamera.fieldOfView = 80f;
-            GameManager.Instance.Player.transform.GetChild(0).eulerAngles = new Vector3(0f, 150f, 0f);
-            GameManager.Instance.Player.transform.GetChild(1).eulerAngles = new Vector3(0f, 150f, 0f);
+            GameManager.Instance.Player.transform.GetChild(0).eulerAngles = new Vector3(0f, -30f, 0f);
+            GameManager.Instance.Player.transform.GetChild(1).eulerAngles = new Vector3(0f, -30f, 0f);
 
             UIManager.Instance.uiStage.gameObject.SetActive(true);
         }
@@ -171,10 +171,10 @@ public class UIMainMenu : MonoBehaviour
             backToMainIcon.SetActive(false);
             backToMainText.SetActive(false);
 
-            GameManager.Instance.gameCamera.transform.position -= Vector3.right * 4;
+            GameManager.Instance.gameCamera.transform.position += Vector3.right * 4;
             GameManager.Instance.gameCamera.fieldOfView = 75f;
-            GameManager.Instance.Player.transform.GetChild(0).eulerAngles = new Vector3(0f, 180f, 0f);
-            GameManager.Instance.Player.transform.GetChild(1).eulerAngles = new Vector3(0f, 180f, 0f);
+            GameManager.Instance.Player.transform.GetChild(0).eulerAngles = Vector3.zero;
+            GameManager.Instance.Player.transform.GetChild(1).eulerAngles = Vector3.zero;
 
             UIManager.Instance.uiStage.gameObject.SetActive(false);
         }       

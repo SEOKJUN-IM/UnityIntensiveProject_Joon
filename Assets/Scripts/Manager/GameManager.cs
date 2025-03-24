@@ -185,13 +185,13 @@ public class GameManager : MonoBehaviour
 
     public void PlayerPositionReset()
     {
-        Player.gameObject.transform.position = new Vector3(0f, 0f, 72f);        
+        Player.gameObject.transform.position = new Vector3(0f, -0.2f, 72f);               
     }
 
     public void CameraPositionReset()
     {        
-        gameCamera.gameObject.transform.localPosition = new Vector3(-3.5f, 5f, -6f);
-        gameCamera.gameObject.transform.localEulerAngles = new Vector3(35f, 30f, 0f);
+        gameCamera.gameObject.transform.localPosition = new Vector3(3.25f, 5f, 6f);
+        gameCamera.gameObject.transform.localEulerAngles = new Vector3(35f, 210f, 0f);
         gameCamera.fieldOfView = 50f;
     }
 
