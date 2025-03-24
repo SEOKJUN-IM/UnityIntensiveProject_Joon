@@ -18,6 +18,8 @@ MonoBehaviour:
   itemDataIcon: {fileID: 21300000, guid: 01620dacc77ed874c82f9cc36a890ff1, type: 3}
   canStack: 1
   maxStackAmount: 20
+  equipables: []
   consumables:
-  - consumableType: 1
+  - consumableType: 3
     itemValue: 10
+    itemDuration: 0
