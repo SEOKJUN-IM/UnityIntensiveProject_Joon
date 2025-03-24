@@ -4,12 +4,6 @@ using UnityEngine.UI;
 
 public class UIMainMenu : MonoBehaviour
 {
-    public GameObject charInfoWindow;
-    public GameObject gameInfoWindow;
-    public GameObject backInfoWindow;
-    public Button AcceptGoMainBtn;
-    public Button CancleGoMainBtn;
-
     public Image char01Icon;
     public Image char02Icon;
 
@@ -33,6 +27,17 @@ public class UIMainMenu : MonoBehaviour
     public GameObject backToMainText;    
 
     public Image curExpBar;
+
+    public GameObject charInfoWindow;
+    public GameObject gameInfoWindow;
+    public GameObject backInfoWindow;
+    public Button AcceptGoMainBtn;
+    public Button CancleGoMainBtn;
+
+    public GameObject changeWindow;
+    public Image char01ChangeIcon;
+    public Image char02ChangeIcon;
+    public TextMeshProUGUI changeText;
 
     void Awake()
     {
@@ -180,6 +185,11 @@ public class UIMainMenu : MonoBehaviour
         }       
     }
 
+    void OffChangeWindow()
+    {
+        changeWindow.SetActive(false);
+    }
+
     public void ResetGameScene()
     {
         if(UIManager.Instance.uiStage.gameObject.activeInHierarchy) UIManager.Instance.uiStage.gameObject.SetActive(false);
@@ -188,6 +198,20 @@ public class UIMainMenu : MonoBehaviour
         changeBtn.gameObject.SetActive(false);
         charInfoWindow.SetActive(false);
         gameInfoWindow.SetActive(true);
+
+        changeWindow.SetActive(true);
+        if (GameManager.Instance.Player.gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+        {
+            char01ChangeIcon.enabled = true;
+            char02ChangeIcon.enabled = false;
+        }
+        else if (GameManager.Instance.Player.gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
+        {
+            char02ChangeIcon.enabled = true;
+            char01ChangeIcon.enabled = false;
+        }
+        changeText.text = "Game Starting...";
+        Invoke("OffChangeWindow", 1f);
 
         statBtn.gameObject.transform.localScale = Vector3.one * 0.7f;
         invenBtn.gameObject.transform.localScale = Vector3.one * 0.7f;        
@@ -207,6 +231,20 @@ public class UIMainMenu : MonoBehaviour
         charInfoWindow.SetActive(true);
         gameInfoWindow.SetActive(false);
         backInfoWindow.SetActive(false);
+
+        changeWindow.SetActive(true);
+        if (GameManager.Instance.Player.gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+        {
+            char01ChangeIcon.enabled = true;
+            char02ChangeIcon.enabled = false;
+        }
+        else if (GameManager.Instance.Player.gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
+        {
+            char02ChangeIcon.enabled = true;
+            char01ChangeIcon.enabled = false;
+        }
+        changeText.text = "Going To Main...";
+        Invoke("OffChangeWindow", 1f);
 
         statBtn.gameObject.transform.localScale = Vector3.one;
         invenBtn.gameObject.transform.localScale = Vector3.one;        
