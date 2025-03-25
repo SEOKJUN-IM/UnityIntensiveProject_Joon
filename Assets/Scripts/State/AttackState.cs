@@ -23,7 +23,9 @@ public class AttackState : IState
             return;
         }
         else // target 있으면 Attack
-        {            
+        {
+            LookTarget(); // target 위치로 바라보게
+                        
             GameManager.Instance.Player.Controller.isAttacking = true;
             GameManager.Instance.Player.Controller.OnAttackAnimation(); // 플레이어 Attack 애니메이션           
             if (owner.unitAnimator != null) owner.unitAnimator.SetTrigger("Attack"); // 몬스터 Attack 애니메이션
@@ -55,5 +57,11 @@ public class AttackState : IState
     public void Exit()
     {
         GameManager.Instance.Player.Controller.isAttacking = false;
-    }  
+    }
+
+    void LookTarget()
+    {
+        Vector3 dir = owner.target.transform.position - owner.transform.position;
+        owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime);
+    }
 }

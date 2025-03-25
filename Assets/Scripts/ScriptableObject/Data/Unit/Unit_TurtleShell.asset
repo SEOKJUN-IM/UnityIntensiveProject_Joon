@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: TurtleShell
   unitType: Monster
-  moveSpeed: 1
-  unitHealth: 100
+  moveSpeed: 2
+  unitHealth: 150
   attackRange: 3
-  unitAttackPower: 3
+  unitAttackPower: 5
   unitExp: 25

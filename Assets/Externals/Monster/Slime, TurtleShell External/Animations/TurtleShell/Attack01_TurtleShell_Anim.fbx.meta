@@ -260,7 +260,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.3985454
+        functionName: MonsterHit
+        data: 
+        objectReferenceParameter: {fileID: 7273451260520482310, guid: 01bfaa126bcf2774d962de9e0be4854f, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

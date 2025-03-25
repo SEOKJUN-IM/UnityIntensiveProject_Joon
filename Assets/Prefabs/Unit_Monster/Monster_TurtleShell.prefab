@@ -261,7 +261,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4538213518647383858}
-  - component: {fileID: 1848609245736788855}
   m_Layer: 6
   m_Name: TurtleShellPolyart
   m_TagString: Untagged
@@ -286,27 +285,6 @@ Transform:
   - {fileID: 6993645448381979659}
   m_Father: {fileID: 4947381801571155440}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1848609245736788855
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2247974033964759649}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 942e6d5330e147fe84c5ab6ab2193ca1, type: 3}
-  m_Controller: {fileID: 9100000, guid: f974b2c679fc5334aa49f4f0cf65a195, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3101924163085943733
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,10 +894,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4947381801571155440}
   - component: {fileID: 2710326550196761056}
+  - component: {fileID: 7090548935465205641}
   - component: {fileID: 3525468284988891049}
   - component: {fileID: 3811904714759236329}
   m_Layer: 6
-  m_Name: TurtleShell
+  m_Name: Monster_TurtleShell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -954,10 +933,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: f489bacbc8fb53b4e8d23f3bd60b75cd, type: 2}
+  unitAnimator: {fileID: 0}
   target: {fileID: 0}
   findTargetRange: 0
   isCreep: 0
   isDead: 0
+  health: 0
+  exp: 0
+--- !u!95 &7090548935465205641
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7273451260520482310}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 942e6d5330e147fe84c5ab6ab2193ca1, type: 3}
+  m_Controller: {fileID: 9100000, guid: f974b2c679fc5334aa49f4f0cf65a195, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!54 &3525468284988891049
 Rigidbody:
   m_ObjectHideFlags: 0

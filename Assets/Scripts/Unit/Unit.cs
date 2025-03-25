@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class Unit : MonoBehaviour
     public static bool onMonsterDamaging = false; // 너무 자주 damage를 받는 것 막는 static 변수
 
     public int health;
-    public int exp;    
+    public int exp;   
 
     private void Awake()
     {
@@ -49,8 +50,8 @@ public class Unit : MonoBehaviour
         if (!isCreep) unitAnimator = GetComponentInChildren<Animator>();        
         
         health = data.UnitHp;
-        exp = data.unitExp;
-    }
+        exp = data.unitExp;        
+    }   
 
     private void Update()
     {
