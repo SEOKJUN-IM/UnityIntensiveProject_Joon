@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Slime
   unitType: Monster
-  moveSpeed: 3
-  unitHealth: 100
+  moveSpeed: 2
+  unitHealth: 200
   attackRange: 3
   unitAttackPower: 1
   unitExp: 15

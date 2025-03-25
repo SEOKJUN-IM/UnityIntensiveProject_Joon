@@ -9,6 +9,6 @@ public class UnitData : ScriptableObject
     public int moveSpeed;
     public int unitHealth;
     public int attackRange;
-    public int unitAttackPower;
+    public int unitAttackPower;    
     public int unitExp;        
 }

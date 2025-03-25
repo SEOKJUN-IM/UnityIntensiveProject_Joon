@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 426869091918815819}
   - component: {fileID: 1280392567419728992}
+  - component: {fileID: 3573320592005778323}
   - component: {fileID: 8921122809192262821}
   - component: {fileID: 8073780691948214230}
   m_Layer: 6
@@ -79,10 +80,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 6a7035377cacad24ea635302762a9f40, type: 2}
+  unitAnimator: {fileID: 0}
   target: {fileID: 0}
   findTargetRange: 0
   isCreep: 0
   isDead: 0
+--- !u!95 &3573320592005778323
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2903276967253953908}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 56fc0b4f7d154039a7099564596a545b, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0be9370616380104b988303f693bbd9c, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!54 &8921122809192262821
 Rigidbody:
   m_ObjectHideFlags: 0

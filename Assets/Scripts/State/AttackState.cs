@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class AttackState : IState
@@ -16,23 +17,36 @@ public class AttackState : IState
 
     public void Stay()
     {
-        Unit target = owner.target;
-
-        if (target == null || target.isDead) // target 없거나 죽었으면 Idle 상태로 변화
+        if (owner.target == null || owner.target.isDead) // target 없거나 죽었으면 Idle 상태로 변화
         {
             owner.state = Unit.State.Idle;
             return;
         }
+        else // target 있으면 Attack
+        {            
+            GameManager.Instance.Player.Controller.isAttacking = true;
+            GameManager.Instance.Player.Controller.OnAttackAnimation(); // 플레이어 Attack 애니메이션           
+            if (owner.unitAnimator != null) owner.unitAnimator.SetTrigger("Attack"); // 몬스터 Attack 애니메이션
+        }
 
-        GameManager.Instance.Player.Controller.isAttacking = true;
-        GameManager.Instance.Player.Controller.OnAttackAnimation();                
-        
-        owner.transform.LookAt(target.transform);
-        if (owner.unitAnimator != null) owner.unitAnimator.SetTrigger("Attack");        
+        // owner 체력 0 됐을 때 Dead 상태로 변화
+        if (owner.health == 0)
+        {
+            if (owner.unitAnimator != null) owner.unitAnimator.ResetTrigger("Attack");
+            owner.isDead = true;
+            if (!owner.isCreep) owner.state = Unit.State.Dead;
+        }
+
+        // target 체력 0 됐을 때 target null로 만들고 다시 Idle 상태로 변화
+        if (owner.target.health == 0)
+        {
+            owner.target = null;
+            owner.state = Unit.State.Idle;
+        }
     }
 
     public void Exit()
     {
         GameManager.Instance.Player.Controller.isAttacking = false;
-    }    
+    }  
 }

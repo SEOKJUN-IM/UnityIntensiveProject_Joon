@@ -21,7 +21,9 @@ public class Character : MonoBehaviour
 
     public UIInventory charInventory;
     public List<ItemData> charItemDatas;
-    public List<GameObject> charEquipments;        
+    public List<GameObject> charEquipments;
+
+    public Unit playerUnit;        
 
     private void Start()
     {
@@ -145,5 +147,10 @@ public class Character : MonoBehaviour
                 charCurInvenQuantity--;
             }
         }        
+    }
+
+    public void playerUnitHit()
+    {
+        playerUnit.PlayerHit();
     }
 }

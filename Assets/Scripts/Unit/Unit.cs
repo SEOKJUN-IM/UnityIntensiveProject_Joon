@@ -31,7 +31,10 @@ public class Unit : MonoBehaviour
     public Unit target;
     public float findTargetRange;
     public bool isCreep = false; // Player는 true로, Monster는 false로 해줄것임(서로 달라야 IdleState에서 FindTarget할 수 있음)
-    public bool isDead = false;   
+    public bool isDead = false;
+
+    public int health;
+    public int exp;    
 
     private void Awake()
     {
@@ -42,6 +45,9 @@ public class Unit : MonoBehaviour
         IStates[(int)State.Dead] = new DeadState(this);
 
         if (!isCreep) unitAnimator = GetComponentInChildren<Animator>();
+        
+        health = data.unitHealth;
+        exp = data.unitExp;
     }
 
     private void Update()
@@ -57,35 +63,41 @@ public class Unit : MonoBehaviour
         }        
     }
 
-    // Unit이 플레이어일 때
+    // Unit이 플레이어일 때 (owner : 플레이어, target : 몬스터)
     public void PlayerHit()
     {
-        // owner의 target(monster)에 데미지를 준다
-        if (isCreep) MonsterDamaged(target);
+        // Unit의 target(monster)에 데미지를 준다
+        if (isCreep && target != null) MonsterDamaged(target);
     }
 
-    // Unit이 몬스터일 때
+    // Unit이 몬스터일 때 (owner : 몬스터, target : 플레이어)
     public void MonsterHit()
     {
-        // owner의 target(player)에 데미지를 준다
-        if (!isCreep) PlayerDamaged(this);
+        // Unit의 target(player)에 데미지를 준다
+        if (!isCreep && target != null) PlayerDamaged(this);
     }
 
     // 플레이어가 몬스터한테 데미지를 입을 때
     public void PlayerDamaged(Unit monster)
     {
         // 플레이어 : 플레이어 캐릭터 체력에서 타겟 몬스터 UnitData의 공격력만큼 빼기
-        CharacterManager.Instance.Character.charHealthValue -= monster.data.unitAttackPower;
-        // GetHit
-        GameManager.Instance.Player.Controller.OnGetHitAnimation();
+        CharacterManager.Instance.Character.charHealthValue = Mathf.Max(CharacterManager.Instance.Character.charHealthValue - monster.data.unitAttackPower, 0);
+
+        // GetHit 애니메이션
+        //GameManager.Instance.Player.Controller.OnGetHitAnimation();
     }
 
     // 몬스터가 플레이어한테 데미지를 입을 때
     public void MonsterDamaged(Unit monster)
     {
         // 몬스터 : 몬스터 UnitData 체력에서 플레이어 캐릭터 공격력만큼 빼기
-        monster.data.unitHealth -= CharacterManager.Instance.Character.charAttackValue;
-        // GetHit
+        monster.health = Mathf.Max(monster.health - CharacterManager.Instance.Character.charAttackValue, 0);
+
+        // GetHit 애니메이션
+        if (monster.unitAnimator != null) monster.unitAnimator.SetTrigger("GetHit");// 몬스터 : 몬스터 UnitData 체력에서 플레이어 캐릭터 공격력만큼 빼기
+        monster.health = Mathf.Max(monster.health - CharacterManager.Instance.Character.charAttackValue, 0);
+
+        // GetHit 애니메이션
         if (monster.unitAnimator != null) monster.unitAnimator.SetTrigger("GetHit");
     }
 }

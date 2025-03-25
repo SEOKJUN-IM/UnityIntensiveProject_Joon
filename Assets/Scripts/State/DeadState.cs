@@ -13,6 +13,7 @@ public class DeadState : IState
 
     public void Enter()
     {
+        Debug.Log("죽었다!");
         if (owner.unitAnimator != null) owner.unitAnimator.SetBool("Dead", true);
     }
 
