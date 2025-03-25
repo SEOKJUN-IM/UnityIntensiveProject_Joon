@@ -12,6 +12,8 @@ public class UIStage : MonoBehaviour
 
     public Stage[] stages;
 
+    public int selectedStageOrder;
+
     public TextMeshProUGUI selectedStageText;
 
     void Awake()
@@ -39,8 +41,8 @@ public class UIStage : MonoBehaviour
         {
             if (stages[i].isSelected)
             {
-                int selectedOrder = (int)stages[i].selectedStage + 1;
-                selectedStageText.text = selectedOrder.ToString();
+                selectedStageOrder = (int)stages[i].selectedStage + 1;
+                selectedStageText.text = selectedStageOrder.ToString();
             }
         }
     }    

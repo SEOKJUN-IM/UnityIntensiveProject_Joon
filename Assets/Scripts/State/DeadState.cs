@@ -16,6 +16,8 @@ public class DeadState : IState
 
         // Unit Dead 애니메이션     
         if (!owner.isCreep && owner.unitAnimator != null) owner.unitAnimator.SetBool("Dead", true);
+
+        if (!owner.isCreep) GameManager.Instance.deadCounts++;
     }
 
     public void Stay()
@@ -29,7 +31,7 @@ public class DeadState : IState
         // 플레이어 Dead 애니메이션 종료
         if (owner.isCreep) GameManager.Instance.Player.Controller.OffDeadAnimation();
 
-        // 플레이어 체력 1로 복귀
+        // 플레이어 체력 10으로 복귀
         if (owner.isCreep && CharacterManager.Instance.Character.charHealthValue == 0)
             CharacterManager.Instance.Character.charHealthValue = 10;
 

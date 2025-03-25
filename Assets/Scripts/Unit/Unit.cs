@@ -28,7 +28,7 @@ public class Unit : MonoBehaviour
     
     public UnitData data;
     public Animator unitAnimator;
-    public Unit target;
+    public Unit target;    
     public float findTargetRange;
     public bool isCreep = false; // Player는 true로, Monster는 false로 해줄것임(서로 달라야 IdleState에서 FindTarget할 수 있음)
     public bool isDead = false;
@@ -71,7 +71,7 @@ public class Unit : MonoBehaviour
         {
             onPlayerDamaging = false;
             onMonsterDamaging = false;
-        }        
+        }               
     }
 
     // Unit이 플레이어일 때 (owner : 플레이어, target : 몬스터)

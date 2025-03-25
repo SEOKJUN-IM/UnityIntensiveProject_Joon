@@ -68,6 +68,13 @@ public class GameManager : MonoBehaviour
     public Item criticalScroll02;
     public int criticalScrollQuantity02;
 
+    // 플레이어의 모든 타겟 죽었는지 확인
+    public GameObject[] monsters;
+    public int monsterCounts = 0;
+    public int deadCounts = 0;    
+    
+    public bool allDead = false;
+
     private void Awake()
     {
         if (_instance == null)
@@ -89,6 +96,8 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         DistinChar();
+        FindAllMonsterCounts();
+        CheckAllDead();
     }
 
     private void Start()
@@ -203,9 +212,14 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         SceneManager.LoadScene("GameScene");
+        ResetGameScene();                      
+    }
+
+    public void ResetGameScene()
+    {
         inGameScene = true;
         inMainMenuScene = false;
-        DontDestroyOnLoad(Player.gameObject);        
+        DontDestroyOnLoad(Player.gameObject);
         DontDestroyOnLoad(uiObject.gameObject);
 
         UIManager.Instance.uiStat.gameObject.SetActive(false);
@@ -215,8 +229,10 @@ public class GameManager : MonoBehaviour
 
         UIManager.Instance.uiMain.ResetGameScene();
         UIManager.Instance.uiMain.backToMainBtn.transform.parent.gameObject.SetActive(true);
+        SetGameCameraPosition();
 
-        SetGameCameraPosition();        
+        deadCounts = 0;
+        allDead = false;        
     }
 
     public void SetGameCameraPosition()
@@ -244,7 +260,9 @@ public class GameManager : MonoBehaviour
 
         PlayerPositionResetInMain();
         CameraPositionResetInMain();
-        OffPause();        
+
+        deadCounts = 0;       
+        allDead = false;
     }
 
     public void PlayerPositionResetInMain()
@@ -258,23 +276,25 @@ public class GameManager : MonoBehaviour
         Instance.gameCamera.transform.position = cameraFirstPos;
         Instance.gameCamera.transform.eulerAngles = cameraFisrtRot;
         gameCamera.fieldOfView = 75f;
-    }
+    }   
 
-    public void OnPause()
+    // 게임 씬에서 총 몬스터 찾아오기
+    public void FindAllMonsterCounts()
     {
-        if (!isPaused)
+        if (inGameScene)
         {
-            Time.timeScale = 0;
-            isPaused = true;
+            monsters = GameObject.FindGameObjectsWithTag("Monster");
         }
-    }
+        monsterCounts = monsters.Length;
+    }    
 
-    public void OffPause()
+    // 타겟 모두 죽었는지 아닌지 검사
+    public void CheckAllDead()
     {
-        if (isPaused)
+        if (monsterCounts != 0)
         {
-            Time.timeScale = 1;
-            isPaused = false;
+            if (inGameScene && deadCounts == monsterCounts) allDead = true;
+            else allDead = false;
         }
     }
 }

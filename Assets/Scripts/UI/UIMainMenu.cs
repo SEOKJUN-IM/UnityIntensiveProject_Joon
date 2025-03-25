@@ -62,7 +62,7 @@ public class UIMainMenu : MonoBehaviour
     void Update()
     {
         SetCharInfo();
-        OnOffTargetInfoWindow();
+        OnOffTargetInfoWindow();        
     }
 
     public void OpenMainMenu()
@@ -262,20 +262,18 @@ public class UIMainMenu : MonoBehaviour
     public void OpenTryBackMain()
     {
         if (!backInfoWindow.activeInHierarchy)
-        {
-            GameManager.Instance.OnPause();
+        {            
             backInfoWindow.SetActive(true);
         }
         else
         {
-            backInfoWindow.SetActive(false);
-            GameManager.Instance.OffPause();
+            backInfoWindow.SetActive(false);            
         }
     }
 
     public void CancleGoMain()
     {
-        backInfoWindow.SetActive(false);
+        backInfoWindow.SetActive(false);        
     }
 
     void OnOffTargetInfoWindow()
@@ -289,5 +287,5 @@ public class UIMainMenu : MonoBehaviour
             else targetInfoWindow.SetActive(false);
         }
         else if (GameManager.Instance.inMainMenuScene) targetInfoWindow.SetActive(false);
-    }
+    }    
 }
