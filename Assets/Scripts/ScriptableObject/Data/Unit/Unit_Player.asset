@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a5f9d50c61d9b4398e5bbe10c2521c, type: 3}
   m_Name: Unit_Player
   m_EditorClassIdentifier: 
-  unitName: DogKnight
+  unitName: "\uD50C\uB808\uC774\uC5B4"
   unitType: Player
+  unitLevel: 1
   moveSpeed: 5
   unitHealth: 100
   attackRange: 3

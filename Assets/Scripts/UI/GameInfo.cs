@@ -24,12 +24,12 @@ public class GameInfo : MonoBehaviour
 
     void SetGameInfo()
     {
-        if (GameManager.Instance.Player.gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+        if (GameManager.Instance.onChar01)
         {
             char01Icon.enabled = true;
             char02Icon.enabled = false;
         }
-        else if (GameManager.Instance.Player.gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
+        else if (GameManager.Instance.onChar02)
         {
             char01Icon.enabled = false;
             char02Icon.enabled = true;

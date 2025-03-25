@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class UIMainMenu : MonoBehaviour
 {
+    public Unit playerUnit;
+
     public Image char01Icon;
     public Image char02Icon;
 
@@ -30,6 +32,7 @@ public class UIMainMenu : MonoBehaviour
 
     public GameObject charInfoWindow;
     public GameObject gameInfoWindow;
+    public GameObject targetInfoWindow;
     public GameObject backInfoWindow;
     public Button AcceptGoMainBtn;
     public Button CancleGoMainBtn;
@@ -59,6 +62,7 @@ public class UIMainMenu : MonoBehaviour
     void Update()
     {
         SetCharInfo();
+        OnOffTargetInfoWindow();
     }
 
     public void OpenMainMenu()
@@ -272,5 +276,18 @@ public class UIMainMenu : MonoBehaviour
     public void CancleGoMain()
     {
         backInfoWindow.SetActive(false);
+    }
+
+    void OnOffTargetInfoWindow()
+    {
+        if (GameManager.Instance.inGameScene)
+        {
+            if (playerUnit.target != null && GameManager.Instance.Player.Controller.isAttacking)
+            {
+                targetInfoWindow.SetActive(true);
+            }
+            else targetInfoWindow.SetActive(false);
+        }
+        else if (GameManager.Instance.inMainMenuScene) targetInfoWindow.SetActive(false);
     }
 }
