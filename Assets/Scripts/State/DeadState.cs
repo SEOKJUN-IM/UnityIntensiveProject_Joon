@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
 public class DeadState : IState
 {
@@ -13,27 +11,29 @@ public class DeadState : IState
 
     public void Enter()
     {
-        Debug.Log("죽었다!");
-        if (owner.unitAnimator != null) owner.unitAnimator.SetBool("Dead", true);
+        // 플레이어 Dead 애니메이션
+        if (owner.isCreep) GameManager.Instance.Player.Controller.OnDeadAnimation();
+
+        // Unit Dead 애니메이션     
+        if (!owner.isCreep && owner.unitAnimator != null) owner.unitAnimator.SetBool("Dead", true);
     }
 
     public void Stay()
     {
-
+        // 메인메뉴씬으로 가면 다시 Idle 상태
+        if (GameManager.Instance.inMainMenuScene) owner.state = Unit.State.Idle;
     }
 
     public void Exit()
     {
+        // 플레이어 Dead 애니메이션 종료
+        if (owner.isCreep) GameManager.Instance.Player.Controller.OffDeadAnimation();
 
-    }
+        // 플레이어 체력 1로 복귀
+        if (owner.isCreep && CharacterManager.Instance.Character.charHealthValue == 0)
+            CharacterManager.Instance.Character.charHealthValue = 10;
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
+        // 몬스터 Dead 애니메이션 종료
+        if (!owner.isCreep && owner.unitAnimator != null) owner.unitAnimator.SetBool("Dead", false);
     }
 }

@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
         Move();
         DirectlyMoveAnimation();
 
-        Look();
+        Rotation();
     }    
 
     void Move()
@@ -64,18 +64,13 @@ public class PlayerController : MonoBehaviour
         else if (GameManager.Instance.onChar02 && !isWalking) animator02.SetBool("Walk", false);
     }
 
-    void Look()
+    void Rotation()
     {
-        if (GameManager.Instance.onChar01 && isWalking)
+        if (isWalking)
         {
             Quaternion plRotate = Quaternion.LookRotation(new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z), Vector3.up);
-            transform.GetChild(0).rotation = Quaternion.RotateTowards(transform.GetChild(0).rotation, plRotate,Time.deltaTime * 100);            
-        }
-        else if (GameManager.Instance.onChar02 && isWalking)
-        {
-            Quaternion plRotate = Quaternion.LookRotation(new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z), Vector3.up);
-            transform.GetChild(1).rotation = Quaternion.RotateTowards(transform.GetChild(1).rotation, plRotate, Time.deltaTime * 100);
-        }
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, plRotate,Time.deltaTime * 100);
+        }       
     }
 
     // 사용자 입력 받는 OnAttack(테스트 위해 일단 GameScene에서만 작동)
@@ -116,9 +111,30 @@ public class PlayerController : MonoBehaviour
     }
 
     // AttackState : IState에서 호출
+    public void OffAttackAnimation()
+    {
+        if (GameManager.Instance.onChar01 && !isAttacking) animator01.ResetTrigger("Attack");
+        else if (GameManager.Instance.onChar02 && !isAttacking) animator02.ResetTrigger("Attack");
+    }
+
+    // AttackState : IState에서 호출
     public void OnGetHitAnimation()
     {
         if (GameManager.Instance.onChar01) animator01.SetTrigger("GetHit");
         else if (GameManager.Instance.onChar02) animator02.SetTrigger("GetHit");
+    }
+
+    // DeadState : IState에서 호출
+    public void OnDeadAnimation()
+    {
+        if (GameManager.Instance.onChar01) animator01.SetBool("Dead", true);
+        else if (GameManager.Instance.onChar02) animator02.SetBool("Dead", true);
+    }
+
+    // DeadState : IState에서 호출
+    public void OffDeadAnimation()
+    {
+        if (GameManager.Instance.onChar01) animator01.SetBool("Dead", false);
+        else if (GameManager.Instance.onChar02) animator02.SetBool("Dead", false);
     }
 }

@@ -17,5 +17,5 @@ MonoBehaviour:
   moveSpeed: 2
   unitHealth: 100
   attackRange: 3
-  unitAttackPower: 1
+  unitAttackPower: 3
   unitExp: 15

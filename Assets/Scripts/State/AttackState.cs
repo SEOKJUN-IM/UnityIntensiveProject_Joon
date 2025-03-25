@@ -30,17 +30,24 @@ public class AttackState : IState
         }
 
         // owner 체력 0 됐을 때 Dead 상태로 변화
-        if (owner.health == 0)
+        // 플레이어 체력 0
+        if (owner.isCreep && CharacterManager.Instance.Character.charHealthValue == 0)
         {
-            if (owner.unitAnimator != null) owner.unitAnimator.ResetTrigger("Attack");
+            GameManager.Instance.Player.Controller.isAttacking = false;
+            owner.isDead = true;
+            owner.state = Unit.State.Dead;
+        }
+        // 몬스터 체력 0
+        else if (!owner.isCreep && owner.health == 0)
+        {
+            //if (owner.unitAnimator != null) owner.unitAnimator.ResetTrigger("Attack");
             owner.isDead = true;
             if (!owner.isCreep) owner.state = Unit.State.Dead;
         }
 
-        // target 체력 0 됐을 때 target null로 만들고 다시 Idle 상태로 변화
+        // target 체력 0 됐을 때 다시 Idle 상태로 변화
         if (owner.target.health == 0)
-        {
-            owner.target = null;
+        {                   
             owner.state = Unit.State.Idle;
         }
     }

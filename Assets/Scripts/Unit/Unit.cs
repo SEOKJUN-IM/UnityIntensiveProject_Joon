@@ -32,6 +32,8 @@ public class Unit : MonoBehaviour
     public float findTargetRange;
     public bool isCreep = false; // Player는 true로, Monster는 false로 해줄것임(서로 달라야 IdleState에서 FindTarget할 수 있음)
     public bool isDead = false;
+    public static bool onPlayerDamaging = false; // 너무 자주 damage를 받는 것 막는 static 변수
+    public static bool onMonsterDamaging = false; // 너무 자주 damage를 받는 것 막는 static 변수
 
     public int health;
     public int exp;    
@@ -80,16 +82,23 @@ public class Unit : MonoBehaviour
     // 플레이어가 몬스터한테 데미지를 입을 때
     public void PlayerDamaged(Unit monster)
     {
+        if (onPlayerDamaging) return;
+
         // 플레이어 : 플레이어 캐릭터 체력에서 타겟 몬스터 UnitData의 공격력만큼 빼기
         CharacterManager.Instance.Character.charHealthValue = Mathf.Max(CharacterManager.Instance.Character.charHealthValue - monster.data.unitAttackPower, 0);
 
         // GetHit 애니메이션
-        //GameManager.Instance.Player.Controller.OnGetHitAnimation();
+        GameManager.Instance.Player.Controller.OnGetHitAnimation();
+
+        onPlayerDamaging = true;
+        Invoke("OffPlayerDamaging", 3f);
     }
 
     // 몬스터가 플레이어한테 데미지를 입을 때
     public void MonsterDamaged(Unit monster)
     {
+        if (onMonsterDamaging) return;
+
         // 몬스터 : 몬스터 UnitData 체력에서 플레이어 캐릭터 공격력만큼 빼기
         monster.health = Mathf.Max(monster.health - CharacterManager.Instance.Character.charAttackValue, 0);
 
@@ -98,5 +107,18 @@ public class Unit : MonoBehaviour
 
         // GetHit 애니메이션
         if (monster.unitAnimator != null) monster.unitAnimator.SetTrigger("GetHit");
+
+        onMonsterDamaging = true;
+        Invoke("OffMonsterDamaging", 1f);
+    }
+
+    void OffPlayerDamaging()
+    {
+        onPlayerDamaging = false;
+    }
+
+    void OffMonsterDamaging()
+    {
+        onMonsterDamaging = false;
     }
 }

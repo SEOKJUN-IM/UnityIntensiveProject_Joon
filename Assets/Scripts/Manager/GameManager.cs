@@ -213,16 +213,10 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.uiMain.ResetGameScene();
         UIManager.Instance.uiMain.backToMainBtn.transform.parent.gameObject.SetActive(true);
 
-        PlayerPositionReset();        
-        CameraPositionReset();        
+        SetGameCameraPosition();        
     }
 
-    public void PlayerPositionReset()
-    {
-        Player.gameObject.transform.position = new Vector3(0f, -0.2f, 72f);               
-    }
-
-    public void CameraPositionReset()
+    public void SetGameCameraPosition()
     {        
         gameCamera.gameObject.transform.localPosition = new Vector3(3.25f, 5f, 6f);
         gameCamera.gameObject.transform.localEulerAngles = new Vector3(35f, 210f, 0f);

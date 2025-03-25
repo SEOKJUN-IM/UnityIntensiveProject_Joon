@@ -16,6 +16,6 @@ MonoBehaviour:
   unitType: Player
   moveSpeed: 5
   unitHealth: 100
-  attackRange: 4
+  attackRange: 3
   unitAttackPower: 0
   unitExp: 0

@@ -22,11 +22,6 @@ public class IdleState : IState
         {
             if (owner.target == null || owner.target.isDead)
             {
-                Vector3 dir = Vector3.forward;
-                owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime);
-
-                //owner.transform.position = Vector3.MoveTowards(owner.transform.position, Vector3.forward + Vector3.right, Time.deltaTime * owner.data.moveSpeed); // owner 점점 앞으로 걸어감
-                GameManager.Instance.Player.Controller.OnMoveAnimation();
                 FindTarget();
             }
         }
@@ -40,8 +35,15 @@ public class IdleState : IState
     public void FindTarget()
     {
         Collider[] colliders = Physics.OverlapSphere(owner.transform.position, owner.findTargetRange, 1 << LayerMask.NameToLayer("Unit"));
-        
-        if (colliders.Length <= 0) return; // 범위 안에 target이 없다
+
+        // 범위 안에 target이 없다
+        if (colliders.Length <= 0)
+        {
+            // 앞으로 계속 이동                
+            owner.transform.position = Vector3.MoveTowards(owner.transform.position, owner.transform.position + Vector3.forward, Time.deltaTime * owner.data.moveSpeed);
+            GameManager.Instance.Player.Controller.OnMoveAnimation();
+            return;
+        }
 
         Unit nearTarget = null; // 가까운 적 저장하기 위한 변수
         float minDistance = Mathf.Infinity; // 가까운 적과 거리 저장하기 위한 변수
