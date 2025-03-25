@@ -52,7 +52,7 @@ public class UIMainMenu : MonoBehaviour
         stageBtn.onClick.AddListener(OpenStage);
         gameStartBtn.onClick.AddListener(GameManager.Instance.GameStart);
         backToMainBtn.onClick.AddListener(OpenTryBackMain);
-        AcceptGoMainBtn.onClick.AddListener(GameManager.Instance.BackToMainScene);
+        AcceptGoMainBtn.onClick.AddListener(GameManager.Instance.BackToMainMenuScene);
         CancleGoMainBtn.onClick.AddListener(CancleGoMain);
     }
 
@@ -257,8 +257,16 @@ public class UIMainMenu : MonoBehaviour
 
     public void OpenTryBackMain()
     {
-        if (!backInfoWindow.activeInHierarchy) backInfoWindow.SetActive(true);
-        else backInfoWindow.SetActive(false);
+        if (!backInfoWindow.activeInHierarchy)
+        {
+            GameManager.Instance.OnPause();
+            backInfoWindow.SetActive(true);
+        }
+        else
+        {
+            backInfoWindow.SetActive(false);
+            GameManager.Instance.OffPause();
+        }
     }
 
     public void CancleGoMain()

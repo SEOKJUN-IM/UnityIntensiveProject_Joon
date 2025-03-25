@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     public bool inMainMenuScene = true;
     public bool inGameScene = false;
+    public bool isPaused = false;
 
     public bool onChar01 = true;
     public bool onChar02 = false;
@@ -203,6 +204,12 @@ public class GameManager : MonoBehaviour
         inMainMenuScene = false;
         DontDestroyOnLoad(Player.gameObject);        
         DontDestroyOnLoad(uiObject.gameObject);
+
+        UIManager.Instance.uiStat.gameObject.SetActive(false);
+        UIManager.Instance.uiInven01.gameObject.SetActive(false);
+        UIManager.Instance.uiInven02.gameObject.SetActive(false);
+        UIManager.Instance.uiChange.gameObject.SetActive(false);
+
         UIManager.Instance.uiMain.ResetGameScene();
         UIManager.Instance.uiMain.backToMainBtn.transform.parent.gameObject.SetActive(true);
 
@@ -222,18 +229,25 @@ public class GameManager : MonoBehaviour
         gameCamera.fieldOfView = 50f;
     }
 
-    public void BackToMainScene()
-    {
-        SceneManager.LoadScene("MainScene");
+    public void BackToMainMenuScene()
+    {              
+        SceneManager.LoadScene("MainMenuScene");
         inMainMenuScene = true;
         inGameScene = false;
         DontDestroyOnLoad(Player.gameObject);
         DontDestroyOnLoad(uiObject.gameObject);
+
+        UIManager.Instance.uiStat.gameObject.SetActive(false);
+        UIManager.Instance.uiInven01.gameObject.SetActive(false);
+        UIManager.Instance.uiInven02.gameObject.SetActive(false);
+        UIManager.Instance.uiChange.gameObject.SetActive(false);
+        
         UIManager.Instance.uiMain.ResetMainScene();
         UIManager.Instance.uiMain.backToMainBtn.transform.parent.gameObject.SetActive(false);
 
         PlayerPositionResetInMain();
-        CameraPositionResetInMain();        
+        CameraPositionResetInMain();
+        OffPause();        
     }
 
     public void PlayerPositionResetInMain()
@@ -247,5 +261,23 @@ public class GameManager : MonoBehaviour
         Instance.gameCamera.transform.position = cameraFirstPos;
         Instance.gameCamera.transform.eulerAngles = cameraFisrtRot;
         gameCamera.fieldOfView = 75f;
+    }
+
+    public void OnPause()
+    {
+        if (!isPaused)
+        {
+            Time.timeScale = 0;
+            isPaused = true;
+        }
+    }
+
+    public void OffPause()
+    {
+        if (isPaused)
+        {
+            Time.timeScale = 1;
+            isPaused = false;
+        }
     }
 }
