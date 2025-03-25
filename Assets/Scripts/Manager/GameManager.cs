@@ -107,13 +107,16 @@ public class GameManager : MonoBehaviour
         _player.playerJob = _player.character.charJob;
         _player.playerLevel = _player.character.charLevel;
         _player.playerCurExp = _player.character.charCurExp;
+        _player.playerMaxExp = _player.character.charMaxExp;
         _player.playerInfo = _player.character.charInfo;
         _player.playerGold = _player.character.charGold;
 
         _player.playerAttackValue = _player.character.charAttackValue;
         _player.playerDefenseValue = _player.character.charDefenseValue;
         _player.playerHealthValue = _player.character.charHealthValue;
+        _player.playerMaxHealthValue = _player.character.charMaxHealthValue;
         _player.playerManaValue = _player.character.charManaValue;
+        _player.playerMaxManaValue = _player.character.charMaxManaValue;
         _player.playerCriticalValue = _player.character.charCriticalValue;
 
         _player.playerCurInvenQuantity = _player.character.charCurInvenQuantity;        

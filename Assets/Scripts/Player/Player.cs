@@ -8,13 +8,16 @@ public class Player : MonoBehaviour
     public string playerJob;
     public int playerLevel;
     public int playerCurExp;
+    public int playerMaxExp;
     public string playerInfo;
     public int playerGold;
 
     public int playerAttackValue;
     public int playerDefenseValue;
     public int playerHealthValue;
+    public int playerMaxHealthValue;
     public int playerManaValue;
+    public int playerMaxManaValue;
     public int playerCriticalValue;
 
     public int playerCurInvenQuantity;

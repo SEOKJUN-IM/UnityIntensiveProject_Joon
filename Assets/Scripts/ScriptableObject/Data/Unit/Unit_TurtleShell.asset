@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: "\uAC00\uC2DC\uAECD\uC9C8\uBAAC"
   unitType: Monster
-  unitLevel: 1
+  unitLevel: 7
   moveSpeed: 2
-  unitHealth: 150
+  unitHealth: 120
   attackRange: 3
-  unitAttackPower: 5
-  unitExp: 25
+  unitAttackPower: 8
+  unitExp: 15

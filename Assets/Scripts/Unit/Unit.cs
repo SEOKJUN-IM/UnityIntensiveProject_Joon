@@ -32,14 +32,17 @@ public class Unit : MonoBehaviour
     public float findTargetRange;
     public bool isCreep = false; // Player는 true로, Monster는 false로 해줄것임(서로 달라야 IdleState에서 FindTarget할 수 있음)
     public bool isDead = false;
-    public static bool onPlayerDamaging = false; // 너무 자주 damage를 받는 것 막는 static 변수
-    public static bool onMonsterDamaging = false; // 너무 자주 damage를 받는 것 막는 static 변수
+    public static bool onPlayerDamaging; // 너무 자주 damage를 받는 것 막는 static 변수
+    public static bool onMonsterDamaging; // 너무 자주 damage를 받는 것 막는 static 변수
 
     public int health;
     public int exp;   
 
     private void Awake()
     {
+        onPlayerDamaging = false;
+        onMonsterDamaging = false;
+
         IStates = new IState[System.Enum.GetValues(typeof(State)).Length];
         IStates[(int)State.Idle] = new IdleState(this);
         IStates[(int)State.Move] = new MoveState(this);
@@ -62,6 +65,12 @@ public class Unit : MonoBehaviour
         {
             findTargetRange += Time.deltaTime * 2f;
             findTargetRange = Mathf.Clamp(findTargetRange, 30f, 500f);
+        }
+
+        if (GameManager.Instance.inMainMenuScene)
+        {
+            onPlayerDamaging = false;
+            onMonsterDamaging = false;
         }        
     }
 
@@ -84,8 +93,12 @@ public class Unit : MonoBehaviour
     {
         if (onPlayerDamaging) return;
 
-        // 플레이어 : 플레이어 캐릭터 체력에서 타겟 몬스터 UnitData의 공격력만큼 빼기
-        CharacterManager.Instance.Character.charHealthValue = Mathf.Max(CharacterManager.Instance.Character.charHealthValue - monster.data.unitAttackPower, 0);
+        // 플레이어 : 플레이어 캐릭터 체력에서 타겟 몬스터 UnitData의 공격력만큼 빼고, 플레이어 방어력의 0.1만큼 덜 받기
+        int damage = Mathf.Max(monster.data.unitAttackPower - (int)(CharacterManager.Instance.Character.charDefenseValue * 0.1f), 0);
+
+        if (damage == 0) return; // 방어력 강해서 damage 0이면 return
+
+        CharacterManager.Instance.Character.charHealthValue = Mathf.Max(CharacterManager.Instance.Character.charHealthValue - damage, 0);
 
         // GetHit 애니메이션
         GameManager.Instance.Player.Controller.OnGetHitAnimation();

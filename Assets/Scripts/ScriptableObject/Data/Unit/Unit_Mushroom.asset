@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3a5f9d50c61d9b4398e5bbe10c2521c, type: 3}
-  m_Name: Unit_Slime
+  m_Name: Unit_Mushroom
   m_EditorClassIdentifier: 
   unitName: "\uC2AC\uB77C\uC784"
   unitType: Monster
-  unitLevel: 4
-  moveSpeed: 4
-  unitHealth: 80
+  unitLevel: 1
+  moveSpeed: 2
+  unitHealth: 40
   attackRange: 3
-  unitAttackPower: 5
-  unitExp: 10
+  unitAttackPower: 2
+  unitExp: 5

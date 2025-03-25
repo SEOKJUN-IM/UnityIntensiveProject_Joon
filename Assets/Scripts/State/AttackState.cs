@@ -48,7 +48,8 @@ public class AttackState : IState
 
         // target 체력 0 됐을 때 다시 Idle 상태로 변화
         if (owner.target.health == 0)
-        {                   
+        {
+            owner.target = null;
             owner.state = Unit.State.Idle;
         }
     }

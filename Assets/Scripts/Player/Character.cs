@@ -6,16 +6,19 @@ public class Character : MonoBehaviour
 {    
     [field: SerializeField] public string charName { get; private set; }
     [field: SerializeField] public string charJob { get; private set; }
-    [field: SerializeField] public int charLevel { get; private set; }
-    [field: SerializeField] public int charCurExp { get; private set; }
+    [field: SerializeField] public int charLevel { get; set; }
+    [field: SerializeField] public int charCurExp { get; set; }
+    [field: SerializeField] public int charMaxExp { get; set; }
     [field: SerializeField, TextArea] public string charInfo { get; private set; }
-    [field: SerializeField] public int charGold { get; private set; }
+    [field: SerializeField] public int charGold { get; set; }
 
     [field: SerializeField] public int charAttackValue { get; set; }
     [field: SerializeField] public int charDefenseValue { get; set; }
-    [field: SerializeField, Range(0, 100)] public int charHealthValue { get; set; }
-    [field: SerializeField, Range(0, 100)] public int charManaValue { get; set; }
-    [field: SerializeField, Range(0, 100)] public int charCriticalValue { get; set; }
+    [field: SerializeField] public int charHealthValue { get; set; }
+    [field: SerializeField] public int charMaxHealthValue { get; set; }
+    [field: SerializeField] public int charManaValue { get; set; }
+    [field: SerializeField] public int charMaxManaValue { get; set; }
+    [field: SerializeField] public int charCriticalValue { get; set; }
 
     public int charCurInvenQuantity = 0;
 

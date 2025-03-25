@@ -11,10 +11,13 @@ public class GameInfo : MonoBehaviour
     public TextMeshProUGUI charJobText;
     public TextMeshProUGUI charLevelText;
     public TextMeshProUGUI charCurExpText;
+    public TextMeshProUGUI charMaxExpText;
     public Image curExpBar;
     public TextMeshProUGUI charCurHpText;
+    public TextMeshProUGUI charMaxHpText;
     public Image curHpBar;
     public TextMeshProUGUI charCurMpText;
+    public TextMeshProUGUI charMaxMpText;
     public Image curMpBar;    
 
     void Update()
@@ -38,10 +41,10 @@ public class GameInfo : MonoBehaviour
         charJobText.text = GameManager.Instance.Player.playerJob;
         charLevelText.text = GameManager.Instance.Player.playerLevel < 10 ? $"0{GameManager.Instance.Player.playerLevel}" : $"{GameManager.Instance.Player.playerLevel}";
         charCurExpText.text = $"{GameManager.Instance.Player.playerCurExp}";
-        curExpBar.fillAmount = GameManager.Instance.Player.playerCurExp / 100f;
+        curExpBar.fillAmount = GameManager.Instance.Player.playerCurExp / (float)GameManager.Instance.Player.playerMaxExp;
         charCurHpText.text = $"{GameManager.Instance.Player.playerHealthValue}";
-        curHpBar.fillAmount = GameManager.Instance.Player.playerHealthValue / 100f;
+        curHpBar.fillAmount = GameManager.Instance.Player.playerHealthValue / (float)GameManager.Instance.Player.playerMaxHealthValue;
         charCurMpText.text = $"{GameManager.Instance.Player.playerManaValue}";
-        curMpBar.fillAmount = GameManager.Instance.Player.playerManaValue / 100f;
+        curMpBar.fillAmount = GameManager.Instance.Player.playerManaValue / (float)GameManager.Instance.Player.playerMaxManaValue;
     }
 }
