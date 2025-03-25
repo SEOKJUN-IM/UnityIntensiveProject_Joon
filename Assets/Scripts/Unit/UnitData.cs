@@ -6,9 +6,9 @@ public class UnitData : ScriptableObject
     [Header("Unit Info")]
     public string unitName;
     public string unitType;
-    public float moveSpeed;
+    public int moveSpeed;
     public int unitHealth;
-    public float attackRange;
-    public float unitAttackPower;
+    public int attackRange;
+    public int unitAttackPower;
     public int unitExp;        
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   unitName: TurtleShell
   unitType: Monster
   moveSpeed: 3
-  unitHealth: 50
+  unitHealth: 100
   attackRange: 3
-  unitAttackPower: 5
+  unitAttackPower: 2
   unitExp: 25

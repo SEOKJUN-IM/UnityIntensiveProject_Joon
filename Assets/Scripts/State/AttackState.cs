@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AttackState : IState
 {
-    private Unit owner;
+    private Unit owner;    
 
     public AttackState(Unit unit)
     {
@@ -25,13 +25,14 @@ public class AttackState : IState
         }
 
         GameManager.Instance.Player.Controller.isAttacking = true;
-        GameManager.Instance.Player.Controller.OnAttackAnimation();
-                
+        GameManager.Instance.Player.Controller.OnAttackAnimation();                
+        
         owner.transform.LookAt(target.transform);
+        if (owner.unitAnimator != null) owner.unitAnimator.SetTrigger("Attack");        
     }
 
     public void Exit()
     {
         GameManager.Instance.Player.Controller.isAttacking = false;
-    }
+    }    
 }

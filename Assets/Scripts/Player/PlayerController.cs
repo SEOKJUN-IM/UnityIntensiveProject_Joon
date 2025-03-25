@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-    }
+    }    
 
     void FixedUpdate()
     {
@@ -113,5 +113,12 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.Instance.onChar01 && isAttacking) animator01.SetTrigger("Attack");
         else if (GameManager.Instance.onChar02 && isAttacking) animator02.SetTrigger("Attack");
+    }
+
+    // AttackState : IState에서 호출
+    public void OnGetHitAnimation()
+    {
+        if (GameManager.Instance.onChar01) animator01.SetTrigger("GetHit");
+        else if (GameManager.Instance.onChar02) animator02.SetTrigger("GetHit");
     }
 }

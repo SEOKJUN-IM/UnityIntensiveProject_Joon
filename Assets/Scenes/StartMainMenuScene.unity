@@ -11033,6 +11033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inMainMenuScene: 1
   inGameScene: 0
+  isPaused: 0
   onChar01: 1
   onChar02: 0
   uiObject: {fileID: 1812746334}
@@ -24543,7 +24544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca4fa5e0a3b26747afd04d7373f0ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 5
   animator01: {fileID: 168537126060794752}
   animator02: {fileID: 1788448049}
   isWalking: 0
@@ -24623,6 +24624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 178273bae6a5e2e41bb8e57571d794fa, type: 2}
+  unitAnimator: {fileID: 0}
   target: {fileID: 0}
   findTargetRange: 0
   isCreep: 1
@@ -32737,7 +32739,7 @@ Animator:
   m_GameObject: {fileID: 1788448047}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a58d63122b09e9144938cd6a1ece4824, type: 3}
-  m_Controller: {fileID: 9100000, guid: 67a082ec60a98bf4c8ee076934b73b31, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6f2137ad13004f947996907119a0270e, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

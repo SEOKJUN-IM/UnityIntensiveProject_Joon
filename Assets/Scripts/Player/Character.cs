@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
 
     public UIInventory charInventory;
     public List<ItemData> charItemDatas;
-    public List<GameObject> charEquipments;
+    public List<GameObject> charEquipments;        
 
     private void Start()
     {

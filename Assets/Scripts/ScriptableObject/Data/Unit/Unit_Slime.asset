@@ -15,7 +15,7 @@ MonoBehaviour:
   unitName: Slime
   unitType: Monster
   moveSpeed: 3
-  unitHealth: 30
+  unitHealth: 100
   attackRange: 3
-  unitAttackPower: 3
+  unitAttackPower: 1
   unitExp: 15

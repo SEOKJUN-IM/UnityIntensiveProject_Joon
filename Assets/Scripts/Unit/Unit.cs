@@ -27,6 +27,7 @@ public class Unit : MonoBehaviour
     }
     
     public UnitData data;
+    public Animator unitAnimator;
     public Unit target;
     public float findTargetRange;
     public bool isCreep = false; // Player는 true로, Monster는 false로 해줄것임(서로 달라야 IdleState에서 FindTarget할 수 있음)
@@ -39,6 +40,8 @@ public class Unit : MonoBehaviour
         IStates[(int)State.Move] = new MoveState(this);
         IStates[(int)State.Attack] = new AttackState(this);
         IStates[(int)State.Dead] = new DeadState(this);
+
+        if (!isCreep) unitAnimator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -52,5 +55,37 @@ public class Unit : MonoBehaviour
             findTargetRange += Time.deltaTime;
             findTargetRange = Mathf.Clamp(findTargetRange, 30f, 500f);
         }        
+    }
+
+    // Unit이 플레이어일 때
+    public void PlayerHit()
+    {
+        // owner의 target(monster)에 데미지를 준다
+        if (isCreep) MonsterDamaged(target);
+    }
+
+    // Unit이 몬스터일 때
+    public void MonsterHit()
+    {
+        // owner의 target(player)에 데미지를 준다
+        if (!isCreep) PlayerDamaged(this);
+    }
+
+    // 플레이어가 몬스터한테 데미지를 입을 때
+    public void PlayerDamaged(Unit monster)
+    {
+        // 플레이어 : 플레이어 캐릭터 체력에서 타겟 몬스터 UnitData의 공격력만큼 빼기
+        CharacterManager.Instance.Character.charHealthValue -= monster.data.unitAttackPower;
+        // GetHit
+        GameManager.Instance.Player.Controller.OnGetHitAnimation();
+    }
+
+    // 몬스터가 플레이어한테 데미지를 입을 때
+    public void MonsterDamaged(Unit monster)
+    {
+        // 몬스터 : 몬스터 UnitData 체력에서 플레이어 캐릭터 공격력만큼 빼기
+        monster.data.unitHealth -= CharacterManager.Instance.Character.charAttackValue;
+        // GetHit
+        if (monster.unitAnimator != null) monster.unitAnimator.SetTrigger("GetHit");
     }
 }

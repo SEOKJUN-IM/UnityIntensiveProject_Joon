@@ -11,7 +11,7 @@ public class MoveState : IState
 
     public void Enter()
     {
-        
+        if (owner.unitAnimator != null) owner.unitAnimator.SetBool("Walk", true);
     }
 
     public void Stay()
@@ -37,5 +37,6 @@ public class MoveState : IState
     public void Exit()
     {
         GameManager.Instance.Player.Controller.OffMoveAnimation();
+        if (owner.unitAnimator != null) owner.unitAnimator.SetBool("Walk", true);
     }    
 }

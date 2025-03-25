@@ -13,7 +13,7 @@ public class DeadState : IState
 
     public void Enter()
     {
-
+        if (owner.unitAnimator != null) owner.unitAnimator.SetBool("Dead", true);
     }
 
     public void Stay()
