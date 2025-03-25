@@ -44,9 +44,9 @@ public class Unit : MonoBehaviour
         IStates[(int)State.Attack] = new AttackState(this);
         IStates[(int)State.Dead] = new DeadState(this);
 
-        if (!isCreep) unitAnimator = GetComponentInChildren<Animator>();
+        if (!isCreep) unitAnimator = GetComponentInChildren<Animator>();        
         
-        health = data.unitHealth;
+        health = data.UnitHp;
         exp = data.unitExp;
     }
 
@@ -58,7 +58,7 @@ public class Unit : MonoBehaviour
         // Idle 상태에선 시간 갈수록 검색 범위 증가
         if (GameManager.Instance.inGameScene && this._state == State.Idle)
         {
-            findTargetRange += Time.deltaTime;
+            findTargetRange += Time.deltaTime * 2f;
             findTargetRange = Mathf.Clamp(findTargetRange, 30f, 500f);
         }        
     }
@@ -67,14 +67,14 @@ public class Unit : MonoBehaviour
     public void PlayerHit()
     {
         // Unit의 target(monster)에 데미지를 준다
-        if (isCreep && target != null) MonsterDamaged(target);
+        if (isCreep && target != null && target._state == State.Attack) MonsterDamaged(target);
     }
 
     // Unit이 몬스터일 때 (owner : 몬스터, target : 플레이어)
     public void MonsterHit()
     {
         // Unit의 target(player)에 데미지를 준다
-        if (!isCreep && target != null) PlayerDamaged(this);
+        if (!isCreep && target != null && target._state == State.Attack) PlayerDamaged(this);
     }
 
     // 플레이어가 몬스터한테 데미지를 입을 때
@@ -94,8 +94,7 @@ public class Unit : MonoBehaviour
         monster.health = Mathf.Max(monster.health - CharacterManager.Instance.Character.charAttackValue, 0);
 
         // GetHit 애니메이션
-        if (monster.unitAnimator != null) monster.unitAnimator.SetTrigger("GetHit");// 몬스터 : 몬스터 UnitData 체력에서 플레이어 캐릭터 공격력만큼 빼기
-        monster.health = Mathf.Max(monster.health - CharacterManager.Instance.Character.charAttackValue, 0);
+        if (monster.unitAnimator != null) monster.unitAnimator.SetTrigger("GetHit");// 몬스터 : 몬스터 UnitData 체력에서 플레이어 
 
         // GetHit 애니메이션
         if (monster.unitAnimator != null) monster.unitAnimator.SetTrigger("GetHit");

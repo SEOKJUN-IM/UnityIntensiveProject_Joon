@@ -17,8 +17,19 @@ public class IdleState : IState
     }    
 
     public void Stay()
-    {        
-        if (owner.target == null || owner.target.isDead) FindTarget();
+    {
+        if (GameManager.Instance.inGameScene)
+        {
+            if (owner.target == null || owner.target.isDead)
+            {
+                Vector3 dir = Vector3.forward;
+                owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime);
+
+                //owner.transform.position = Vector3.MoveTowards(owner.transform.position, Vector3.forward + Vector3.right, Time.deltaTime * owner.data.moveSpeed); // owner 점점 앞으로 걸어감
+                GameManager.Instance.Player.Controller.OnMoveAnimation();
+                FindTarget();
+            }
+        }
     }
 
     public void Exit()

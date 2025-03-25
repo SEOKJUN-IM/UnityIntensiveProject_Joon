@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "UnitData", menuName = "New UnitData")]
-public class UnitData : ScriptableObject
+public class UnitData : ScriptableObject, ISerializationCallbackReceiver
 {
     [Header("Unit Info")]
     public string unitName;
@@ -10,5 +10,17 @@ public class UnitData : ScriptableObject
     public int unitHealth;
     public int attackRange;
     public int unitAttackPower;    
-    public int unitExp;        
+    public int unitExp;
+
+    public int UnitHp { get; set; }    
+
+    public void OnAfterDeserialize()
+    {
+        UnitHp = unitHealth;
+    }
+
+    public void OnBeforeSerialize()
+    {
+        
+    }
 }

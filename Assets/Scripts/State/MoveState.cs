@@ -31,13 +31,13 @@ public class MoveState : IState
 
         owner.transform.position = Vector3.MoveTowards(owner.transform.position, owner.target.transform.position, Time.deltaTime * owner.data.moveSpeed); // owner 점점 다가감
 
-        if (Vector3.Distance(owner.transform.position, owner.target.transform.position) <= owner.data.attackRange) owner.state = Unit.State.Attack;
+        if (Vector3.Distance(owner.transform.position, owner.target.transform.position) <= owner.data.attackRange) owner.state = Unit.State.Attack;        
     }
 
     public void Exit()
     {
         GameManager.Instance.Player.Controller.OffMoveAnimation();
-        if (owner.unitAnimator != null) owner.unitAnimator.SetBool("Walk", true);
+        if (owner.unitAnimator != null) owner.unitAnimator.SetBool("Walk", false);
     }
 
     void LookTarget()
