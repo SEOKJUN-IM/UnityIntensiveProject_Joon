@@ -60,17 +60,17 @@ public class UIChangeChar : MonoBehaviour
 
     public void SetOutline()
     {
-        if (characters[0].gameObject.activeInHierarchy) outline01.enabled = true;        
+        if (GameManager.Instance.onChar01) outline01.enabled = true;        
         else outline01.enabled = false;
 
-        if (characters[1].gameObject.activeInHierarchy) outline02.enabled = true;
+        if (GameManager.Instance.onChar02) outline02.enabled = true;
         else outline02.enabled = false;
     }
 
     public void SelectCharacter01()
     {        
-        if (GameManager.Instance.Player.transform.GetChild(0).gameObject.activeInHierarchy) return;
-        else if (GameManager.Instance.Player.transform.GetChild(1).gameObject.activeInHierarchy)
+        if (GameManager.Instance.onChar01) return;
+        else if (GameManager.Instance.onChar02)
         {
             GameManager.Instance.Player.transform.GetChild(1).gameObject.SetActive(false);
             GameManager.Instance.Player.transform.GetChild(0).gameObject.SetActive(true);
@@ -80,8 +80,8 @@ public class UIChangeChar : MonoBehaviour
 
     public void SelectCharacter02()
     {        
-        if (GameManager.Instance.Player.transform.GetChild(1).gameObject.activeInHierarchy) return;
-        else if (GameManager.Instance.Player.transform.GetChild(0).gameObject.activeInHierarchy)
+        if (GameManager.Instance.onChar02) return;
+        else if (GameManager.Instance.onChar01)
         {
             GameManager.Instance.Player.transform.GetChild(0).gameObject.SetActive(false);
             GameManager.Instance.Player.transform.GetChild(1).gameObject.SetActive(true);

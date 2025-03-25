@@ -39,7 +39,7 @@ public class IdleState : IState
         {
             Unit temp = colliders[i].GetComponent<Unit>();
             
-            if (!temp.isDead && owner.isCreep != temp.isCreep) // 죽지 않은 상대편 유닛이라면
+            if (!temp.isDead && owner.isCreep != temp.isCreep) // 죽지 않은 상대편 유닛이라면(isCreep 서로 다르게 설정)
             {
                 float distance = Vector3.Distance(owner.transform.position, temp.transform.position);
                 if (distance < minDistance)

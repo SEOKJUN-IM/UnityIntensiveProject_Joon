@@ -54,7 +54,6 @@ public class UIMainMenu : MonoBehaviour
         backToMainBtn.onClick.AddListener(OpenTryBackMain);
         AcceptGoMainBtn.onClick.AddListener(GameManager.Instance.BackToMainScene);
         CancleGoMainBtn.onClick.AddListener(CancleGoMain);
-
     }
 
     void Update()
@@ -79,14 +78,14 @@ public class UIMainMenu : MonoBehaviour
 
     public void OpenInventory()
     {        
-        if (GameManager.Instance.Player.gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+        if (GameManager.Instance.onChar01)
         {
             if (!UIManager.Instance.uiInven01.gameObject.activeInHierarchy)
                 UIManager.Instance.uiInven01.gameObject.SetActive(true);
             else
                 UIManager.Instance.uiInven01.gameObject.SetActive(false);
         }
-        else if (GameManager.Instance.Player.gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
+        else if (GameManager.Instance.onChar02)
         {
             if (!UIManager.Instance.uiInven02.gameObject.activeInHierarchy)
                 UIManager.Instance.uiInven02.gameObject.SetActive(true);
@@ -109,12 +108,12 @@ public class UIMainMenu : MonoBehaviour
 
     public void SetCharInfo()
     {
-        if (GameManager.Instance.Player.gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+        if (GameManager.Instance.onChar01)
         {
             char01Icon.enabled = true;
             char02Icon.enabled = false;
         }
-        else if (GameManager.Instance.Player.gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
+        else if (GameManager.Instance.onChar02)
         {
             char01Icon.enabled = false;
             char02Icon.enabled = true;
@@ -200,12 +199,12 @@ public class UIMainMenu : MonoBehaviour
         gameInfoWindow.SetActive(true);
 
         changeWindow.SetActive(true);
-        if (GameManager.Instance.Player.gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+        if (GameManager.Instance.onChar01)
         {
             char01ChangeIcon.enabled = true;
             char02ChangeIcon.enabled = false;
         }
-        else if (GameManager.Instance.Player.gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
+        else if (GameManager.Instance.onChar02)
         {
             char02ChangeIcon.enabled = true;
             char01ChangeIcon.enabled = false;
@@ -233,12 +232,12 @@ public class UIMainMenu : MonoBehaviour
         backInfoWindow.SetActive(false);
 
         changeWindow.SetActive(true);
-        if (GameManager.Instance.Player.gameObject.transform.GetChild(0).gameObject.activeInHierarchy)
+        if (GameManager.Instance.onChar01)
         {
             char01ChangeIcon.enabled = true;
             char02ChangeIcon.enabled = false;
         }
-        else if (GameManager.Instance.Player.gameObject.transform.GetChild(1).gameObject.activeInHierarchy)
+        else if (GameManager.Instance.onChar02)
         {
             char02ChangeIcon.enabled = true;
             char01ChangeIcon.enabled = false;

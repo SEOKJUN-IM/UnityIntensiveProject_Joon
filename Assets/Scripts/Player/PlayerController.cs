@@ -12,40 +12,20 @@ public class PlayerController : MonoBehaviour
     public Animator animator01;
     public Animator animator02;
     public bool isWalking = false;
-    public bool isAttacking = false;
-    public bool OnChar01;
-    public bool OnChar02;
+    public bool isAttacking = false;    
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    void Update()
-    {
-        Look();
-        DistinChar();
-    }
-
     void FixedUpdate()
     {
         Move();
         DirectlyMoveAnimation();
-    }
 
-    void DistinChar()
-    {
-        if (GameManager.Instance.Player.transform.GetChild(0).gameObject.activeInHierarchy)
-        {
-            OnChar01 = true;
-            OnChar02 = false;
-        }
-        else if (GameManager.Instance.Player.transform.GetChild(1).gameObject.activeInHierarchy)
-        {
-            OnChar02 = true;
-            OnChar01 = false;
-        }
-    }
+        Look();
+    }    
 
     void Move()
     {
@@ -58,71 +38,80 @@ public class PlayerController : MonoBehaviour
         else if (_rigidbody.velocity.x == 0f && _rigidbody.velocity.z == 0f) isWalking = false;
     }
 
+    // 사용자 입력 받는 OnMove(테스트 위해 일단 GameScene에서만 작동)
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (GameManager.Instance.inGameScene)
         {
-            curMovementInput = context.ReadValue<Vector2>();
-        }
-        else if (context.phase == InputActionPhase.Canceled)
-        {
-            curMovementInput = Vector2.zero;
-        }
+            if (context.phase == InputActionPhase.Performed)
+            {
+                curMovementInput = context.ReadValue<Vector2>();
+            }
+            else if (context.phase == InputActionPhase.Canceled)
+            {
+                curMovementInput = Vector2.zero;
+            }
+        }        
     }
 
+    // 사용자 입력으로 직접 움직일 때
     void DirectlyMoveAnimation()
     {
-        if (OnChar01 && isWalking) animator01.SetBool("Walk", true);
-        else if (OnChar01 && !isWalking) animator01.SetBool("Walk", false);
+        if (GameManager.Instance.onChar01 && isWalking) animator01.SetBool("Walk", true);
+        else if (GameManager.Instance.onChar01 && !isWalking) animator01.SetBool("Walk", false);
 
-        if (OnChar02 && isWalking) animator02.SetBool("Walk", true);
-        else if (OnChar02 && !isWalking) animator02.SetBool("Walk", false);
+        if (GameManager.Instance.onChar02 && isWalking) animator02.SetBool("Walk", true);
+        else if (GameManager.Instance.onChar02 && !isWalking) animator02.SetBool("Walk", false);
     }
 
     void Look()
     {
-        if (OnChar01 && isWalking)
+        if (GameManager.Instance.onChar01 && isWalking)
         {
             Quaternion plRotate = Quaternion.LookRotation(new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z), Vector3.up);
             transform.GetChild(0).rotation = Quaternion.RotateTowards(transform.GetChild(0).rotation, plRotate,Time.deltaTime * 100);            
         }
-        else if (OnChar02 && isWalking)
+        else if (GameManager.Instance.onChar02 && isWalking)
         {
             Quaternion plRotate = Quaternion.LookRotation(new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z), Vector3.up);
             transform.GetChild(1).rotation = Quaternion.RotateTowards(transform.GetChild(1).rotation, plRotate, Time.deltaTime * 100);
         }
     }
 
+    // 사용자 입력 받는 OnAttack(테스트 위해 일단 GameScene에서만 작동)
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (GameManager.Instance.inGameScene && !EventSystem.current.IsPointerOverGameObject())
         {
-            if (OnChar01 && context.phase == InputActionPhase.Started)
+            if (GameManager.Instance.onChar01 && context.phase == InputActionPhase.Started)
             {
                 animator01.SetTrigger("Attack");
             }
-            else if (OnChar02 && context.phase == InputActionPhase.Started)
+            else if (GameManager.Instance.onChar02 && context.phase == InputActionPhase.Started)
             {
                 animator02.SetTrigger("Attack");
             }
         }
     }
 
+    // MoveState : IState에서 호출
     public void OnMoveAnimation()
     {
-        if (OnChar01) animator01.SetBool("Walk", true);
-        else if (OnChar02) animator02.SetBool("Walk", true);
+        if (GameManager.Instance.onChar01) animator01.SetBool("Walk", true);
+        else if (GameManager.Instance.onChar02) animator02.SetBool("Walk", true);
     }
 
+    // MoveState : IState에서 호출
     public void OffMoveAnimation()
     {
-        if (OnChar01) animator01.SetBool("Walk", false);
-        else if (OnChar02) animator02.SetBool("Walk", false);
+        if (GameManager.Instance.onChar01) animator01.SetBool("Walk", false);
+        else if (GameManager.Instance.onChar02) animator02.SetBool("Walk", false);
     }
 
+    // AttackState : IState에서 호출
     public void OnAttackAnimation()
     {
-        if (OnChar01 && isAttacking) animator01.SetTrigger("Attack");
-        else if (OnChar02 && isAttacking) animator02.SetTrigger("Attack");
+        if (GameManager.Instance.onChar01 && isAttacking) animator01.SetTrigger("Attack");
+        else if (GameManager.Instance.onChar02 && isAttacking) animator02.SetTrigger("Attack");
     }
 }

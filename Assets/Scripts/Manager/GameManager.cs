@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
 
     public bool inMainMenuScene = true;
     public bool inGameScene = false;
+
+    public bool onChar01 = true;
+    public bool onChar02 = false;
     
     public GameObject uiObject;    
     public Camera gameCamera;
@@ -82,6 +85,11 @@ public class GameManager : MonoBehaviour
         gameCamera = Camera.main;        
     }
 
+    private void Update()
+    {
+        DistinChar();
+    }
+
     private void Start()
     {
         playerFirstPos = Player.gameObject.transform.position;
@@ -108,6 +116,20 @@ public class GameManager : MonoBehaviour
         _player.playerCriticalValue = _player.character.charCriticalValue;
 
         _player.playerCurInvenQuantity = _player.character.charCurInvenQuantity;        
+    }
+
+    void DistinChar()
+    {
+        if (Player.transform.GetChild(0).gameObject.activeInHierarchy)
+        {
+            onChar01 = true;
+            onChar02 = false;
+        }
+        else if (Player.transform.GetChild(1).gameObject.activeInHierarchy)
+        {
+            onChar02 = true;
+            onChar01 = false;
+        }
     }
 
     public void SetItems01()
@@ -185,9 +207,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.uiMain.backToMainBtn.transform.parent.gameObject.SetActive(true);
 
         PlayerPositionReset();        
-        CameraPositionReset();
-
-        Player.Controller.moveSpeed = 5f;
+        CameraPositionReset();        
     }
 
     public void PlayerPositionReset()
@@ -213,9 +233,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.uiMain.backToMainBtn.transform.parent.gameObject.SetActive(false);
 
         PlayerPositionResetInMain();
-        CameraPositionResetInMain();
-
-        Player.Controller.moveSpeed = 0f;
+        CameraPositionResetInMain();        
     }
 
     public void PlayerPositionResetInMain()

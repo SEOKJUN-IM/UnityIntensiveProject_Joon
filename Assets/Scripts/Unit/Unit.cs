@@ -29,7 +29,7 @@ public class Unit : MonoBehaviour
     public UnitData data;
     public Unit target;
     public float findTargetRange;
-    public bool isCreep = false;
+    public bool isCreep = false; // Player는 true로, Monster는 false로 해줄것임(서로 달라야 IdleState에서 FindTarget할 수 있음)
     public bool isDead = false;   
 
     private void Awake()
