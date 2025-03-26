@@ -36,7 +36,9 @@ public class Unit : MonoBehaviour
     public static bool onMonsterDamaging; // 너무 자주 damage를 받는 것 막는 static 변수
 
     public int health;
-    public int exp;   
+    public int exp;
+
+    private Rigidbody _rigidbody;   
 
     private void Awake()
     {
@@ -49,8 +51,9 @@ public class Unit : MonoBehaviour
         IStates[(int)State.Attack] = new AttackState(this);
         IStates[(int)State.Dead] = new DeadState(this);
 
-        if (!isCreep) unitAnimator = GetComponentInChildren<Animator>();        
-        
+        if (!isCreep) unitAnimator = GetComponentInChildren<Animator>();
+        if (!isCreep) _rigidbody = GetComponent<Rigidbody>();
+
         health = data.UnitHp;
         exp = data.unitExp;        
     }   
@@ -71,6 +74,13 @@ public class Unit : MonoBehaviour
         {
             onPlayerDamaging = false;
             onMonsterDamaging = false;
+        }
+
+        // 몬스터 죽으면 useGravity 꺼주고 isKinematic 켜주어 플레이어 이동에 방해되지 않도록
+        if (!isCreep && isDead)
+        {
+            _rigidbody.useGravity = false;
+            _rigidbody.isKinematic = true;
         }               
     }
 
