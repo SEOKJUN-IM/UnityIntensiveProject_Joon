@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     [field: SerializeField] public UIChangeChar uiChange { get; set; }
     [field: SerializeField] public UIStage uiStage { get; set; }
 
+    public StageResultWindow stageResultWindow;
+
     private static UIManager _instance;
     public static UIManager Instance
     {
@@ -39,6 +41,7 @@ public class UIManager : MonoBehaviour
 
         uiInven01 = GameObject.Find("UIInventory01").GetComponent<UIInventory>();
         uiInven02 = GameObject.Find("UIInventory02").GetComponent<UIInventory>();
+        stageResultWindow = GameObject.Find("UIMainMenu").transform.Find("StageFail").GetComponent<StageResultWindow>();
     }
 
     private void Start()

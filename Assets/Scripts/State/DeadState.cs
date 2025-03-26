@@ -10,7 +10,13 @@ public class DeadState : IState
     }
 
     public void Enter()
-    {
+    {        
+        // 실패 창은 플레이어 죽은 후 3초 후에 뜨고, 그 5초 뒤에 다음으로 
+        if (UIManager.Instance.stageResultWindow != null)
+        {
+            UIManager.Instance.stageResultWindow.SlowOnResultWindow();            
+        }
+
         // 플레이어 Dead 애니메이션
         if (owner.isCreep) GameManager.Instance.Player.Controller.OnDeadAnimation();
 
