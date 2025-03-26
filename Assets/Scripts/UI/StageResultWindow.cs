@@ -20,7 +20,7 @@ public class StageResultWindow : MonoBehaviour
 
     void Update()
     {
-        stageValueText.text = $"{UIManager.Instance.uiStage.selectedStageOrder + 1}";
+        stageValueText.text = $"0{UIManager.Instance.uiStage.selectedStageOrder}";
         SetSecondsText();
         OpenStageResultWindow();
         OffStageResultWindow();
@@ -34,18 +34,18 @@ public class StageResultWindow : MonoBehaviour
 
     void OpenStageResultWindow()
     {
-        if (GameManager.Instance.inGameScene)
+        if (GameManager.Instance.inGameScene && GameManager.Instance.allDead)
         {
-            if (GameManager.Instance.allDead)
-            {
-                clearWindow.SetActive(true);
-                GameManager.Instance.allDead = false;
-            }
-            else if (CharacterManager.Instance.Character.charHealthValue == 0)
-            {
-                failWindow.SetActive(true);
-            }
+            clearWindow.SetActive(true);
+            GameManager.Instance.allDead = false;
+
         }
+
+        if (GameManager.Instance.inGameScene && CharacterManager.Instance.Character.charHealthValue == 0)
+        {
+            failWindow.SetActive(true);
+        }
+        else failWindow.SetActive(false);
     }    
 
     void OffStageResultWindow()
@@ -63,10 +63,23 @@ public class StageResultWindow : MonoBehaviour
     }
 
     public void onClickNextBtn()
-    {                
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);        
-        GameManager.Instance.ResetGameScene();
-        clearWindow.SetActive(false);
-        failWindow.SetActive(false);        
+    {
+        if (clearWindow.activeInHierarchy)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameManager.Instance.ResetGameScene();
+            clearWindow.SetActive(false);
+        }                
+        
+        if (failWindow.activeInHierarchy)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameManager.Instance.ResetGameScene();
+            failWindow.SetActive(false);
+
+            CharacterManager.Instance.Character.charHealthValue = GameManager.Instance.gameStartHp;
+            GameManager.Instance.Player.gameObject.GetComponent<Unit>().isDead = false;
+            GameManager.Instance.Player.gameObject.GetComponent<Unit>().state = Unit.State.Idle;
+        }                
     }
 }

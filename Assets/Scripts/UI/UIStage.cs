@@ -12,7 +12,7 @@ public class UIStage : MonoBehaviour
 
     public Stage[] stages;
 
-    public int selectedStageOrder;
+    public int selectedStageOrder = 1;
 
     public TextMeshProUGUI selectedStageText;
 
@@ -43,7 +43,7 @@ public class UIStage : MonoBehaviour
             {
                 selectedStageOrder = (int)stages[i].selectedStage + 1;
                 selectedStageText.text = selectedStageOrder.ToString();
-            }
+            }            
         }
     }    
 }

@@ -44696,7 +44696,7 @@ MonoBehaviour:
   <charGold>k__BackingField: 10000
   <charAttackValue>k__BackingField: 25
   <charDefenseValue>k__BackingField: 15
-  <charHealthValue>k__BackingField: 100
+  <charHealthValue>k__BackingField: 5
   <charMaxHealthValue>k__BackingField: 100
   <charManaValue>k__BackingField: 100
   <charMaxManaValue>k__BackingField: 100

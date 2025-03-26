@@ -31,11 +31,18 @@ public class DeadState : IState
         // 플레이어 Dead 애니메이션 종료
         if (owner.isCreep) GameManager.Instance.Player.Controller.OffDeadAnimation();
 
-        // 플레이어 체력 10으로 복귀
+        // 플레이어 체력 10으로 복귀, isDead false
         if (owner.isCreep && CharacterManager.Instance.Character.charHealthValue == 0)
+        {            
             CharacterManager.Instance.Character.charHealthValue = 10;
+            owner.isDead = false;
+        }            
 
-        // 몬스터 Dead 애니메이션 종료
-        if (!owner.isCreep && owner.unitAnimator != null) owner.unitAnimator.SetBool("Dead", false);
+        // 몬스터 Dead 애니메이션 종료, isDead false
+        if (!owner.isCreep && owner.unitAnimator != null)
+        {
+            owner.unitAnimator.SetBool("Dead", false);
+            owner.isDead = false;
+        }
     }
 }

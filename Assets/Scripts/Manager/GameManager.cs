@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -70,10 +71,13 @@ public class GameManager : MonoBehaviour
 
     // 플레이어의 모든 타겟 죽었는지 확인
     public GameObject[] monsters;
+    public List<GameObject> monsterObjects;
     public int monsterCounts = 0;
     public int deadCounts = 0;    
     
     public bool allDead = false;
+
+    public int gameStartHp;
 
     private void Awake()
     {
@@ -212,7 +216,8 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         SceneManager.LoadScene("GameScene");
-        ResetGameScene();                      
+        ResetGameScene();
+        gameStartHp = CharacterManager.Instance.Character.charMaxHealthValue;        
     }
 
     public void ResetGameScene()
@@ -263,6 +268,7 @@ public class GameManager : MonoBehaviour
 
         deadCounts = 0;       
         allDead = false;
+        monsterObjects.Clear();
     }
 
     public void PlayerPositionResetInMain()
@@ -284,8 +290,13 @@ public class GameManager : MonoBehaviour
         if (inGameScene)
         {
             monsters = GameObject.FindGameObjectsWithTag("Monster");
+
+            for (int i = 0; i < monsters.Length; i++)
+            {
+                if (monsterObjects.Count < monsters.Length) monsterObjects.Add(monsters[i]);                
+            }
         }
-        monsterCounts = monsters.Length;
+        monsterCounts = monsterObjects.Count;
     }    
 
     // 타겟 모두 죽었는지 아닌지 검사
