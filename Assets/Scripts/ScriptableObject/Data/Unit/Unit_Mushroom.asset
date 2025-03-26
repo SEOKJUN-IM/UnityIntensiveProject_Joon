@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a5f9d50c61d9b4398e5bbe10c2521c, type: 3}
   m_Name: Unit_Mushroom
   m_EditorClassIdentifier: 
-  unitName: "\uC2AC\uB77C\uC784"
+  unitName: "\uBA38\uC26C\uBC29"
   unitType: Monster
   unitLevel: 1
   moveSpeed: 2
