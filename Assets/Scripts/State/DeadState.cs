@@ -24,6 +24,9 @@ public class DeadState : IState
         if (!owner.isCreep && owner.unitAnimator != null) owner.unitAnimator.SetBool("Dead", true);
 
         if (!owner.isCreep) GameManager.Instance.deadCounts++;
+
+        // 플레이어 경험치 얻기 = 몬스터가 Dead에 들어갈 때
+        PlayerGetExp();
     }
 
     public void Stay()
@@ -37,10 +40,10 @@ public class DeadState : IState
         // 플레이어 Dead 애니메이션 종료
         if (owner.isCreep) GameManager.Instance.Player.Controller.OffDeadAnimation();
 
-        // 플레이어 체력 10으로 복귀, isDead false
+        // 플레이어 체력 full로 복귀, isDead false
         if (owner.isCreep && CharacterManager.Instance.Character.charHealthValue == 0)
         {            
-            CharacterManager.Instance.Character.charHealthValue = 10;
+            CharacterManager.Instance.Character.charHealthValue = CharacterManager.Instance.Character.charMaxHealthValue;
             owner.isDead = false;
         }            
 
@@ -50,5 +53,32 @@ public class DeadState : IState
             owner.unitAnimator.SetBool("Dead", false);
             owner.isDead = false;
         }
+    }
+
+    // 플레이어 경험치 얻기 = 몬스터가 Dead에 들어갈 때
+    public void PlayerGetExp()
+    {
+        if (!owner.isCreep)
+        {
+            CharacterManager.Instance.Character.charCurExp += owner.data.unitExp;
+
+            // 경험치를 얻었는데 원래의 maxExp보다 많으면
+            if (CharacterManager.Instance.Character.charCurExp >= CharacterManager.Instance.Character.charMaxExp)
+            {
+                // 플레이어 레벨업
+                PlayerLevelUp();
+            }
+        }
+    }
+
+    public void PlayerLevelUp()
+    {
+        CharacterManager.Instance.Character.charLevel++;
+        CharacterManager.Instance.Character.charCurExp -= CharacterManager.Instance.Character.charMaxExp;
+        CharacterManager.Instance.Character.charMaxExp += 20;
+        CharacterManager.Instance.Character.charMaxHealthValue += 20;
+        CharacterManager.Instance.Character.charMaxManaValue += 20;
+        CharacterManager.Instance.Character.charAttackValue += 2;
+        CharacterManager.Instance.Character.charDefenseValue += 1;
     }
 }

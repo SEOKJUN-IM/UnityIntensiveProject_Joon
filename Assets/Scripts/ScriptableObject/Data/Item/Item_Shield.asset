@@ -20,5 +20,5 @@ MonoBehaviour:
   maxStackAmount: 0
   equipables:
   - equipableType: 1
-    itemValue: 20
+    itemValue: 10
   consumables: []

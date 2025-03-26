@@ -68,7 +68,9 @@ public class StageResultWindow : MonoBehaviour
             GameManager.Instance.ResetPlayerCameraPosRotInGame();
             failWindow.SetActive(false);
 
-            CharacterManager.Instance.Character.charHealthValue = GameManager.Instance.gameStartHp;
+            // 플레이어 체력 full로 복귀, isDead false
+            CharacterManager.Instance.Character.charHealthValue = CharacterManager.Instance.Character.charMaxHealthValue;
+
             GameManager.Instance.Player.gameObject.GetComponent<Unit>().isDead = false;
             GameManager.Instance.Player.gameObject.GetComponent<Unit>().state = Unit.State.Idle;
         }                

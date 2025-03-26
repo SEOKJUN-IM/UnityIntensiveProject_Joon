@@ -44463,21 +44463,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <charName>k__BackingField: "\uB204\uB8FD\uC9C0"
   <charJob>k__BackingField: "\uC804\uC0AC"
-  <charLevel>k__BackingField: 5
-  <charCurExp>k__BackingField: 70
+  <charLevel>k__BackingField: 1
+  <charCurExp>k__BackingField: 90
   <charMaxExp>k__BackingField: 100
   <charInfo>k__BackingField: "\uADC0\uC5EC\uC6B4 \uAC15\uC544\uC9C0 \uC804\uC0AC
     \uB204\uB8FD\uC9C0.\n\uC55E\uC73C\uB85C\uC758 \uC218\uB9CE\uC740 \uC801\uB4E4\uC744
     \uBB3C\uB9AC\uCE58\uAE30 \uC704\uD574\n\uC624\uB298\uB3C4 \uC5F4\uC2EC\uD788
     \uC218\uB828\uC744 \uD558\uB7EC\uAC04\uB2E4"
   <charGold>k__BackingField: 10000
-  <charAttackValue>k__BackingField: 40
-  <charDefenseValue>k__BackingField: 20
+  <charAttackValue>k__BackingField: 20
+  <charDefenseValue>k__BackingField: 10
   <charHealthValue>k__BackingField: 100
   <charMaxHealthValue>k__BackingField: 100
   <charManaValue>k__BackingField: 100
   <charMaxManaValue>k__BackingField: 100
-  <charCriticalValue>k__BackingField: 5
+  <charCriticalValue>k__BackingField: 0
   charCurInvenQuantity: 0
   charInventory: {fileID: 0}
   charItemDatas: []
@@ -46326,20 +46326,20 @@ MonoBehaviour:
   <charName>k__BackingField: "\uD751\uAD6C"
   <charJob>k__BackingField: "\uC804\uC0AC"
   <charLevel>k__BackingField: 26
-  <charCurExp>k__BackingField: 270
-  <charMaxExp>k__BackingField: 300
+  <charCurExp>k__BackingField: 580
+  <charMaxExp>k__BackingField: 600
   <charInfo>k__BackingField: "\uC544\uC8FC \uAC15\uD55C \uAC15\uC544\uC9C0 \uAE30\uC0AC
     \uD751\uAD6C.\n\uC624\uB79C \uAE30\uAC04 \uC218\uB9CE\uC740 \uC801\uB4E4\uC744
     \uBB3C\uB9AC\uCE5C \uD6C4\n\uC774 \uC138\uC0C1\uC744 \uC9C0\uD0A4\uAE30 \uC704\uD574
     \uB2E4\uC2DC \uB3CC\uC544\uC654\uB2E4."
   <charGold>k__BackingField: 50000
-  <charAttackValue>k__BackingField: 60
-  <charDefenseValue>k__BackingField: 30
-  <charHealthValue>k__BackingField: 300
-  <charMaxHealthValue>k__BackingField: 300
-  <charManaValue>k__BackingField: 300
-  <charMaxManaValue>k__BackingField: 300
-  <charCriticalValue>k__BackingField: 15
+  <charAttackValue>k__BackingField: 70
+  <charDefenseValue>k__BackingField: 35
+  <charHealthValue>k__BackingField: 600
+  <charMaxHealthValue>k__BackingField: 600
+  <charManaValue>k__BackingField: 600
+  <charMaxManaValue>k__BackingField: 600
+  <charCriticalValue>k__BackingField: 10
   charCurInvenQuantity: 0
   charInventory: {fileID: 0}
   charItemDatas: []
