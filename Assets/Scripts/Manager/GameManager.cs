@@ -244,7 +244,7 @@ public class GameManager : MonoBehaviour
     {        
         gameCamera.gameObject.transform.localPosition = new Vector3(3.25f, 5f, 6f);
         gameCamera.gameObject.transform.localEulerAngles = new Vector3(35f, 210f, 0f);
-        gameCamera.fieldOfView = 50f;
+        gameCamera.fieldOfView = 35f;
     }
 
     public void BackToMainMenuScene()
