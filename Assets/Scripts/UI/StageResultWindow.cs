@@ -56,6 +56,7 @@ public class StageResultWindow : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             GameManager.Instance.ResetGameScene();
+            GameManager.Instance.ResetPlayerCameraPosRotInGame();
             clearWindow.SetActive(false);
         }                
         
@@ -64,6 +65,7 @@ public class StageResultWindow : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             GameManager.Instance.ResetGameScene();
+            GameManager.Instance.ResetPlayerCameraPosRotInGame();
             failWindow.SetActive(false);
 
             CharacterManager.Instance.Character.charHealthValue = GameManager.Instance.gameStartHp;

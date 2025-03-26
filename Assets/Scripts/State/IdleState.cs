@@ -18,6 +18,8 @@ public class IdleState : IState
 
     public void Stay()
     {
+        TryFindTarget();
+
         if (GameManager.Instance.inGameScene)
         {
             if (owner.target == null || owner.target.isDead)
@@ -32,18 +34,25 @@ public class IdleState : IState
         
     }
 
+    public void TryFindTarget()
+    {
+        if (owner.isCreep && GameManager.Instance.deadCounts != GameManager.Instance.monsterCounts)
+        {
+            // 앞으로 계속 이동
+            Vector3 dir = owner.transform.position + Vector3.forward;
+            owner.transform.rotation = Quaternion.Lerp(owner.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime);
+
+            owner.transform.position = Vector3.MoveTowards(owner.transform.position, dir, Time.deltaTime * owner.data.moveSpeed);
+            GameManager.Instance.Player.Controller.OnMoveAnimation();
+        }
+    }
+
     public void FindTarget()
     {
         Collider[] colliders = Physics.OverlapSphere(owner.transform.position, owner.findTargetRange, 1 << LayerMask.NameToLayer("Unit"));
 
         // 범위 안에 target이 없다
-        if (colliders.Length <= 0)
-        {
-            // 앞으로 계속 이동                
-            owner.transform.position = Vector3.MoveTowards(owner.transform.position, owner.transform.position + Vector3.forward, Time.deltaTime * owner.data.moveSpeed);
-            GameManager.Instance.Player.Controller.OnMoveAnimation();
-            return;
-        }
+        if (colliders.Length <= 0) return;        
 
         Unit nearTarget = null; // 가까운 적 저장하기 위한 변수
         float minDistance = Mathf.Infinity; // 가까운 적과 거리 저장하기 위한 변수

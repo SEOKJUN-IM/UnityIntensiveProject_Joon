@@ -36,10 +36,15 @@ public class GameManager : MonoBehaviour
     public Camera gameCamera;
     public GameObject cameraContainer;
 
-    private Vector3 playerFirstPos;
-    private Vector3 playerFirstRot;
-    private Vector3 cameraFirstPos;
-    private Vector3 cameraFisrtRot;
+    private Vector3 playerFirstPosInMain;
+    private Vector3 playerFirstRotInMain;
+    private Vector3 cameraFirstPosInMain;
+    private Vector3 cameraFisrtRotInMain;
+
+    private Vector3 playerFirstPosInGame;
+    private Vector3 playerFirstRotInGame;
+    private Vector3 cameraFirstPosInGame;
+    private Vector3 cameraFisrtRotInGame;
 
     [Header("Char01 Inven")]
     public Item sword01;
@@ -106,10 +111,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        playerFirstPos = Player.gameObject.transform.position;
-        playerFirstRot = Player.gameObject.transform.eulerAngles;
-        cameraFirstPos = Instance.gameCamera.transform.position;
-        cameraFisrtRot = Instance.gameCamera.transform.eulerAngles;
+        playerFirstPosInMain = Player.gameObject.transform.position;
+        playerFirstRotInMain = Player.gameObject.transform.eulerAngles;
+        cameraFirstPosInMain = Instance.gameCamera.transform.position;
+        cameraFisrtRotInMain = Instance.gameCamera.transform.eulerAngles;
     }
 
     public void SetData()
@@ -211,15 +216,33 @@ public class GameManager : MonoBehaviour
         {
             firstItems02.Add(criticalScroll02);
         }
-    }    
+    }        
 
     public void GameStart()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("GameScene");        
         ResetGameScene();
+        SavePlayerCameraPosRotInGame();
         gameStartHp = CharacterManager.Instance.Character.charMaxHealthValue;        
     }
 
+    public void SavePlayerCameraPosRotInGame()
+    {
+        playerFirstPosInGame = Player.gameObject.transform.position;
+        playerFirstRotInGame = Player.gameObject.transform.eulerAngles;
+        cameraFirstPosInGame = Instance.gameCamera.transform.position;
+        cameraFisrtRotInGame = Instance.gameCamera.transform.eulerAngles;
+    }
+
+    public void ResetPlayerCameraPosRotInGame()
+    {
+        Player.gameObject.transform.position = playerFirstPosInGame;
+        Player.gameObject.transform.eulerAngles = playerFirstRotInGame;
+        Instance.gameCamera.transform.position = cameraFirstPosInGame;
+        Instance.gameCamera.transform.eulerAngles = cameraFisrtRotInGame;
+    }
+
+    // 게임 씬 들어갈 때 다시 설정해주는 값들
     public void ResetGameScene()
     {
         inGameScene = true;
@@ -263,26 +286,22 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.uiMain.ResetMainScene();
         UIManager.Instance.uiMain.backToMainBtn.transform.parent.gameObject.SetActive(false);
 
-        PlayerPositionResetInMain();
-        CameraPositionResetInMain();
+        ResetPlayerCameraPosRotInMain();        
 
         deadCounts = 0;       
         allDead = false;
         monsterObjects.Clear();
     }
 
-    public void PlayerPositionResetInMain()
+    // 메인메뉴씬으로 갈 때 플레이어, 카메라의 위치, 회전 초기값으로
+    public void ResetPlayerCameraPosRotInMain()
     {
-        Player.gameObject.transform.position = playerFirstPos;
-        Player.gameObject.transform.eulerAngles = playerFirstRot;
-    }
-
-    public void CameraPositionResetInMain()
-    {
-        Instance.gameCamera.transform.position = cameraFirstPos;
-        Instance.gameCamera.transform.eulerAngles = cameraFisrtRot;
+        Player.gameObject.transform.position = playerFirstPosInMain;
+        Player.gameObject.transform.eulerAngles = playerFirstRotInMain;
+        Instance.gameCamera.transform.position = cameraFirstPosInMain;
+        Instance.gameCamera.transform.eulerAngles = cameraFisrtRotInMain;
         gameCamera.fieldOfView = 75f;
-    }   
+    }      
 
     // 게임 씬에서 총 몬스터 찾아오기
     public void FindAllMonsterCounts()
