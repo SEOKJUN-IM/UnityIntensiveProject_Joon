@@ -13,6 +13,7 @@ public class UIMainMenu : MonoBehaviour
     public TextMeshProUGUI charJobText;
     public TextMeshProUGUI charLevelText;
     public TextMeshProUGUI charCurExpText;
+    public TextMeshProUGUI charMaxExpText;
     public TextMeshProUGUI charInfoText;
     public TextMeshProUGUI charGoldText;    
 
@@ -126,6 +127,7 @@ public class UIMainMenu : MonoBehaviour
         charJobText.text = GameManager.Instance.Player.playerJob;
         charLevelText.text = GameManager.Instance.Player.playerLevel < 10 ? $"0{GameManager.Instance.Player.playerLevel}" : $"{GameManager.Instance.Player.playerLevel}";
         charCurExpText.text = $"{GameManager.Instance.Player.playerCurExp}";
+        charMaxExpText.text = $"{GameManager.Instance.Player.playerMaxExp}";
         charInfoText.text = GameManager.Instance.Player.playerInfo;
         charGoldText.text = $"{GameManager.Instance.Player.playerGold:N0}";
 

@@ -10,6 +10,7 @@ public class MonsterInfo : MonoBehaviour
     public TextMeshProUGUI targetLevel;
     public TextMeshProUGUI targetExp;
     public TextMeshProUGUI targetCurHp;
+    public TextMeshProUGUI targetMaxHp;
     public Image targetHpBar;
     
     void Update()
@@ -28,6 +29,7 @@ public class MonsterInfo : MonoBehaviour
         targetLevel.text = targetData.unitLevel < 10 ? "0" + targetData.unitLevel.ToString() : targetData.unitLevel.ToString();
         targetExp.text = targetData.unitExp.ToString();
         targetCurHp.text = target.health.ToString();
+        targetMaxHp.text = targetData.unitHealth.ToString();
 
         targetHpBar.fillAmount = target.health / (float)targetData.unitHealth;
     }

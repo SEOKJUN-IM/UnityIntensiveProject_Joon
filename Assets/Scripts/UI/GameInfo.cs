@@ -41,10 +41,13 @@ public class GameInfo : MonoBehaviour
         charJobText.text = GameManager.Instance.Player.playerJob;
         charLevelText.text = GameManager.Instance.Player.playerLevel < 10 ? $"0{GameManager.Instance.Player.playerLevel}" : $"{GameManager.Instance.Player.playerLevel}";
         charCurExpText.text = $"{GameManager.Instance.Player.playerCurExp}";
+        charMaxExpText.text = $"{GameManager.Instance.Player.playerMaxExp}";
         curExpBar.fillAmount = GameManager.Instance.Player.playerCurExp / (float)GameManager.Instance.Player.playerMaxExp;
         charCurHpText.text = $"{GameManager.Instance.Player.playerHealthValue}";
+        charMaxHpText.text = $"{GameManager.Instance.Player.playerMaxHealthValue}";
         curHpBar.fillAmount = GameManager.Instance.Player.playerHealthValue / (float)GameManager.Instance.Player.playerMaxHealthValue;
         charCurMpText.text = $"{GameManager.Instance.Player.playerManaValue}";
+        charMaxMpText.text = $"{GameManager.Instance.Player.playerMaxManaValue}";
         curMpBar.fillAmount = GameManager.Instance.Player.playerManaValue / (float)GameManager.Instance.Player.playerMaxManaValue;
     }
 }
