@@ -38,7 +38,7 @@ public class Unit : MonoBehaviour
     public int health;
     public int exp;
 
-    private Rigidbody _rigidbody;   
+    private BoxCollider boxCollider;   
 
     private void Awake()
     {
@@ -52,7 +52,7 @@ public class Unit : MonoBehaviour
         IStates[(int)State.Dead] = new DeadState(this);
 
         if (!isCreep) unitAnimator = GetComponentInChildren<Animator>();
-        if (!isCreep) _rigidbody = GetComponent<Rigidbody>();
+        if (!isCreep) boxCollider = GetComponent<BoxCollider>();
 
         health = data.UnitHp;
         exp = data.unitExp;        
@@ -76,11 +76,10 @@ public class Unit : MonoBehaviour
             onMonsterDamaging = false;
         }
 
-        // 몬스터 죽으면 useGravity 꺼주고 isKinematic 켜주어 플레이어 이동에 방해되지 않도록
+        // 몬스터 죽으면 isTrigger 켜주어 플레이어 이동에 방해되지 않도록
         if (!isCreep && isDead)
         {
-            _rigidbody.useGravity = false;
-            _rigidbody.isKinematic = true;
+            boxCollider.isTrigger = true;
         }               
     }
 
