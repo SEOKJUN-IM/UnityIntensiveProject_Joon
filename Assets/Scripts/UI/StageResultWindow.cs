@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -6,7 +5,7 @@ using UnityEngine.UI;
 public class StageResultWindow : MonoBehaviour
 {
     public GameObject clearWindow;
-    public GameObject failWindow;    
+    public GameObject failWindow;        
     public Button goMainBtn;
     public Button goNextBtn;    
 
@@ -58,7 +57,7 @@ public class StageResultWindow : MonoBehaviour
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);            
             GameManager.Instance.ResetGameScene();
-            GameManager.Instance.ResetPlayerCameraPosRotInGame();
+            GameManager.Instance.ResetPlayerCameraPosRotInGame();            
             clearWindow.SetActive(false);
         }                
         

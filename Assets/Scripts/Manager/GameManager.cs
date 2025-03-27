@@ -102,19 +102,19 @@ public class GameManager : MonoBehaviour
         gameCamera = Camera.main;        
     }
 
-    private void Update()
-    {
-        DistinChar();
-        FindAllMonsterCounts();
-        CheckAllDead();
-    }
-
     private void Start()
     {
         playerFirstPosInMain = Player.gameObject.transform.position;
         playerFirstRotInMain = Player.gameObject.transform.eulerAngles;
         cameraFirstPosInMain = Instance.gameCamera.transform.position;
         cameraFisrtRotInMain = Instance.gameCamera.transform.eulerAngles;
+    }
+
+    private void Update()
+    {
+        DistinChar();
+        FindAllMonsterCounts();
+        CheckAllDead();        
     }
 
     public void SetData()
@@ -220,7 +220,8 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
-        SceneManager.LoadScene("GameScene");        
+        SceneManager.LoadScene("GameScene");
+        monsterObjects.Clear();
         ResetGameScene();
         SavePlayerCameraPosRotInGame();
         gameStartHp = CharacterManager.Instance.Character.charMaxHealthValue;        

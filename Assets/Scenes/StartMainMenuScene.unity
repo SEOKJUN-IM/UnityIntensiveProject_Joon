@@ -25314,7 +25314,6 @@ MonoBehaviour:
   stage05Cell: {fileID: 591300222}
   stage06Cell: {fileID: 1132839369}
   stageCells: []
-  selectedStageText: {fileID: 1572772521}
 --- !u!223 &1348816931
 Canvas:
   m_ObjectHideFlags: 0
@@ -31462,7 +31461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curStageType: 0
-  curStageData: {fileID: 0}
+  curStageData: {fileID: 11400000, guid: 0dc1233ca87844c449fa5a9efc9ad5d3, type: 2}
   stages:
   - {fileID: 11400000, guid: 0dc1233ca87844c449fa5a9efc9ad5d3, type: 2}
   - {fileID: 11400000, guid: 4175c925ec3cbcc47bb74eae40fc4db8, type: 2}
@@ -31471,6 +31470,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c75726968702ff449a457cb05491be82, type: 2}
   - {fileID: 11400000, guid: 9a33a7be8684f1d4aa2b7040b7cfc64a, type: 2}
   spawnedMonsters: []
+  remainMonsters: []
+  clearWindow: {fileID: 1922515967}
+  failWindow: {fileID: 1362188866}
 --- !u!1 &1603668313
 GameObject:
   m_ObjectHideFlags: 0
@@ -45965,6 +45967,7 @@ MonoBehaviour:
   isDead: 0
   health: 0
   exp: 0
+  boxCollider: {fileID: 0}
 --- !u!4 &7613074243668669478
 Transform:
   m_ObjectHideFlags: 0

@@ -10,19 +10,12 @@ public class UIStage : MonoBehaviour
     public StageCell stage05Cell;
     public StageCell stage06Cell;
 
-    public StageCell[] stageCells;    
-
-    public TextMeshProUGUI selectedStageText;
+    public StageCell[] stageCells;   
 
     void Awake()
     {
         UIManager.Instance.uiStage = this;
         stageCells = new StageCell[6] { stage01Cell, stage02Cell, stage03Cell, stage04Cell, stage05Cell, stage06Cell };
-    }
-
-    void Update()
-    {
-        selectedStageText.text = StageManager.Instance.curStageData.stageNum.ToString();
     }
 
     public void SelectOnlyOneStage()

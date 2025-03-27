@@ -13,16 +13,16 @@ public class StageCell : MonoBehaviour
 
     void Start()
     {
-        stageBtn.onClick.AddListener(SelectBtn);
+        stageBtn.onClick.AddListener(ChangeCurStage);
     }
 
     void Update()
-    {
+    {        
         if (isSelected) StageManager.Instance.curStageType = selectedStage;
-        SetSelected();
+        SetSelected();        
     }
 
-    void SelectBtn()
+    void ChangeCurStage()
     {        
         if (!isSelected)
         {

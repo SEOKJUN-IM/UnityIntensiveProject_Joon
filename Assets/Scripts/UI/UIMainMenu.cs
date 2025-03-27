@@ -63,7 +63,8 @@ public class UIMainMenu : MonoBehaviour
     void Update()
     {
         SetCharInfo();
-        OnOffTargetInfoWindow();        
+        OnOffTargetInfoWindow();
+        curStageText.text = StageManager.Instance.curStageData.stageNum.ToString();
     }
 
     public void OpenMainMenu()
