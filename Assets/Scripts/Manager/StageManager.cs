@@ -79,10 +79,8 @@ public class StageManager : MonoBehaviour
         {
             GameObject monster = Instantiate(curStageData.spawnList[i], Vector3.forward * 20 ,Quaternion.identity);
             spawnedMonsters.Add(monster);
-
-            if (i >= 2) monster.transform.position += Vector3.forward * 20;
-            if (i >= 4) monster.transform.position += Vector3.forward * 40;
-            if (i >= 6) monster.transform.position += Vector3.forward * 60;
+            
+            if (i >= 4) monster.transform.position += Vector3.forward * 20;            
         }
     }   
 

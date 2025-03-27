@@ -15,7 +15,7 @@ MonoBehaviour:
   unitName: "\uD50C\uB808\uC774\uC5B4"
   unitType: Player
   unitLevel: 1
-  moveSpeed: 5
+  moveSpeed: 7
   unitHealth: 100
   attackRange: 3
   unitAttackPower: 0
