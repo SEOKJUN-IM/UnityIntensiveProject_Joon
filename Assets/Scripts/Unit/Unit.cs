@@ -36,9 +36,7 @@ public class Unit : MonoBehaviour
     public static bool onMonsterDamaging; // 너무 자주 damage를 받는 것 막는 static 변수
 
     public int health;
-    public int exp;
-
-    private BoxCollider boxCollider;   
+    public int exp;       
 
     private void Awake()
     {
@@ -52,7 +50,7 @@ public class Unit : MonoBehaviour
         IStates[(int)State.Dead] = new DeadState(this);
 
         if (!isCreep) unitAnimator = GetComponentInChildren<Animator>();
-        if (!isCreep) boxCollider = GetComponent<BoxCollider>();
+        
 
         health = data.UnitHp;
         exp = data.unitExp;        
@@ -64,10 +62,16 @@ public class Unit : MonoBehaviour
         IStates[(int)_state].Stay();
 
         // Idle 상태에선 시간 갈수록 검색 범위 증가
-        if (GameManager.Instance.inGameScene && this._state == State.Idle)
+        if (GameManager.Instance.inGameScene && _state == State.Idle)
         {
             findTargetRange += Time.deltaTime * 2f;
             findTargetRange = Mathf.Clamp(findTargetRange, 30f, 500f);
+        }        
+
+        // 몬스터 죽으면 isTrigger 켜주어 플레이어 이동에 방해되지 않도록
+        if (!isCreep && isDead)
+        {            
+            Destroy(gameObject, 2f);            
         }
 
         if (GameManager.Instance.inMainMenuScene)
@@ -75,12 +79,6 @@ public class Unit : MonoBehaviour
             onPlayerDamaging = false;
             onMonsterDamaging = false;
         }
-
-        // 몬스터 죽으면 isTrigger 켜주어 플레이어 이동에 방해되지 않도록
-        if (!isCreep && isDead)
-        {
-            boxCollider.isTrigger = true;
-        }               
     }
 
     // Unit이 플레이어일 때 (owner : 플레이어, target : 몬스터)

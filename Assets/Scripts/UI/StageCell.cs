@@ -1,24 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum StageType
+public class StageCell : MonoBehaviour
 {
-    Stage01,
-    Stage02,
-    Stage03,
-    Stage04,
-    Stage05,
-    Stage06
-}
-
-public class Stage : MonoBehaviour
-{
-    public Button stageBtn;
     public StageType selectedStage;
+    public bool isSelected;
+
+    public Button stageBtn;    
     public Outline selectedOutline;
     public GameObject selectedBG;
-    public GameObject selectedText;
-    public bool isSelected;
+    public GameObject selectedText;    
 
     void Start()
     {
@@ -27,6 +18,7 @@ public class Stage : MonoBehaviour
 
     void Update()
     {
+        if (isSelected) StageManager.Instance.curStageType = selectedStage;
         SetSelected();
     }
 

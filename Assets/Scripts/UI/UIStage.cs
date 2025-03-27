@@ -3,47 +3,33 @@ using UnityEngine;
 
 public class UIStage : MonoBehaviour
 {
-    public Stage stage01;
-    public Stage stage02;
-    public Stage stage03;
-    public Stage stage04;
-    public Stage stage05;
-    public Stage stage06;
+    public StageCell stage01Cell;
+    public StageCell stage02Cell;
+    public StageCell stage03Cell;
+    public StageCell stage04Cell;
+    public StageCell stage05Cell;
+    public StageCell stage06Cell;
 
-    public Stage[] stages;
-
-    public int selectedStageOrder = 1;
+    public StageCell[] stageCells;    
 
     public TextMeshProUGUI selectedStageText;
 
     void Awake()
     {
         UIManager.Instance.uiStage = this;
-        stages = new Stage[6] { stage01, stage02, stage03, stage04, stage05, stage06 };
+        stageCells = new StageCell[6] { stage01Cell, stage02Cell, stage03Cell, stage04Cell, stage05Cell, stage06Cell };
     }
 
     void Update()
     {
-        ShowSelectStageTextInUIMain();
+        selectedStageText.text = StageManager.Instance.curStageData.stageNum.ToString();
     }
 
     public void SelectOnlyOneStage()
     {
-        for (int i = 0; i < stages.Length; i++)
+        for (int i = 0; i < stageCells.Length; i++)
         {
-            if (stages[i].isSelected) stages[i].isSelected = false;
+            if (stageCells[i].isSelected) stageCells[i].isSelected = false;
         }       
-    }
-
-    public void ShowSelectStageTextInUIMain()
-    {
-        for (int i = 0; i < stages.Length; i++)
-        {
-            if (stages[i].isSelected)
-            {
-                selectedStageOrder = (int)stages[i].selectedStage + 1;
-                selectedStageText.text = selectedStageOrder.ToString();
-            }            
-        }
-    }    
+    } 
 }
