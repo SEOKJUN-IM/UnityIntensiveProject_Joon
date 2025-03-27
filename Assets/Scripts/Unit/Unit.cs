@@ -36,7 +36,9 @@ public class Unit : MonoBehaviour
     public static bool onMonsterDamaging; // 너무 자주 damage를 받는 것 막는 static 변수
 
     public int health;
-    public int exp;       
+    public int exp;
+
+    public BoxCollider boxCollider;      
 
     private void Awake()
     {
@@ -50,7 +52,7 @@ public class Unit : MonoBehaviour
         IStates[(int)State.Dead] = new DeadState(this);
 
         if (!isCreep) unitAnimator = GetComponentInChildren<Animator>();
-        
+        if (!isCreep) boxCollider = GetComponent<BoxCollider>();        
 
         health = data.UnitHp;
         exp = data.unitExp;        
@@ -71,7 +73,7 @@ public class Unit : MonoBehaviour
         // 몬스터 죽으면 isTrigger 켜주어 플레이어 이동에 방해되지 않도록
         if (!isCreep && isDead)
         {            
-            Destroy(gameObject, 2f);            
+            Invoke("OnIsTrigger", 3f);            
         }
 
         if (GameManager.Instance.inMainMenuScene)
@@ -79,6 +81,12 @@ public class Unit : MonoBehaviour
             onPlayerDamaging = false;
             onMonsterDamaging = false;
         }
+    }
+
+    // boxCollider isTrigger 켜기
+    void OnIsTrigger()
+    {
+        boxCollider.isTrigger = true;
     }
 
     // Unit이 플레이어일 때 (owner : 플레이어, target : 몬스터)

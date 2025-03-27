@@ -70,9 +70,12 @@ public class StageManager : MonoBehaviour
     {
         for (int i = 0; i < curStageData.spawnList.Length; i++)
         {
-            GameObject monster = Instantiate(curStageData.spawnList[i], Vector3.forward * 30 ,Quaternion.identity);            
-            
+            GameObject monster = Instantiate(curStageData.spawnList[i], Vector3.forward * 20 ,Quaternion.identity);
             spawnedMonsters.Add(monster);
+
+            if (i >= 2) monster.transform.position += Vector3.forward * 20;
+            if (i >= 4) monster.transform.position += Vector3.forward * 40;
+            if (i >= 6) monster.transform.position += Vector3.forward * 60;
         }
     }   
 
