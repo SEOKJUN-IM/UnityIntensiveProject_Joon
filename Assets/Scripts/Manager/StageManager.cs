@@ -18,7 +18,8 @@ public class StageManager : MonoBehaviour
     public StageData curStageData;
     public StageData[] stages;
 
-    public List<GameObject> spawnedMonsters = new List<GameObject>();    
+    public List<GameObject> spawnedMonsters = new List<GameObject>();
+    public GameObject[] remainMonsters;    
 
     private static StageManager _instance;
     public static StageManager Instance
@@ -53,7 +54,13 @@ public class StageManager : MonoBehaviour
 
     private void Update()
     {
-        SetCurStageData();                
+        SetCurStageData();
+
+        if (GameManager.Instance.allDead)
+        {
+            DestroyRemainMonsters();
+            remainMonsters = null;
+        }
     }
 
     public void SetCurStageData()
@@ -81,6 +88,19 @@ public class StageManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene == SceneManager.GetSceneByBuildIndex(1)) SpawnMonsters();    
+        if (scene == SceneManager.GetSceneByBuildIndex(1))
+        {                        
+            SpawnMonsters();            
+        }   
+    }
+
+    public void DestroyRemainMonsters()
+    {
+        remainMonsters = GameObject.FindGameObjectsWithTag("Monster");
+
+        for (int i = 0; i < remainMonsters.Length; i++)
+        {
+            Destroy(remainMonsters[i]);
+        }
     }  
 }

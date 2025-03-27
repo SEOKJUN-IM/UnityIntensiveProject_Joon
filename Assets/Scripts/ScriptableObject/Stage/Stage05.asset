@@ -15,15 +15,6 @@ MonoBehaviour:
   stageName: Stage05
   stageType: 4
   stageNum: 5
-  spawnPoint:
-  - {fileID: 5920492875612738158, guid: 5c290a177f2c59e4986c8e7f70e5793a, type: 3}
-  - {fileID: 607899962142356845, guid: 87c14e072f3ed6d4594afb2fd71858f4, type: 3}
-  - {fileID: 7064310002165029671, guid: d26df62916c0e6d478e684d2a99189d4, type: 3}
-  - {fileID: 223850252983578423, guid: 1b2d137d2b186e0489bbcbaed19abdc5, type: 3}
-  - {fileID: 1571428209214895698, guid: 6e105096e3d2d6c429e76937a85ebae7, type: 3}
-  - {fileID: 8195626745458186019, guid: 4d58415dffb61a944bbf25fd6fd4016c, type: 3}
-  - {fileID: 1123448246353059470, guid: 78393cca756a5214986fc20a4df45758, type: 3}
-  - {fileID: 3880050040783540636, guid: 74355f90cad9e874584f819eed6dae44, type: 3}
   spawnList:
   - {fileID: 7273451260520482310, guid: 01bfaa126bcf2774d962de9e0be4854f, type: 3}
   - {fileID: 7273451260520482310, guid: 01bfaa126bcf2774d962de9e0be4854f, type: 3}
@@ -33,3 +24,4 @@ MonoBehaviour:
   - {fileID: 6653473426070787123, guid: 748d808846d2a8a49a7a13ec7cf6fa27, type: 3}
   - {fileID: 6653473426070787123, guid: 748d808846d2a8a49a7a13ec7cf6fa27, type: 3}
   - {fileID: 6653473426070787123, guid: 748d808846d2a8a49a7a13ec7cf6fa27, type: 3}
+  gold: 25000

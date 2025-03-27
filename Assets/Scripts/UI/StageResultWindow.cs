@@ -53,8 +53,10 @@ public class StageResultWindow : MonoBehaviour
     {
         // 클리어 창 떠있을 때
         if (clearWindow.activeInHierarchy)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        {            
+            StageManager.Instance.spawnedMonsters.Clear();
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);            
             GameManager.Instance.ResetGameScene();
             GameManager.Instance.ResetPlayerCameraPosRotInGame();
             clearWindow.SetActive(false);
@@ -62,8 +64,10 @@ public class StageResultWindow : MonoBehaviour
         
         // 실패 창 떠있을 때
         if (failWindow.activeInHierarchy)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        {            
+            StageManager.Instance.spawnedMonsters.Clear();
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);            
             GameManager.Instance.ResetGameScene();
             GameManager.Instance.ResetPlayerCameraPosRotInGame();
             failWindow.SetActive(false);

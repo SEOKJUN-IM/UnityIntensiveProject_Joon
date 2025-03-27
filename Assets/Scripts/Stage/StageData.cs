@@ -6,9 +6,9 @@ public class StageData : ScriptableObject, ISerializationCallbackReceiver
     [Header("Stage Info")]
     public string stageName;
     public StageType stageType;
-    public int stageNum;
-    public GameObject[] spawnPoint;
+    public int stageNum;    
     public GameObject[] spawnList;
+    public int gold;
 
     public StageType StageType { get; set; }
     public int StageNum { get; set; }

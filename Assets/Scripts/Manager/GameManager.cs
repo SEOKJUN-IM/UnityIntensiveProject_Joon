@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -289,6 +290,8 @@ public class GameManager : MonoBehaviour
 
         deadCounts = 0;       
         allDead = false;
+                
+        StageManager.Instance.spawnedMonsters.Clear();
         monsterObjects.Clear();
     }
 
