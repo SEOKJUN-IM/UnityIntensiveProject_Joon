@@ -18,6 +18,6 @@ MonoBehaviour:
   spawnList:
   - {fileID: 8829922197128478408, guid: 3655c17acf82c3b4d96ad66e45f98492, type: 3}
   - {fileID: 8829922197128478408, guid: 3655c17acf82c3b4d96ad66e45f98492, type: 3}
-  - {fileID: 8461204996866871078, guid: ec708782075ad964ebe01e9d0ff97f93, type: 3}
-  - {fileID: 8461204996866871078, guid: ec708782075ad964ebe01e9d0ff97f93, type: 3}
+  - {fileID: 2609002833132774656, guid: ec708782075ad964ebe01e9d0ff97f93, type: 3}
+  - {fileID: 2609002833132774656, guid: ec708782075ad964ebe01e9d0ff97f93, type: 3}
   gold: 5000

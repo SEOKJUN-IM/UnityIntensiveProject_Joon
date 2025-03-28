@@ -311,6 +311,7 @@ public class GameManager : MonoBehaviour
     {
         if (inGameScene)
         {
+            monsterObjects.Clear();
             monsters = GameObject.FindGameObjectsWithTag("Monster");
 
             for (int i = 0; i < monsters.Length; i++)
