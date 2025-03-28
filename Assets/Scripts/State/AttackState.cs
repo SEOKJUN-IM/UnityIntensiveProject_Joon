@@ -16,7 +16,8 @@ public class AttackState : IState
 
     public void Stay()
     {
-        if (owner.target == null || owner.target.isDead) // target 없거나 죽었으면 Idle 상태로 변화
+        // 공격 중 타겟 없거나 죽으면 Idle 상태로 변화, 다시 가장 가까운 적 검색
+        if (owner.target == null || owner.target.isDead) 
         {
             owner.state = Unit.State.Idle;
             return;
