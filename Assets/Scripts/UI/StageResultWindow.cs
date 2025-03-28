@@ -16,20 +16,10 @@ public class StageResultWindow : MonoBehaviour
     }
 
     void Update()
-    {
-        OnClearWindow();
+    {        
         OffResultWindow();
-    }    
-
-    // 클리어 창 띄우기
-    void OnClearWindow()
-    {
-        if (GameManager.Instance.inGameScene && GameManager.Instance.allDead)
-        {
-            clearWindow.SetActive(true);
-            GameManager.Instance.allDead = false;
-        }        
-    }        
+        OnClearWindow();
+    }            
 
     // 메인씬에선 안 보이게
     void OffResultWindow()
@@ -77,6 +67,16 @@ public class StageResultWindow : MonoBehaviour
             GameManager.Instance.Player.gameObject.GetComponent<Unit>().isDead = false;
             GameManager.Instance.Player.gameObject.GetComponent<Unit>().state = Unit.State.Idle;
         }                
+    }
+
+    // 클리어 창 띄우기
+    void OnClearWindow()
+    {
+        if (GameManager.Instance.inGameScene && GameManager.Instance.allDead)
+        {
+            clearWindow.SetActive(true);
+            GameManager.Instance.allDead = false;
+        }
     }
 
     // 창을 띄우고 5초 후 다음으로

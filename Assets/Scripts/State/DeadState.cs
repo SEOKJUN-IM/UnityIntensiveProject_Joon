@@ -1,5 +1,3 @@
-using System;
-
 public class DeadState : IState
 {
     private Unit owner;
