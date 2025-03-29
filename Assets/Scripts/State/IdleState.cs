@@ -18,10 +18,10 @@ public class IdleState : IState
 
     public void Stay()
     {
-        TryFindTarget();
-
         if (GameManager.Instance.inGameScene)
         {
+            TryFindTarget();
+
             if (owner.target == null || owner.target.isDead)
             {
                 FindTarget();

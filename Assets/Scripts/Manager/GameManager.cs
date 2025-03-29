@@ -73,9 +73,7 @@ public class GameManager : MonoBehaviour
     public Item criticalScroll02;
     public int criticalScrollQuantity02;
 
-    // 플레이어의 모든 타겟 죽었는지 확인
-    public GameObject[] monsters;
-    public List<GameObject> monsterObjects;
+    // 플레이어의 모든 타겟 죽었는지 확인    
     public int monsterCounts = 0;
     public int deadCounts = 0;    
     
@@ -219,8 +217,7 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
-        SceneManager.LoadScene("GameScene");
-        monsterObjects.Clear();
+        SceneManager.LoadScene("GameScene");        
         ResetGameScene();
         SavePlayerCameraPosRotInGame();
         gameStartHp = CharacterManager.Instance.Character.charMaxHealthValue;        
@@ -291,8 +288,7 @@ public class GameManager : MonoBehaviour
         deadCounts = 0;       
         allDead = false;
                 
-        StageManager.Instance.spawnedMonsters.Clear();
-        monsterObjects.Clear();
+        StageManager.Instance.spawnedMonsters.Clear();        
     }
 
     // 메인메뉴씬으로 갈 때 플레이어, 카메라의 위치, 회전 초기값으로
@@ -309,16 +305,9 @@ public class GameManager : MonoBehaviour
     public void FindAllMonsterCounts()
     {
         if (inGameScene)
-        {
-            monsterObjects.Clear();
-            monsters = GameObject.FindGameObjectsWithTag("Monster");
-
-            for (int i = 0; i < monsters.Length; i++)
-            {
-                if (monsterObjects.Count < monsters.Length) monsterObjects.Add(monsters[i]);                
-            }
-        }
-        monsterCounts = monsterObjects.Count;
+        {            
+            monsterCounts = StageManager.Instance.curStageData.spawnList.Length;
+        }        
     }    
 
     // 타겟 모두 죽었는지 아닌지 검사
