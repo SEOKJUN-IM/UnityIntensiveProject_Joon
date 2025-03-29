@@ -1,6 +1,4 @@
 using UnityEngine;
-using UniRx;
-using OpenCover.Framework.Model;
 
 public class UIManager : MonoBehaviour
 {
@@ -43,7 +41,7 @@ public class UIManager : MonoBehaviour
 
         uiInven01 = GameObject.Find("UIInventory01").GetComponent<UIInventory>();
         uiInven02 = GameObject.Find("UIInventory02").GetComponent<UIInventory>();
-        stageResultWindow = GameObject.Find("UIMainMenu").transform.Find("StageFail").GetComponent<StageResultWindow>();        
+        stageResultWindow = GameObject.Find("UIMainMenu").transform.Find("StageFail").GetComponent<StageResultWindow>();
     }
 
     private void Start()

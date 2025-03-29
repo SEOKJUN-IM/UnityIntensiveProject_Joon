@@ -70,7 +70,7 @@ public class StageResultWindow : MonoBehaviour
     }
 
     // 클리어 창 띄우기
-    public void OnClearWindow()
+    void OnClearWindow()
     {
         if (GameManager.Instance.inGameScene && GameManager.Instance.allDead)
         {
