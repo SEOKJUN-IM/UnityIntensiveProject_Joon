@@ -317,8 +317,9 @@ public class GameManager : MonoBehaviour
             {
                 if (monsterObjects.Count < monsters.Length) monsterObjects.Add(monsters[i]);                
             }
-        }
-        monsterCounts = monsterObjects.Count;
+
+            monsterCounts = monsterObjects.Count;
+        }        
     }    
 
     // 타겟 모두 죽었는지 아닌지 검사
