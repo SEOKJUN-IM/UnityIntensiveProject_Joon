@@ -11211,8 +11211,6 @@ MonoBehaviour:
   attackScrollQuantity02: 10
   criticalScroll02: {fileID: 5947428874906443623, guid: 1328743843bbc954984482d392b663f7, type: 3}
   criticalScrollQuantity02: 10
-  monsters: []
-  monsterObjects: []
   monsterCounts: 0
   deadCounts: 0
   allDead: 0
@@ -12036,8 +12034,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC7A0\uC2DC \uD6C4 \uC790\uB3D9\uC73C\uB85C\n\uB2E4\uC74C \uC2A4\uD14C\uC774\uC9C0\uB85C
-    \uB118\uC5B4\uAC11\uB2C8\uB2E4."
+  m_text: "\uC7A0\uC2DC \uD6C4 \uC790\uB3D9\uC73C\uB85C\n\uC2A4\uD14C\uC774\uC9C0\uB97C
+    \uB2E4\uC2DC \uC2DC\uC791\uD569\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ea08306795f8a7541b49a7d3939e4a71, type: 2}
   m_sharedMaterial: {fileID: -629717795362991445, guid: ea08306795f8a7541b49a7d3939e4a71, type: 2}
@@ -37724,8 +37722,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC7A0\uC2DC \uD6C4 \uC790\uB3D9\uC73C\uB85C\n\uD55C \uB2E8\uACC4 \uC774\uC804
-    \uC2A4\uD14C\uC774\uC9C0\uB97C \uC2DC\uC791\uD569\uB2C8\uB2E4."
+  m_text: "\uC7A0\uC2DC \uD6C4 \uC790\uB3D9\uC73C\uB85C\n\uCD5C\uB300 \uCCB4\uB825\uC73C\uB85C
+    \uC2A4\uD14C\uC774\uC9C0\uB97C \uB2E4\uC2DC \uC2DC\uC791\uD569\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ea08306795f8a7541b49a7d3939e4a71, type: 2}
   m_sharedMaterial: {fileID: -629717795362991445, guid: ea08306795f8a7541b49a7d3939e4a71, type: 2}

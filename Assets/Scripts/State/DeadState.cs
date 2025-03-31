@@ -25,6 +25,9 @@ public class DeadState : IState
 
         // 플레이어 경험치 얻기 = 몬스터가 Dead에 들어갈 때
         PlayerGetExp();
+
+        // 플레이어 골드 얻기 = 마지막 몬스터 죽을 때
+        if (GameManager.Instance.monsterCounts - GameManager.Instance.deadCounts < 1 && !owner.isCreep) GetClearGold();
     }
 
     public void Stay()
@@ -78,5 +81,10 @@ public class DeadState : IState
         CharacterManager.Instance.Character.charMaxManaValue += 20;
         CharacterManager.Instance.Character.charAttackValue += 2;
         CharacterManager.Instance.Character.charDefenseValue += 1;
+    }
+
+    public void GetClearGold()
+    {
+        CharacterManager.Instance.Character.charGold += StageManager.Instance.curStageData.gold;
     }
 }
