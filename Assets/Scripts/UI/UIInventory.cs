@@ -139,7 +139,7 @@ public class UIInventory : MonoBehaviour
 
     public void AddHealthItemValue(ItemDataConsumable selectedItemDataConsumable)
     {
-        if (CharacterManager.Instance.Character.charHealthValue == 100)
+        if (CharacterManager.Instance.Character.charHealthValue == CharacterManager.Instance.Character.charMaxHealthValue)
         {
             useWarningText.gameObject.SetActive(true);
             useWarningText.text = "체력이 이미 최대치입니다.\n[ 아이템 사용 불가 ]";
@@ -147,14 +147,14 @@ public class UIInventory : MonoBehaviour
         }
         else
         {
-            CharacterManager.Instance.Character.charHealthValue = Mathf.Min(CharacterManager.Instance.Character.charHealthValue + selectedItemDataConsumable.itemValue, 100);
+            CharacterManager.Instance.Character.charHealthValue = Mathf.Min(CharacterManager.Instance.Character.charHealthValue + selectedItemDataConsumable.itemValue, CharacterManager.Instance.Character.charMaxHealthValue);
             RemoveSelectedItem();
         }        
     }
 
     public void AddManaItemValue(ItemDataConsumable selectedItemDataConsumable)
     {
-        if (CharacterManager.Instance.Character.charManaValue == 100)
+        if (CharacterManager.Instance.Character.charManaValue == CharacterManager.Instance.Character.charMaxManaValue)
         {
             useWarningText.gameObject.SetActive(true);
             useWarningText.text = "마나가 이미 최대치입니다.\n[ 아이템 사용 불가 ]";
@@ -162,7 +162,7 @@ public class UIInventory : MonoBehaviour
         }
         else
         {
-            CharacterManager.Instance.Character.charManaValue = Mathf.Min(CharacterManager.Instance.Character.charManaValue + selectedItemDataConsumable.itemValue, 100);
+            CharacterManager.Instance.Character.charManaValue = Mathf.Min(CharacterManager.Instance.Character.charManaValue + selectedItemDataConsumable.itemValue, CharacterManager.Instance.Character.charMaxManaValue);
             RemoveSelectedItem();
         }
     }
